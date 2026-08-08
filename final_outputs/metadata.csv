@@ -1,0 +1,246 @@
+file_name,word,target_sound,label,speaker_id,round
+basket-1.wav,basket,s,clear,self,1
+basket-2.wav,basket,s,clear,self,2
+basket-3.wav,basket,s,clear,self,3
+basket-4.wav,basket,s,clear,self,4
+basket-5.wav,basket,s,clear,self,5
+bus-1.wav,bus,s,clear,self,1
+bus-2.wav,bus,s,clear,self,2
+bus-3.wav,bus,s,clear,self,3
+bus-4.wav,bus,s,clear,self,4
+bus-5.wav,bus,s,clear,self,5
+buzz-1.wav,buzz,z,unclear,self,1
+buzz-2.wav,buzz,z,unclear,self,2
+buzz-3.wav,buzz,z,clear,self,3
+buzz-4.wav,buzz,z,unclear,self,4
+buzz-5.wav,buzz,z,clear,self,5
+cheese-1.wav,cheese,z,unclear,self,1
+cheese-2.wav,cheese,z,clear,self,2
+cheese-3.wav,cheese,z,clear,self,3
+cheese-4.wav,cheese,z,clear,self,4
+cheese-5.wav,cheese,z,clear,self,5
+class-1.wav,class,s,clear,self,1
+class-2.wav,class,s,clear,self,2
+class-3.wav,class,s,clear,self,3
+class-4.wav,class,s,clear,self,4
+class-5.wav,class,s,clear,self,5
+lazy-1.wav,lazy,z,clear,self,1
+lazy-2.wav,lazy,z,clear,self,2
+lazy-3.wav,lazy,z,clear,self,3
+lazy-4.wav,lazy,z,clear,self,4
+lazy-5.wav,lazy,z,unclear,self,5
+music-1.wav,music,z,unclear,self,1
+music-2.wav,music,z,clear,self,2
+music-3.wav,music,z,clear,self,3
+music-4.wav,music,z,clear,self,4
+music-5.wav,music,z,clear,self,5
+pencil-1.wav,pencil,s,clear,self,1
+pencil-2.wav,pencil,s,clear,self,2
+pencil-3.wav,pencil,s,clear,self,3
+pencil-4.wav,pencil,s,clear,self,4
+pencil-5.wav,pencil,s,clear,self,5
+puzzle-1.wav,puzzle,z,clear,self,1
+puzzle-2.wav,puzzle,z,clear,self,2
+puzzle-3.wav,puzzle,z,clear,self,3
+puzzle-4.wav,puzzle,z,clear,self,4
+puzzle-5.wav,puzzle,z,clear,self,5
+racing-1.wav,racing,s,clear,self,1
+racing-2.wav,racing,s,clear,self,2
+racing-3.wav,racing,s,clear,self,3
+racing-4.wav,racing,s,clear,self,4
+racing-5.wav,racing,s,clear,self,5
+science-1.wav,science,s,clear,self,1
+science-2.wav,science,s,clear,self,2
+science-3.wav,science,s,clear,self,3
+science-4.wav,science,s,clear,self,4
+science-5.wav,science,s,clear,self,5
+seal-1.wav,seal,s,unclear,self,1
+seal-2.wav,seal,s,clear,self,2
+seal-3.wav,seal,s,unclear,self,3
+seal-4.wav,seal,s,clear,self,4
+seal-5.wav,seal,s,unclear,self,5
+seven-1.wav,seven,s,clear,self,1
+seven-2.wav,seven,s,unclear,self,2
+seven-3.wav,seven,s,clear,self,3
+seven-4.wav,seven,s,clear,self,4
+seven-5.wav,seven,s,clear,self,5
+sister-1.wav,sister,s,clear,self,1
+sister-2.wav,sister,s,unclear,self,2
+sister-3.wav,sister,s,unclear,self,3
+sister-4.wav,sister,s,clear,self,4
+sister-5.wav,sister,s,unclear,self,5
+sun-1.wav,sun,s,unclear,self,1
+sun-2.wav,sun,s,clear,self,2
+sun-3.wav,sun,s,unclear,self,3
+sun-4.wav,sun,s,unclear,self,4
+sun-5.wav,sun,s,unclear,self,5
+zebra-1.wav,zebra,z,clear,self,1
+zebra-2.wav,zebra,z,clear,self,2
+zebra-3.wav,zebra,z,clear,self,3
+zebra-4.wav,zebra,z,clear,self,4
+zebra-5.wav,zebra,z,clear,self,5
+zero-1.wav,zero,z,clear,self,1
+zero-2.wav,zero,z,unclear,self,2
+zero-3.wav,zero,z,clear,self,3
+zero-4.wav,zero,z,unclear,self,4
+zero-5.wav,zero,z,clear,self,5
+zipper-1.wav,zipper,z,clear,self,1
+zipper-2.wav,zipper,z,unclear,self,2
+zipper-3.wav,zipper,z,clear,self,3
+zipper-4.wav,zipper,z,clear,self,4
+zipper-5.wav,zipper,z,clear,self,5
+zone-1.wav,zone,z,clear,self,1
+zone-2.wav,zone,z,clear,self,2
+zone-3.wav,zone,z,clear,self,3
+zone-4.wav,zone,z,clear,self,4
+zone-5.wav,zone,z,clear,self,5
+zoo-1.wav,zoo,z,unclear,self,1
+zoo-2.wav,zoo,z,clear,self,2
+zoo-3.wav,zoo,z,clear,self,3
+zoo-4.wav,zoo,z,clear,self,4
+zoo-5.wav,zoo,z,clear,self,5
+lazy_lizards_love_music-1.wav,lazy lizards love music,z,clear,self,1
+lazy_lizards_love_music-2.wav,lazy lizards love music,z,clear,self,2
+lazy_lizards_love_music-3.wav,lazy lizards love music,z,clear,self,3
+please_pass_the_cheese-1.wav,please pass the cheese,z,unclear,self,1
+please_pass_the_cheese-2.wav,please pass the cheese,z,clear,self,2
+please_pass_the_cheese-3.wav,please pass the cheese,z,clear,self,3
+sally_sells_seashells -1.wav,sally sells seashells ,,clear,self,1
+sally_sells_seashells -2.wav,sally sells seashells ,,unclear,self,2
+sally_sells_seashells -3.wav,sally sells seashells ,,clear,self,3
+science_sometimes_sounds_stressful-1.wav,science sometimes sounds stressful,s,clear,self,1
+science_sometimes_sounds_stressful-2.wav,science sometimes sounds stressful,s,clear,self,2
+science_sometimes_sounds_stressful-3.wav,science sometimes sounds stressful,s,clear,self,3
+seven_sisters_sat_silently-1.wav,seven sisters sat silently,s,clear,self,1
+seven_sisters_sat_silently-2.wav,seven sisters sat silently,s,clear,self,2
+seven_sisters_sat_silently-3.wav,seven sisters sat silently,s,clear,self,3
+seven_students_solved_the_puzzle-1.wav,seven students solved the puzzle,mixed,clear,self,1
+seven_students_solved_the_puzzle-2.wav,seven students solved the puzzle,mixed,unclear,self,2
+seven_students_solved_the_puzzle-3.wav,seven students solved the puzzle,mixed,clear,self,3
+six_roses_were_beside_the_cheese-1.wav,six roses were beside the cheese,mixed,clear,self,1
+six_roses_were_beside_the_cheese-2.wav,six roses were beside the cheese,mixed,clear,self,2
+six_roses_were_beside_the_cheese-3.wav,six roses were beside the cheese,mixed,clear,self,3
+six_students_studied_science-1.wav,six students studied science,s,clear,self,1
+six_students_studied_science-2.wav,six students studied science,s,clear,self,2
+six_students_studied_science-3.wav,six students studied science,s,clear,self,3
+susan_saw_the_zebra_at_the_zoo-1.wav,susan saw the zebra at the zoo,mixed,unclear,self,1
+susan_saw_the_zebra_at_the_zoo-2.wav,susan saw the zebra at the zoo,mixed,clear,self,2
+susan_saw_the_zebra_at_the_zoo-3.wav,susan saw the zebra at the zoo,mixed,clear,self,3
+the_music_sounded_soft_and_fuzzy-1.wav,the music sounded soft and fuzzy,mixed,clear,self,1
+the_music_sounded_soft_and_fuzzy-2.wav,the music sounded soft and fuzzy,mixed,clear,self,2
+the_music_sounded_soft_and_fuzzy-3.wav,the music sounded soft and fuzzy,mixed,clear,self,3
+the_puzzle_was_amazing-1.wav,the puzzle was amazing,z,clear,self,1
+the_puzzle_was_amazing-2.wav,the puzzle was amazing,z,clear,self,2
+the_puzzle_was_amazing-3.wav,the puzzle was amazing,z,clear,self,3
+the_sun_set_slowly-1.wav,the sun set slowly,s,clear,self,1
+the_sun_set_slowly-2.wav,the sun set slowly,s,clear,self,2
+the_sun_set_slowly-3.wav,the sun set slowly,s,clear,self,3
+zach_said_science_was_easy-1.wav,zach said science was easy,mixed,unclear,self,1
+zach_said_science_was_easy-2.wav,zach said science was easy,mixed,unclear,self,2
+zach_said_science_was_easy-3.wav,zach said science was easy,mixed,unclear,self,3
+zebra_zoomed_through_the_zoo-1.wav,zebra zoomed through the zoo,z,clear,self,1
+zebra_zoomed_through_the_zoo-2.wav,zebra zoomed through the zoo,z,clear,self,2
+zebra_zoomed_through_the_zoo-3.wav,zebra zoomed through the zoo,z,clear,self,3
+zero_zebras_were_in_the_zone-1.wav,zero zebras were in the zone,z,clear,self,1
+zero_zebras_were_in_the_zone-2.wav,zero zebras were in the zone,z,unclear,self,2
+zero_zebras_were_in_the_zone-3.wav,zero zebras were in the zone,z,unclear,self,3
+around-1.wav,around,r,clear,self,1
+around-2.wav,around,r,clear,self,2
+around-3.wav,around,r,clear,self,3
+around-4.wav,around,r,clear,self,4
+around-5.wav,around,r,clear,self,5
+bath-1.wav,bath,th,unclear,self,1
+bath-2.wav,bath,th,unclear,self,2
+bath-3.wav,bath,th,unclear,self,3
+bath-4.wav,bath,th,clear,self,4
+bath-5.wav,bath,th,clear,self,5
+birthday-1.wav,birthday,th,clear,self,1
+birthday-2.wav,birthday,th,clear,self,2
+birthday-3.wav,birthday,th,clear,self,3
+birthday-4.wav,birthday,th,clear,self,4
+birthday-5.wav,birthday,th,clear,self,5
+car-1.wav,car,r,clear,self,1
+car-2.wav,car,r,clear,self,2
+car-3.wav,car,r,clear,self,3
+car-4.wav,car,r,clear,self,4
+car-5.wav,car,r,clear,self,5
+carrot-1.wav,carrot,r,clear,self,1
+carrot-2.wav,carrot,r,clear,self,2
+carrot-3.wav,carrot,r,clear,self,3
+carrot-4.wav,carrot,r,clear,self,4
+carrot-5.wav,carrot,r,clear,self,5
+far-1.wav,far,r,clear,self,1
+far-2.wav,far,r,clear,self,2
+far-3.wav,far,r,clear,self,3
+far-4.wav,far,r,clear,self,4
+far-5.wav,far,r,clear,self,5
+healthy-1.wav,healthy,th,clear,self,1
+healthy-2.wav,healthy,th,clear,self,2
+healthy-3.wav,healthy,th,clear,self,3
+healthy-4.wav,healthy,th,clear,self,4
+healthy-5.wav,healthy,th,clear,self,5
+mirror-1.wav,mirror,r,clear,self,1
+mirror-2.wav,mirror,r,unclear,self,2
+mirror-3.wav,mirror,r,clear,self,3
+mirror-4.wav,mirror,r,clear,self,4
+mirror-5.wav,mirror,r,clear,self,5
+nothing-1.wav,nothing,th,unclear,self,1
+nothing-2.wav,nothing,th,unclear,self,2
+nothing-3.wav,nothing,th,clear,self,3
+nothing-4.wav,nothing,th,unclear,self,4
+nothing-5.wav,nothing,th,clear,self,5
+race-1.wav,race,r,clear,self,1
+race-2.wav,race,r,clear,self,2
+race-3.wav,race,r,clear,self,3
+race-4.wav,race,r,clear,self,4
+race-5.wav,race,r,clear,self,5
+red-1.wav,red,r,clear,self,1
+red-2.wav,red,r,unclear,self,2
+red-3.wav,red,r,unclear,self,3
+red-4.wav,red,r,clear,self,4
+red-5.wav,red,r,clear,self,5
+right-1.wav,right,r,unclear,self,1
+right-2.wav,right,r,clear,self,2
+right-3.wav,right,r,unclear,self,3
+right-4.wav,right,r,unclear,self,4
+right-5.wav,right,r,unclear,self,5
+river-1.wav,river,r,clear,self,1
+river-2.wav,river,r,clear,self,2
+river-3.wav,river,r,clear,self,3
+river-4.wav,river,r,clear,self,4
+river-5.wav,river,r,clear,self,5
+story-1.wav,story,r,clear,self,1
+story-2.wav,story,r,clear,self,2
+story-3.wav,story,r,clear,self,3
+story-4.wav,story,r,clear,self,4
+story-5.wav,story,r,clear,self,5
+teeth-1.wav,teeth,th,clear,self,1
+teeth-2.wav,teeth,th,unclear,self,2
+teeth-3.wav,teeth,th,unclear,self,3
+teeth-4.wav,teeth,th,clear,self,4
+teeth-5.wav,teeth,th,clear,self,5
+thank-1.wav,thank,th,unclear,self,1
+thank-2.wav,thank,th,unclear,self,2
+thank-3.wav,thank,th,unclear,self,3
+thank-4.wav,thank,th,unclear,self,4
+thank-5.wav,thank,th,unclear,self,5
+thin-1.wav,thin,th,clear,self,1
+thin-2.wav,thin,th,clear,self,2
+thin-3.wav,thin,th,clear,self,3
+thin-4.wav,thin,th,clear,self,4
+thin-5.wav,thin,th,clear,self,5
+think-1.wav,think,th,clear,self,1
+think-2.wav,think,th,clear,self,2
+think-3.wav,think,th,clear,self,3
+think-4.wav,think,th,clear,self,4
+think-5.wav,think,th,clear,self,5
+thirty-1.wav,thirty,th,unclear,self,1
+thirty-2.wav,thirty,th,clear,self,2
+thirty-3.wav,thirty,th,unclear,self,3
+thirty-4.wav,thirty,th,unclear,self,4
+thirty-5.wav,thirty,th,unclear,self,5
+three-1.wav,three,th,unclear,self,1
+three-2.wav,three,th,unclear,self,2
+three-3.wav,three,th,unclear,self,3
+three-4.wav,three,th,clear,self,4
+three-5.wav,three,th,clear,self,5

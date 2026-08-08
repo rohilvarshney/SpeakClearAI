@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+.DS_Store
+*.pyc
+
+raw_m4a/
+wav/
+
+practice_progress_log.csv
+
+*.m4a
+*.mp3
+
+.env

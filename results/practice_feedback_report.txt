@@ -1,0 +1,80 @@
+SpeakClear AI Practice Feedback Report
+=====================================
+
+Dataset Summary
+Total clips: 245
+Clear clips: 188
+Unclear clips: 57
+
+Top Practice Priorities
+-----------------------
+
+Item: thank
+Target sound: th
+Clip type: word
+Unclear rate: 1.00
+Priority: high-priority
+Feedback: Practice 'thank' slowly and repeat it in short sets. Focus on keeping the /th/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: zach said science was easy
+Target sound: mixed
+Clip type: sentence
+Unclear rate: 1.00
+Priority: high-priority
+Feedback: Practice 'zach said science was easy' slowly and repeat it in short sets. Focus on keeping the /s/ and /z/ sounds steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. Since this is a sentence, try breaking it into smaller parts before saying the full phrase. This is non-clinical practice feedback, not a diagnosis.
+
+Item: right
+Target sound: r
+Clip type: word
+Unclear rate: 0.80
+Priority: high-priority
+Feedback: Practice 'right' slowly and repeat it in short sets. Focus on keeping the /r/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: sun
+Target sound: s
+Clip type: word
+Unclear rate: 0.80
+Priority: high-priority
+Feedback: Practice 'sun' slowly and repeat it in short sets. Focus on keeping the /s/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: thirty
+Target sound: th
+Clip type: word
+Unclear rate: 0.80
+Priority: high-priority
+Feedback: Practice 'thirty' slowly and repeat it in short sets. Focus on keeping the /th/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: zero zebras were in the zone
+Target sound: z
+Clip type: sentence
+Unclear rate: 0.67
+Priority: high-priority
+Feedback: Practice 'zero zebras were in the zone' slowly and repeat it in short sets. Focus on keeping the /z/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. Since this is a sentence, try breaking it into smaller parts before saying the full phrase. This is non-clinical practice feedback, not a diagnosis.
+
+Item: bath
+Target sound: th
+Clip type: word
+Unclear rate: 0.60
+Priority: high-priority
+Feedback: Practice 'bath' slowly and repeat it in short sets. Focus on keeping the /th/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: buzz
+Target sound: z
+Clip type: word
+Unclear rate: 0.60
+Priority: high-priority
+Feedback: Practice 'buzz' slowly and repeat it in short sets. Focus on keeping the /z/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: nothing
+Target sound: th
+Clip type: word
+Unclear rate: 0.60
+Priority: high-priority
+Feedback: Practice 'nothing' slowly and repeat it in short sets. Focus on keeping the /th/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.
+
+Item: seal
+Target sound: s
+Clip type: word
+Unclear rate: 0.60
+Priority: high-priority
+Feedback: Practice 'seal' slowly and repeat it in short sets. Focus on keeping the /s/ sound steady and controlled. Because this item had a high unclear rate, it may be useful to practice it before moving to faster speech. This is non-clinical practice feedback, not a diagnosis.

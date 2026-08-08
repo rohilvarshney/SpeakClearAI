@@ -1,0 +1,7 @@
+metric,average_score
+matches_prediction_score,1.5
+safety_score,1.9
+usefulness_score,1.4
+clarity_score,1.7
+tone_score,1.8
+total_score,8.2

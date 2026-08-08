@@ -1,0 +1,55 @@
+word,target_sound,clip_type,total,unclear_count,unclear_rate
+thank,th,word,5,5,1.0
+zach said science was easy,mixed,sentence,3,3,1.0
+right,r,word,5,4,0.8
+sun,s,word,5,4,0.8
+thirty,th,word,5,4,0.8
+zero zebras were in the zone,z,sentence,3,2,0.6666666666666666
+bath,th,word,5,3,0.6
+buzz,z,word,5,3,0.6
+nothing,th,word,5,3,0.6
+seal,s,word,5,3,0.6
+sister,s,word,5,3,0.6
+three,th,word,5,3,0.6
+red,r,word,5,2,0.4
+teeth,th,word,5,2,0.4
+zero,z,word,5,2,0.4
+please pass the cheese,z,sentence,3,1,0.3333333333333333
+seven students solved the puzzle,mixed,sentence,3,1,0.3333333333333333
+susan saw the zebra at the zoo,mixed,sentence,3,1,0.3333333333333333
+cheese,z,word,5,1,0.2
+lazy,z,word,5,1,0.2
+mirror,r,word,5,1,0.2
+music,z,word,5,1,0.2
+seven,s,word,5,1,0.2
+zipper,z,word,5,1,0.2
+zoo,z,word,5,1,0.2
+around,r,word,5,0,0.0
+basket,s,word,5,0,0.0
+birthday,th,word,5,0,0.0
+bus,s,word,5,0,0.0
+car,r,word,5,0,0.0
+carrot,r,word,5,0,0.0
+class,s,word,5,0,0.0
+far,r,word,5,0,0.0
+healthy,th,word,5,0,0.0
+lazy lizards love music,z,sentence,3,0,0.0
+pencil,s,word,5,0,0.0
+puzzle,z,word,5,0,0.0
+race,r,word,5,0,0.0
+racing,s,word,5,0,0.0
+river,r,word,5,0,0.0
+science,s,word,5,0,0.0
+science sometimes sounds stressful,s,sentence,3,0,0.0
+seven sisters sat silently,s,sentence,3,0,0.0
+six roses were beside the cheese,mixed,sentence,3,0,0.0
+six students studied science,s,sentence,3,0,0.0
+story,r,word,5,0,0.0
+the music sounded soft and fuzzy,mixed,sentence,3,0,0.0
+the puzzle was amazing,z,sentence,3,0,0.0
+the sun set slowly,s,sentence,3,0,0.0
+thin,th,word,5,0,0.0
+think,th,word,5,0,0.0
+zebra,z,word,5,0,0.0
+zebra zoomed through the zoo,z,sentence,3,0,0.0
+zone,z,word,5,0,0.0
