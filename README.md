@@ -8,14 +8,15 @@ Can machine learning analyze personalized speech-pronunciation patterns and gene
 
 ## Features
 
-- Upload a WAV speech-practice recording
-- Predict clear or unclear pronunciation
-- Show model confidence
-- Assign a practice priority
-- Generate reliable non-clinical feedback
-- Display research results and graphs
-- Track saved practice attempts locally
-- Accessible design with large text and high contrast modes
+- Accessible UI with large text, high contrast, labeled inputs, and keyboard-friendly controls
+- Practice Studio with sound selector, expanded word bank, difficulty filters, random challenges, and downloadable plans
+- WAV upload as the main reliable analysis option
+- Optional in-browser recording with `st.audio_input`
+- Clear / unclear prediction from a Random Forest model
+- Confidence, practice priority, and non-clinical feedback
+- Rule-based feedback by default, with optional local Llama rewrite
+- Progress Tracker with charts and a downloadable attempt log
+- Research Results page with model tables, graphs, and plain-English explanations
 
 ## Dataset
 
@@ -44,7 +45,7 @@ The LLM-assisted feedback layer was evaluated with a 10-example rubric.
 
 Average score: 8.2 / 10
 
-The hosted version may use rule-based fallback feedback if local Llama/Ollama is not available.
+The hosted version uses rule-based fallback feedback if local Llama / Ollama is not available.
 
 ## How to Run Locally
 
@@ -53,3 +54,20 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 streamlit run app.py
+```
+
+## Streamlit Community Cloud
+
+This app is meant to run on Streamlit Community Cloud.
+
+- `requirements.txt` lists Python packages
+- `packages.txt` installs `libsndfile1` and `ffmpeg` for audio processing
+- The model loads from `models/speakclear_random_forest.joblib`
+- Research graphs stay in `results/`
+- Ollama is optional. If it is not available, the app uses safe rule-based feedback
+
+## Important Notes
+
+- This is non-clinical practice feedback only.
+- It is not a diagnosis, treatment tool, or replacement for a speech-language pathologist.
+- Browser recording is optional. WAV upload is the most reliable way to analyze a clip.

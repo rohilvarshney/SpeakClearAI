@@ -1,50 +1,58 @@
+from html import escape
 from pathlib import Path
-import tempfile
-import requests
-import random
 from datetime import datetime
+import random
+import tempfile
 
-import streamlit as st
+import joblib
 import librosa
 import numpy as np
 import pandas as pd
-import joblib
+import requests
+import streamlit as st
 
 MODEL_PATH = Path("models/speakclear_random_forest.joblib")
 RESULTS_DIR = Path("results")
 PROGRESS_LOG = Path("practice_progress_log.csv")
+WORD_BANK_PATH = Path("data/word_bank_expanded.csv")
+OLLAMA_URL = "http://localhost:11434/api/generate"
+
+PAGES = [
+    "Home",
+    "Practice Studio",
+    "Try the Demo",
+    "Progress Tracker",
+    "Research Results",
+    "About & Limitations",
+]
 
 st.set_page_config(
     page_title="SpeakClear AI",
     page_icon="🎙️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 # -----------------------------
-# Data
+# Built-in fallback data
 # -----------------------------
 
 R_WORDS = [
     "red", "race", "right", "river", "around",
-    "carrot", "mirror", "story", "car", "far"
+    "carrot", "mirror", "story", "car", "far",
 ]
-
 TH_WORDS = [
     "think", "thin", "three", "thirty", "thank",
-    "birthday", "nothing", "healthy", "bath", "teeth"
+    "birthday", "nothing", "healthy", "bath", "teeth",
 ]
-
 S_WORDS = [
     "sun", "seal", "seven", "sister", "science",
-    "soup", "same", "bus", "yes", "class"
+    "soup", "same", "bus", "yes", "class",
 ]
-
 Z_WORDS = [
     "zoo", "zero", "zebra", "zipper", "zone",
-    "buzz", "lazy", "puzzle", "music", "cheese"
+    "buzz", "lazy", "puzzle", "music", "cheese",
 ]
-
 SENTENCES = {
     "s": [
         "sally sells seashells",
@@ -68,7 +76,6 @@ SENTENCES = {
         "zach said science was easy",
     ],
 }
-
 WORD_BANK = {
     "s": S_WORDS,
     "z": Z_WORDS,
@@ -76,7 +83,6 @@ WORD_BANK = {
     "th": TH_WORDS,
     "mixed": SENTENCES["mixed"],
 }
-
 SENTENCE_TARGETS = {
     "sally sells seashells": "s",
     "seven sisters sat silently": "s",
@@ -94,61 +100,85 @@ SENTENCE_TARGETS = {
     "seven students solved the puzzle": "mixed",
     "zach said science was easy": "mixed",
 }
-
 SOUND_DESCRIPTIONS = {
-    "s": "Practice steady /s/ sounds in words like sun, seal, and science.",
-    "z": "Practice voiced /z/ sounds in words like zero, zoo, and buzz.",
-    "r": "Practice /r/ sounds in words like right, river, mirror, and story.",
-    "th": "Practice /th/ sounds in words like think, thank, bath, and teeth.",
-    "mixed": "Practice sentence-level /s/ and /z/ combinations.",
+    "s": "Practice a steady /s/ sound in words like sun, seal, and science.",
+    "z": "Practice a voiced /z/ sound in words like zero, zoo, and buzz.",
+    "r": "Practice an /r/ sound in words like right, river, mirror, and story.",
+    "th": "Practice a /th/ sound in words like think, thank, bath, and teeth.",
+    "mixed": "Practice short sentences that mix /s/ and /z/ sounds.",
+}
+SOUND_LABELS = {
+    "s": "/s/",
+    "z": "/z/",
+    "r": "/r/",
+    "th": "/th/",
+    "mixed": "mixed /s/ and /z/",
 }
 
 # -----------------------------
-# Accessibility and Styling
+# Session defaults
 # -----------------------------
 
+if "page" not in st.session_state:
+    st.session_state.page = "Home"
 if "large_text" not in st.session_state:
-    st.session_state["large_text"] = False
-
+    st.session_state.large_text = False
 if "high_contrast" not in st.session_state:
-    st.session_state["high_contrast"] = False
+    st.session_state.high_contrast = False
+if "progress_df" not in st.session_state:
+    st.session_state.progress_df = None
 
+
+def go_to(page_name):
+    st.session_state.page = page_name
+    st.rerun()
+
+
+# -----------------------------
+# Accessibility and styling
+# -----------------------------
 
 def apply_styles():
-    large_text = st.session_state["large_text"]
-    high_contrast = st.session_state["high_contrast"]
+    large_text = bool(st.session_state.large_text)
+    high_contrast = bool(st.session_state.high_contrast)
 
-    base_font_size = "20px" if large_text else "17px"
-    small_font_size = "17px" if large_text else "15px"
+    base_font = "21px" if large_text else "17px"
+    small_font = "18px" if large_text else "15px"
+    line_height = "1.65" if large_text else "1.55"
 
     if high_contrast:
-        bg = "#050505"
+        bg = "#000000"
         panel = "#111111"
         text = "#ffffff"
-        muted = "#e8e8e8"
+        muted = "#f3f3f3"
         border = "#ffffff"
         accent = "#ffdd00"
-        soft = "#1d1d1d"
+        soft = "#1a1a1a"
         success_bg = "#003b18"
         warning_bg = "#3d3200"
-        error_bg = "#420000"
+        error_bg = "#3b0000"
+        shadow = "none"
+        focus = "#ffdd00"
     else:
-        bg = "#f7f9fc"
+        bg = "#f4f7fb"
         panel = "#ffffff"
         text = "#111827"
         muted = "#4b5563"
-        border = "#d7dde8"
-        accent = "#315efb"
+        border = "#d7dee8"
+        accent = "#1d4ed8"
         soft = "#eef3ff"
         success_bg = "#e8f7ef"
         warning_bg = "#fff7dc"
         error_bg = "#ffe8e8"
+        shadow = "0 10px 28px rgba(17, 24, 39, 0.06)"
+        focus = "#1d4ed8"
 
     st.markdown(
         f"""
         <style>
         html, body, [class*="css"] {{
-            font-size: {base_font_size};
+            font-size: {base_font};
+            line-height: {line_height};
         }}
 
         .stApp {{
@@ -157,8 +187,9 @@ def apply_styles():
         }}
 
         h1, h2, h3, h4, h5, h6 {{
-            color: {text};
+            color: {text} !important;
             letter-spacing: -0.02em;
+            line-height: 1.25;
         }}
 
         p, li, label, span, div {{
@@ -166,9 +197,9 @@ def apply_styles():
         }}
 
         .block-container {{
-            padding-top: 2rem;
+            padding-top: 1.4rem;
             padding-bottom: 4rem;
-            max-width: 1200px;
+            max-width: 1180px;
         }}
 
         section[data-testid="stSidebar"] {{
@@ -176,127 +207,160 @@ def apply_styles():
             border-right: 1px solid {border};
         }}
 
-        .app-hero {{
+        .skip-link {{
+            position: absolute;
+            left: -999px;
+            top: 12px;
+            z-index: 1000;
+            background: {accent};
+            color: {"#000000" if high_contrast else "#ffffff"};
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+        }}
+
+        .skip-link:focus {{
+            left: 16px;
+        }}
+
+        a {{
+            color: {accent};
+            text-decoration: underline;
+        }}
+
+        *:focus-visible {{
+            outline: 3px solid {focus} !important;
+            outline-offset: 3px !important;
+        }}
+
+        .app-hero, .compact-header, .section-card, .mini-card, .sound-card, .result-card {{
             background: {panel};
             border: 1px solid {border};
+            box-shadow: {shadow};
+            color: {text};
+        }}
+
+        .app-hero {{
             border-radius: 24px;
             padding: 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            margin-bottom: 18px;
+        }}
+
+        .compact-header {{
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-bottom: 16px;
+        }}
+
+        .hero-kicker {{
+            font-size: {small_font};
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: {accent};
+            margin-bottom: 8px;
         }}
 
         .hero-title {{
-            font-size: 3rem;
+            font-size: {"2.5rem" if large_text else "2.2rem"};
             font-weight: 800;
-            margin-bottom: 8px;
+            margin: 0 0 8px 0;
             color: {text};
         }}
 
         .hero-subtitle {{
-            font-size: 1.25rem;
-            line-height: 1.6;
+            font-size: {"1.2rem" if large_text else "1.05rem"};
+            line-height: {line_height};
             color: {muted};
-            max-width: 900px;
+            max-width: 860px;
+            margin: 0;
         }}
 
         .section-card {{
-            background: {panel};
-            border: 1px solid {border};
             border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 18px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            padding: 22px;
+            margin-bottom: 16px;
+            min-height: 150px;
         }}
 
-        .mini-card {{
-            background: {soft};
-            border: 1px solid {border};
+        .mini-card, .sound-card, .result-card {{
             border-radius: 18px;
             padding: 18px;
             margin-bottom: 14px;
-            min-height: 140px;
         }}
 
         .sound-card {{
-            background: {panel};
             border: 2px solid {border};
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 16px;
+            min-height: 170px;
         }}
 
         .sound-card strong {{
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: {accent};
         }}
 
         .badge {{
             display: inline-block;
-            padding: 6px 12px;
+            padding: 7px 12px;
             border-radius: 999px;
-            font-size: {small_font_size};
+            font-size: {small_font};
             font-weight: 700;
             border: 1px solid {border};
             background: {soft};
             color: {text};
-            margin-right: 8px;
-            margin-bottom: 8px;
+            margin: 0 8px 8px 0;
+        }}
+
+        .safe-box, .success-box, .error-box, .info-box {{
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin: 16px 0;
+            border-left: 8px solid {accent};
         }}
 
         .safe-box {{
             background: {warning_bg};
-            border-left: 8px solid {accent};
-            border-radius: 16px;
-            padding: 18px;
-            margin: 18px 0;
         }}
 
         .success-box {{
             background: {success_bg};
-            border-left: 8px solid #22c55e;
-            border-radius: 16px;
-            padding: 18px;
-            margin: 18px 0;
+            border-left-color: #16a34a;
         }}
 
         .error-box {{
             background: {error_bg};
-            border-left: 8px solid #ef4444;
-            border-radius: 16px;
-            padding: 18px;
-            margin: 18px 0;
+            border-left-color: #dc2626;
+        }}
+
+        .info-box {{
+            background: {soft};
         }}
 
         .muted {{
             color: {muted};
-            font-size: {small_font_size};
-        }}
-
-        .big-number {{
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: {accent};
+            font-size: {small_font};
         }}
 
         .footer-note {{
             color: {muted};
-            font-size: {small_font_size};
-            margin-top: 32px;
+            font-size: {small_font};
+            margin-top: 28px;
             border-top: 1px solid {border};
-            padding-top: 18px;
+            padding-top: 16px;
         }}
 
-        button[kind="primary"], .stButton button {{
+        button[kind="primary"], .stButton button, .stDownloadButton button {{
             min-height: 44px;
-            border-radius: 12px;
-            font-weight: 700;
+            border-radius: 12px !important;
+            font-weight: 700 !important;
         }}
 
         div[data-testid="stMetric"] {{
             background: {panel};
             border: 1px solid {border};
             border-radius: 18px;
-            padding: 18px;
+            padding: 16px;
+            box-shadow: {shadow};
         }}
 
         div[data-testid="stDataFrame"] {{
@@ -321,76 +385,169 @@ def apply_styles():
             background: {soft};
             border: 2px solid {accent};
         }}
+
+        div[data-testid="stRadio"] label, div[data-testid="stCheckbox"] label {{
+            min-height: 40px;
+        }}
         </style>
         """,
-        unsafe_allow_html=True
-    )
-
-
-def card(title, body):
-    st.markdown(
-        f"""
-        <div class="section-card">
-            <h3>{title}</h3>
-            <p>{body}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
 def safe_notice():
     st.markdown(
         """
-        <div class="safe-box">
+        <div class="safe-box" role="note">
             <strong>Safety note:</strong> SpeakClear AI is for non-clinical speech practice only.
             It is not a diagnosis, treatment tool, or replacement for a speech-language pathologist.
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
+def info_box(title, body):
+    st.markdown(
+        f"""
+        <div class="info-box">
+            <strong>{escape(title)}</strong>
+            <p>{body}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def result_banner(prediction):
+    pred = str(prediction).lower()
+    if pred == "clear":
+        st.markdown(
+            """
+            <div class="success-box" role="status">
+                <strong>Prediction: Clear</strong>
+                <p>The model thinks this recording sounds clear. This is practice feedback only.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            """
+            <div class="error-box" role="status">
+                <strong>Prediction: Unclear</strong>
+                <p>The model thinks this recording may need more practice. This is practice feedback only.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
 # -----------------------------
-# Core Functions
+# Data helpers
+# -----------------------------
+
+def load_csv_if_exists(path):
+    if path.exists():
+        try:
+            return pd.read_csv(path)
+        except Exception:
+            return None
+    return None
+
+
+@st.cache_data
+def load_expanded_word_bank():
+    df = load_csv_if_exists(WORD_BANK_PATH)
+    if df is None:
+        return None
+
+    needed = {"word", "target_sound", "source", "difficulty", "notes"}
+    if not needed.issubset(set(df.columns)):
+        return None
+
+    df = df.copy()
+    df["word"] = df["word"].astype(str).str.strip()
+    df["target_sound"] = df["target_sound"].astype(str).str.strip().str.lower()
+    df["source"] = df["source"].astype(str).str.strip()
+    df["difficulty"] = df["difficulty"].astype(str).str.strip().str.lower()
+    df["notes"] = df["notes"].fillna("").astype(str)
+    df = df[df["word"].ne("") & df["word"].str.lower().ne("nan")]
+    return df.reset_index(drop=True)
+
+
+def fallback_word_bank_df():
+    rows = []
+    for sound, words in WORD_BANK.items():
+        for word in words:
+            rows.append(
+                {
+                    "word": word,
+                    "target_sound": sound,
+                    "source": "built_in",
+                    "difficulty": "medium",
+                    "notes": SOUND_DESCRIPTIONS.get(sound, ""),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def get_word_bank_df():
+    df = load_expanded_word_bank()
+    if df is None or df.empty:
+        return fallback_word_bank_df(), False
+    return df, True
+
+
+def words_for_sound(sound, word_bank_df):
+    if word_bank_df is not None and not word_bank_df.empty:
+        matched = word_bank_df[word_bank_df["target_sound"] == sound]["word"].tolist()
+        if matched:
+            return matched
+    return WORD_BANK.get(sound, [])
+
+
+# -----------------------------
+# Core ML and feedback
 # -----------------------------
 
 def normalize_uploaded_name(filename):
-    stem = Path(filename).stem.lower()
-
+    stem = Path(str(filename)).stem.lower()
     if "-" in stem:
         item = stem.rsplit("-", 1)[0]
     else:
         item = stem
-
     return item.replace("_", " ").strip()
 
 
-def infer_target_sound(filename):
+def infer_target_sound(filename, word_bank_df=None):
     item = normalize_uploaded_name(filename)
     first_word = item.split()[0] if item.split() else item
 
     if item in SENTENCE_TARGETS:
         return item, SENTENCE_TARGETS[item]
 
+    if word_bank_df is not None and not word_bank_df.empty:
+        words = word_bank_df["word"].astype(str).str.lower()
+        exact = word_bank_df[words == item]
+        if not exact.empty:
+            return item, str(exact.iloc[0]["target_sound"]).lower()
+        first_match = word_bank_df[words == first_word]
+        if not first_match.empty and " " not in str(first_match.iloc[0]["word"]):
+            return item, str(first_match.iloc[0]["target_sound"]).lower()
+
     if item in R_WORDS or first_word in R_WORDS:
         return item, "r"
-
     if item in TH_WORDS or first_word in TH_WORDS:
         return item, "th"
-
     if item in S_WORDS or first_word in S_WORDS:
         return item, "s"
-
     if item in Z_WORDS or first_word in Z_WORDS:
         return item, "z"
-
     if "susan" in item or "students" in item or "science" in item:
         return item, "mixed"
-
     if "zebra" in item or "puzzle" in item or "cheese" in item:
         return item, "z"
-
     return item, None
 
 
@@ -407,7 +564,6 @@ def extract_features(file_path):
     features = []
     features.extend(np.mean(mfcc, axis=1))
     features.extend(np.std(mfcc, axis=1))
-
     for feat in [zcr, centroid, rolloff, rms]:
         features.append(np.mean(feat))
         features.append(np.std(feat))
@@ -433,16 +589,12 @@ def get_practice_priority(prediction, confidence):
 
     if confidence < 70:
         return "Review manually"
-
     if prediction == "unclear" and confidence >= 90:
         return "High priority"
-
     if prediction == "unclear":
         return "Medium priority"
-
     if prediction == "clear" and confidence >= 90:
         return "Low priority"
-
     return "Low / medium priority"
 
 
@@ -451,8 +603,10 @@ def make_reliable_feedback(prediction, confidence, target_sound, item_name):
 
     if target_sound == "mixed":
         sound_text = "/s/ and /z/ sounds"
-    else:
+    elif target_sound:
         sound_text = f"/{target_sound}/ sound"
+    else:
+        sound_text = "target sound"
 
     item_text = f"for '{item_name}' " if item_name else ""
 
@@ -462,14 +616,12 @@ def make_reliable_feedback(prediction, confidence, target_sound, item_name):
             f"which is a low-confidence result. Review this clip manually and keep practicing the {sound_text} slowly. "
             f"This is practice feedback only."
         )
-
     if prediction == "clear":
         return (
             f"The recording {item_text}was predicted as clear with {confidence:.1f}% confidence. "
             f"Keep practicing the {sound_text} slowly and consistently. "
             f"This is practice feedback only."
         )
-
     return (
         f"The recording {item_text}was predicted as unclear with {confidence:.1f}% confidence. "
         f"Practice it slowly and repeat it in short sets while focusing on the {sound_text}. "
@@ -479,27 +631,35 @@ def make_reliable_feedback(prediction, confidence, target_sound, item_name):
 
 def clean_llama_text(text):
     text = text.strip()
-
     bad_starts = [
         "here are two short sentences rewriting the original feedback:",
         "here are two short sentences:",
         "here are the two sentences:",
         "here is the rewritten feedback:",
         "rewritten feedback:",
-        "original feedback:"
+        "original feedback:",
     ]
-
     lowered = text.lower()
-
     for phrase in bad_starts:
         if lowered.startswith(phrase):
             text = text[len(phrase):].strip()
             break
-
     return text
 
 
+@st.cache_data(ttl=60)
+def ollama_is_available():
+    try:
+        response = requests.get("http://localhost:11434/api/tags", timeout=1.5)
+        return response.status_code == 200
+    except Exception:
+        return False
+
+
 def make_llama_feedback(reliable_feedback, prediction):
+    if not ollama_is_available():
+        return reliable_feedback, False
+
     prompt = f"""
 You are writing user-facing feedback for a speech-practice website.
 
@@ -525,167 +685,248 @@ Original feedback:
 
     try:
         response = requests.post(
-            "http://localhost:11434/api/generate",
-            json={
-                "model": "llama3.2",
-                "prompt": prompt,
-                "stream": False
-            },
-            timeout=45
+            OLLAMA_URL,
+            json={"model": "llama3.2", "prompt": prompt, "stream": False},
+            timeout=45,
         )
+        if response.status_code != 200:
+            return reliable_feedback, False
 
-        if response.status_code == 200:
-            llama_text = response.json().get("response", "").strip()
-            llama_text = clean_llama_text(llama_text)
+        llama_text = clean_llama_text(response.json().get("response", "").strip())
+        banned_phrases = [
+            "here are",
+            "rewriting",
+            "original feedback",
+            "therapy",
+            "treatment",
+            "diagnosis",
+            "disorder",
+            "speech-language pathologist",
+            "alveolar ridge",
+            "guttural",
+            "articulation",
+            "placement",
+        ]
+        contradiction_phrases_for_clear = [
+            "room for improvement",
+            "needs improvement",
+            "need to work",
+            "sounds rough",
+            "rough",
+            "tricky sounds",
+            "mistake",
+            "mistakes",
+            "unclear",
+        ]
+        lower_text = llama_text.lower()
 
-            banned_phrases = [
-                "here are",
-                "rewriting",
-                "original feedback",
-                "therapy",
-                "treatment",
-                "diagnosis",
-                "disorder",
-                "speech-language pathologist",
-                "alveolar ridge",
-                "guttural",
-                "articulation",
-                "placement"
-            ]
-
-            contradiction_phrases_for_clear = [
-                "room for improvement",
-                "needs improvement",
-                "need to work",
-                "sounds rough",
-                "rough",
-                "tricky sounds",
-                "mistake",
-                "mistakes",
-                "unclear"
-            ]
-
-            lower_text = llama_text.lower()
-
-            if any(phrase in lower_text for phrase in banned_phrases):
-                return reliable_feedback
-
-            if str(prediction).lower() == "clear":
-                if any(phrase in lower_text for phrase in contradiction_phrases_for_clear):
-                    return reliable_feedback
-
-            if "practice feedback only" not in lower_text:
-                llama_text += " This is practice feedback only."
-
-            if llama_text:
-                return llama_text
-
-        return reliable_feedback
-
+        if any(phrase in lower_text for phrase in banned_phrases):
+            return reliable_feedback, False
+        if str(prediction).lower() == "clear":
+            if any(phrase in lower_text for phrase in contradiction_phrases_for_clear):
+                return reliable_feedback, False
+        if "practice feedback only" not in lower_text:
+            llama_text += " This is practice feedback only."
+        if llama_text:
+            return llama_text, True
+        return reliable_feedback, False
     except Exception:
-        return reliable_feedback
+        return reliable_feedback, False
+
+
+def predict_from_audio_bytes(audio_bytes, suffix=".wav"):
+    tmp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        features = extract_features(tmp_path)
+        model = load_model()
+        prediction = model.predict(features)[0]
+        if hasattr(model, "predict_proba"):
+            probabilities = model.predict_proba(features)[0]
+            classes = list(model.classes_)
+            confidence = float(probabilities[classes.index(prediction)] * 100)
+        else:
+            confidence = 0.0
+        return prediction, confidence
+    finally:
+        if tmp_path:
+            try:
+                Path(tmp_path).unlink(missing_ok=True)
+            except Exception:
+                pass
+
+
+# -----------------------------
+# Progress log
+# -----------------------------
+
+def load_progress_log():
+    if st.session_state.progress_df is not None:
+        return st.session_state.progress_df.copy()
+    df = load_csv_if_exists(PROGRESS_LOG)
+    if df is None:
+        return pd.DataFrame()
+    st.session_state.progress_df = df
+    return df.copy()
 
 
 def save_progress_log(row):
-    row_df = pd.DataFrame([row])
-
-    if PROGRESS_LOG.exists():
-        old_df = pd.read_csv(PROGRESS_LOG)
-        new_df = pd.concat([old_df, row_df], ignore_index=True)
-    else:
-        new_df = row_df
-
-    new_df.to_csv(PROGRESS_LOG, index=False)
-
-
-def load_progress_log():
-    if PROGRESS_LOG.exists():
-        return pd.read_csv(PROGRESS_LOG)
-    return pd.DataFrame()
-
-
-def make_practice_plan(target_sound, difficulty):
-    words = WORD_BANK[target_sound]
-
-    if difficulty == "Quick practice":
-        count = 3
-    elif difficulty == "Normal practice":
-        count = 5
-    else:
-        count = min(8, len(words))
-
-    selected = random.sample(words, min(count, len(words)))
-
-    plan = []
-    for word in selected:
-        plan.append(f"Say '{word}' slowly 3 times.")
-        plan.append(f"Say '{word}' at normal speed 2 times.")
-        plan.append(f"Record one version of '{word}' and upload it in Try the Demo.")
-
-    return selected, plan
-
-
-def load_csv_if_exists(path):
-    if path.exists():
-        return pd.read_csv(path)
-    return None
+    current = load_progress_log()
+    updated = pd.concat([current, pd.DataFrame([row])], ignore_index=True)
+    st.session_state.progress_df = updated
+    try:
+        updated.to_csv(PROGRESS_LOG, index=False)
+    except Exception:
+        pass
+    return updated
 
 
 # -----------------------------
-# Sidebar Controls
+# Practice helpers
+# -----------------------------
+
+def filter_word_bank(df, sound, difficulty, search_text):
+    filtered = df.copy()
+    if sound != "all":
+        filtered = filtered[filtered["target_sound"] == sound]
+    if difficulty != "all":
+        filtered = filtered[filtered["difficulty"] == difficulty]
+    query = (search_text or "").strip().lower()
+    if query:
+        filtered = filtered[
+            filtered["word"].str.lower().str.contains(query, na=False)
+            | filtered["notes"].str.lower().str.contains(query, na=False)
+        ]
+    return filtered.reset_index(drop=True)
+
+
+def make_practice_plan(selected_words, target_sound, difficulty, practice_length):
+    plan_lines = [
+        "SpeakClear AI Practice Plan",
+        f"Created: {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        f"Target sound: {SOUND_LABELS.get(target_sound, target_sound)}",
+        f"Difficulty filter: {difficulty}",
+        f"Practice length: {practice_length}",
+        "",
+        "Safety note: This is non-clinical practice feedback only. It is not diagnosis or treatment.",
+        "",
+        "Words or sentences:",
+    ]
+    for word in selected_words:
+        plan_lines.append(f"- {word}")
+    plan_lines.append("")
+    plan_lines.append("Steps:")
+
+    steps = []
+    for word in selected_words:
+        steps.append(f"Say '{word}' slowly 3 times.")
+        steps.append(f"Say '{word}' at normal speed 2 times.")
+        steps.append(f"Record one version of '{word}' and analyze it in Try the Demo.")
+    for index, step in enumerate(steps, start=1):
+        plan_lines.append(f"{index}. {step}")
+
+    plan_lines.extend(
+        [
+            "",
+            "Recording tips:",
+            "1. Use a quiet room.",
+            "2. Keep the microphone distance consistent.",
+            "3. Record one word or one short sentence at a time.",
+            "4. WAV upload is the most reliable option.",
+        ]
+    )
+    return steps, "\n".join(plan_lines)
+
+
+def choose_practice_items(df, practice_length):
+    words = df["word"].dropna().astype(str).tolist()
+    if practice_length == "Quick practice":
+        count = 3
+    elif practice_length == "Normal practice":
+        count = 5
+    else:
+        count = 8
+    if not words:
+        return []
+    return random.sample(words, min(count, len(words)))
+
+
+def audio_suffix(filename):
+    suffix = Path(str(filename)).suffix.lower()
+    if suffix in {".wav", ".webm", ".ogg", ".mp3", ".m4a", ".flac"}:
+        return suffix
+    return ".wav"
+
+
+# -----------------------------
+# Sidebar
 # -----------------------------
 
 with st.sidebar:
-    st.title("🎙️ SpeakClear AI")
-    st.caption("Accessible speech-practice demo")
+    st.markdown("### SpeakClear AI")
+    st.caption("Accessible non-clinical speech-practice demo")
 
-    page = st.radio(
+    st.radio(
         "Navigate",
-        [
-            "Home",
-            "Practice Studio",
-            "Try the Demo",
-            "Progress Tracker",
-            "Research Results",
-            "About & Limitations",
-        ],
-        index=0
+        PAGES,
+        key="page",
+        help="Use arrow keys after focusing this list, or Tab to move to the next control.",
     )
 
     st.divider()
-
     st.subheader("Accessibility")
-    st.session_state["large_text"] = st.checkbox(
+    st.checkbox(
         "Large text mode",
-        value=st.session_state["large_text"]
+        key="large_text",
+        help="Makes text larger across the app.",
     )
-    st.session_state["high_contrast"] = st.checkbox(
+    st.checkbox(
         "High contrast mode",
-        value=st.session_state["high_contrast"]
+        key="high_contrast",
+        help="Uses stronger contrast for text, borders, and buttons.",
     )
+    st.caption("Keyboard tip: Tab, Shift+Tab, and Enter work on most controls.")
 
-    st.caption(
-        "Tip: You can use Tab, Shift+Tab, and Enter to move through most controls."
-    )
+    st.divider()
+    st.markdown("**This app does not diagnose or treat speech differences.**")
 
 apply_styles()
 
-# -----------------------------
-# Header
-# -----------------------------
-
 st.markdown(
-    """
-    <div class="app-hero">
-        <div class="hero-title">SpeakClear AI</div>
-        <div class="hero-subtitle">
-            A personalized, accessible, non-clinical speech-practice app that analyzes
-            short recordings, predicts clear or unclear pronunciation, and gives practice feedback.
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
+    '<a class="skip-link" href="#main-content">Skip to main content</a>',
+    unsafe_allow_html=True,
 )
+st.markdown('<div id="main-content"></div>', unsafe_allow_html=True)
+
+page = st.session_state.page
+word_bank_df, word_bank_from_csv = get_word_bank_df()
+
+if page == "Home":
+    st.markdown(
+        """
+        <div class="app-hero">
+            <div class="hero-kicker">Research prototype</div>
+            <h1 class="hero-title">SpeakClear AI</h1>
+            <p class="hero-subtitle">
+                A personalized, accessible speech-practice demo. Upload a short recording,
+                see a clear or unclear prediction, and get simple practice feedback.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+else:
+    st.markdown(
+        f"""
+        <div class="compact-header">
+            <div class="hero-kicker">SpeakClear AI</div>
+            <p class="hero-subtitle">Non-clinical speech-practice demo · {escape(page)}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 safe_notice()
 
@@ -695,282 +936,438 @@ safe_notice()
 
 if page == "Home":
     st.header("Welcome")
-
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        st.metric("Dataset", "245 clips")
-    with col2:
-        st.metric("Best Model", "Random Forest")
-    with col3:
-        st.metric("Unclear F1", "0.48")
-    with col4:
-        st.metric("LLM Feedback", "8.2 / 10")
-
-    st.markdown("### What the app does")
-
-    c1, c2, c3 = st.columns(3)
-
-    with c1:
-        card(
-            "Practice",
-            "Choose a sound, generate a practice plan, and use word banks built from the research dataset."
-        )
-
-    with c2:
-        card(
-            "Analyze",
-            "Upload a WAV recording and receive a clear or unclear prediction with confidence."
-        )
-
-    with c3:
-        card(
-            "Improve",
-            "Get reliable feedback, AI-rewritten feedback, and save attempts to track progress."
-        )
-
-    st.markdown("### System flow")
-
-    st.code(
-        """
-Audio Upload
-↓
-Feature Extraction
-↓
-Random Forest Classifier
-↓
-Clear / Unclear Prediction
-↓
-Confidence Level
-↓
-Practice Priority
-↓
-Reliable Feedback
-↓
-LLM Rewrite
-↓
-Progress Tracking
-        """,
-        language="text"
+    st.write(
+        "This app helps you practice selected speech sounds. It is a research demo, not a clinical tool."
     )
 
-    st.markdown("### Target sounds")
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Dataset", "245 clips")
+    m2.metric("Best model", "Random Forest")
+    m3.metric("Unclear F1", "0.48")
+    m4.metric("LLM feedback", "8.2 / 10")
 
+    st.subheader("What you can do")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.markdown(
+            """
+            <div class="section-card">
+                <h3>1. Practice</h3>
+                <p>Choose a sound, search the word bank, and download a short practice plan.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("Open Practice Studio", use_container_width=True):
+            go_to("Practice Studio")
+    with c2:
+        st.markdown(
+            """
+            <div class="section-card">
+                <h3>2. Analyze</h3>
+                <p>Upload a WAV file, or optionally record in the browser, then see a clear or unclear prediction.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("Try the Demo", type="primary", use_container_width=True):
+            go_to("Try the Demo")
+    with c3:
+        st.markdown(
+            """
+            <div class="section-card">
+                <h3>3. Review</h3>
+                <p>Look at model results, graphs, and saved practice attempts.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("View Research Results", use_container_width=True):
+            go_to("Research Results")
+
+    st.subheader("How it works")
+    steps = [
+        ("Add audio", "Upload a WAV recording. Browser recording is optional."),
+        ("Measure sound", "The app extracts acoustic features such as MFCCs and loudness."),
+        ("Predict", "A Random Forest model predicts clear or unclear pronunciation."),
+        ("Explain", "You see confidence, practice priority, and simple feedback."),
+        ("Track", "Save attempts and download your practice history."),
+    ]
+    step_cols = st.columns(5)
+    for index, (title, body) in enumerate(steps, start=1):
+        with step_cols[index - 1]:
+            st.markdown(
+                f"""
+                <div class="mini-card">
+                    <strong>Step {index}</strong>
+                    <h4>{escape(title)}</h4>
+                    <p>{escape(body)}</p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    st.subheader("Target sounds")
     sound_cols = st.columns(5)
-
-    for idx, sound in enumerate(["s", "z", "r", "th", "mixed"]):
-        with sound_cols[idx]:
+    for index, sound in enumerate(["s", "z", "r", "th", "mixed"]):
+        with sound_cols[index]:
             st.markdown(
                 f"""
                 <div class="sound-card">
-                    <strong>/{sound}/</strong>
-                    <p>{SOUND_DESCRIPTIONS[sound]}</p>
+                    <strong>{escape(SOUND_LABELS[sound])}</strong>
+                    <p>{escape(SOUND_DESCRIPTIONS[sound])}</p>
                 </div>
                 """,
-                unsafe_allow_html=True
+                unsafe_allow_html=True,
             )
 
+    info_box(
+        "Privacy note",
+        "Raw research recordings are not included in this public app. "
+        "Any clip you analyze is processed to make a prediction and is not added to the project dataset.",
+    )
 
 elif page == "Practice Studio":
     st.header("Practice Studio")
-
     st.write(
-        "Generate a practice plan, review word banks, and see priority items from your dataset."
+        "Choose a sound, filter the word bank, try a random challenge, and download a practice plan."
     )
 
-    col1, col2 = st.columns(2)
+    if word_bank_from_csv:
+        st.caption(f"Loaded expanded word bank from `{WORD_BANK_PATH}` ({len(word_bank_df)} items).")
+    else:
+        st.warning(
+            f"Could not load `{WORD_BANK_PATH}`. Using the smaller built-in word lists instead."
+        )
 
-    with col1:
+    filter_col1, filter_col2, filter_col3 = st.columns(3)
+    with filter_col1:
         practice_sound = st.selectbox(
-            "Choose a sound to practice",
-            ["s", "z", "r", "th", "mixed"]
+            "Target sound",
+            ["s", "z", "r", "th", "mixed"],
+            format_func=lambda value: SOUND_LABELS.get(value, value),
+            help="Choose the sound you want to practice.",
+        )
+    with filter_col2:
+        difficulty_filter = st.selectbox(
+            "Difficulty",
+            ["all", "easy", "medium", "hard"],
+            format_func=lambda value: "All difficulties" if value == "all" else value.title(),
+            help="Filter words by easy, medium, or hard practice level.",
+        )
+    with filter_col3:
+        practice_length = st.selectbox(
+            "Practice length",
+            ["Quick practice", "Normal practice", "Long practice"],
+            help="Quick uses 3 items, normal uses 5, and long uses up to 8.",
         )
 
-    with col2:
-        difficulty = st.selectbox(
-            "Choose practice length",
-            ["Quick practice", "Normal practice", "Long practice"]
-        )
+    search_text = st.text_input(
+        "Search words or notes",
+        placeholder="Try thank, zoo, or slowly",
+        help="Type part of a word or note to narrow the word bank.",
+    )
 
-    st.markdown("### Sound description")
+    st.subheader("Sound description")
     st.info(SOUND_DESCRIPTIONS[practice_sound])
 
-    st.markdown("### Word bank")
+    filtered_bank = filter_word_bank(
+        word_bank_df,
+        practice_sound,
+        difficulty_filter,
+        search_text,
+    )
 
-    word_cols = st.columns(4)
-    for i, word in enumerate(WORD_BANK[practice_sound]):
-        with word_cols[i % 4]:
-            st.markdown(f'<span class="badge">{word}</span>', unsafe_allow_html=True)
-
-    if st.button("Generate Practice Plan", type="primary"):
-        challenge_words, plan = make_practice_plan(practice_sound, difficulty)
-        st.session_state["challenge_words"] = challenge_words
-        st.session_state["practice_plan"] = plan
-
-    if "practice_plan" in st.session_state:
-        st.markdown("### Your practice plan")
-
-        for number, step in enumerate(st.session_state["practice_plan"], start=1):
-            st.write(f"{number}. {step}")
-
-        plan_text = "\n".join(st.session_state["practice_plan"])
-
-        st.download_button(
-            label="Download Practice Plan",
-            data=plan_text,
-            file_name=f"practice_plan_{practice_sound}.txt",
-            mime="text/plain"
+    st.subheader("Word bank")
+    if filtered_bank.empty:
+        st.warning("No words match these filters. Try another sound, difficulty, or search term.")
+    else:
+        count_col1, count_col2, count_col3 = st.columns(3)
+        count_col1.metric("Matching items", len(filtered_bank))
+        count_col2.metric(
+            "Research items",
+            int((filtered_bank["source"] == "research_dataset").sum()),
+        )
+        count_col3.metric(
+            "Expanded items",
+            int((filtered_bank["source"] != "research_dataset").sum()),
         )
 
-    st.markdown("### Personal practice priorities")
+        badge_cols = st.columns(4)
+        for index, word in enumerate(filtered_bank["word"].tolist()):
+            with badge_cols[index % 4]:
+                st.markdown(f'<span class="badge">{escape(str(word))}</span>', unsafe_allow_html=True)
 
-    feedback_path = RESULTS_DIR / "practice_feedback_by_item.csv"
-    feedback_df = load_csv_if_exists(feedback_path)
+        with st.expander("View full word bank table", expanded=False):
+            show_df = filtered_bank.copy()
+            show_df["target_sound"] = show_df["target_sound"].map(
+                lambda value: SOUND_LABELS.get(value, value)
+            )
+            st.dataframe(
+                show_df.rename(
+                    columns={
+                        "word": "Word or sentence",
+                        "target_sound": "Target sound",
+                        "source": "Source",
+                        "difficulty": "Difficulty",
+                        "notes": "Notes",
+                    }
+                ),
+                use_container_width=True,
+                hide_index=True,
+            )
 
+    st.subheader("Random practice challenge")
+    challenge_col1, challenge_col2 = st.columns([1, 2])
+    with challenge_col1:
+        if st.button("Give me a random challenge", type="primary", use_container_width=True):
+            if filtered_bank.empty:
+                st.session_state.pop("challenge_row", None)
+                st.warning("No matching items are available for a challenge.")
+            else:
+                st.session_state.challenge_row = filtered_bank.sample(1).iloc[0].to_dict()
+
+    challenge_row = st.session_state.get("challenge_row")
+    if challenge_row:
+        with challenge_col2:
+            st.markdown(
+                f"""
+                <div class="result-card">
+                    <p class="muted">Random challenge</p>
+                    <h3>{escape(str(challenge_row.get("word", "")))}</h3>
+                    <p><strong>Sound:</strong> {escape(SOUND_LABELS.get(challenge_row.get("target_sound"), str(challenge_row.get("target_sound", ""))))}</p>
+                    <p><strong>Difficulty:</strong> {escape(str(challenge_row.get("difficulty", "")).title())}</p>
+                    <p><strong>Source:</strong> {escape(str(challenge_row.get("source", "")).replace("_", " "))}</p>
+                    <p>{escape(str(challenge_row.get("notes", "")))}</p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+        st.write("Suggested challenge: say it slowly 3 times, then at normal speed 2 times, then record one version.")
+
+    st.subheader("Practice plan")
+    if st.button("Generate practice plan", use_container_width=False):
+        selected_words = choose_practice_items(filtered_bank, practice_length)
+        if not selected_words:
+            st.warning("No matching items are available for a practice plan.")
+        else:
+            steps, plan_text = make_practice_plan(
+                selected_words,
+                practice_sound,
+                difficulty_filter,
+                practice_length,
+            )
+            st.session_state.practice_words = selected_words
+            st.session_state.practice_steps = steps
+            st.session_state.practice_plan_text = plan_text
+            st.session_state.practice_plan_name = f"practice_plan_{practice_sound}_{difficulty_filter}.txt"
+
+    if st.session_state.get("practice_steps"):
+        st.markdown("#### Your practice items")
+        st.write(", ".join(st.session_state.get("practice_words", [])))
+        st.markdown("#### Steps")
+        for number, step in enumerate(st.session_state.practice_steps, start=1):
+            st.write(f"{number}. {step}")
+        st.download_button(
+            "Download practice plan",
+            data=st.session_state.practice_plan_text,
+            file_name=st.session_state.get("practice_plan_name", "practice_plan.txt"),
+            mime="text/plain",
+            type="primary",
+        )
+
+    st.subheader("Personal practice priorities from the research set")
+    feedback_df = load_csv_if_exists(RESULTS_DIR / "practice_feedback_by_item.csv")
     if feedback_df is not None and "target_sound" in feedback_df.columns:
-        filtered = feedback_df[
+        filtered_feedback = feedback_df[
             feedback_df["target_sound"].astype(str).str.lower() == practice_sound
         ]
-
-        if not filtered.empty:
-            show_cols = [
-                col for col in ["word", "target_sound", "unclear_rate", "priority", "feedback"]
-                if col in filtered.columns
-            ]
-            st.dataframe(filtered[show_cols].head(10), use_container_width=True)
+        if filtered_feedback.empty:
+            st.info("No saved priority items were found for this sound.")
         else:
-            st.info("No saved priority items found for this sound.")
+            show_cols = [
+                col
+                for col in ["word", "target_sound", "unclear_rate", "priority", "feedback"]
+                if col in filtered_feedback.columns
+            ]
+            display_feedback = filtered_feedback[show_cols].head(10).copy()
+            if "unclear_rate" in display_feedback.columns:
+                display_feedback["unclear_rate"] = (
+                    display_feedback["unclear_rate"].astype(float) * 100
+                ).round(0).astype(int).astype(str) + "%"
+            st.dataframe(display_feedback, use_container_width=True, hide_index=True)
     else:
-        st.info("No practice priority file found yet.")
+        st.info("No practice priority file was found yet.")
 
-    st.markdown("### Recording tips")
+    st.subheader("Recording tips")
     st.write(
         """
 1. Record in a quiet room.
 2. Keep the microphone distance consistent.
-3. Use one word or sentence per recording.
-4. Use filenames like `bath-1.wav`, `right-3.wav`, or `zero-2.wav`.
-5. Upload the recording in the Try the Demo page.
+3. Use one word or one short sentence per recording.
+4. WAV upload is the main reliable option.
+5. Helpful filenames look like `bath-1.wav`, `right-3.wav`, or `zero-2.wav`.
         """
     )
 
-
 elif page == "Try the Demo":
     st.header("Try the Demo")
+    st.write(
+        "Upload a short WAV recording to get a clear or unclear prediction. "
+        "Browser recording is available as an extra option."
+    )
 
     if not MODEL_PATH.exists():
         st.error("Model not found. Run `python3 train_save_model.py` first.")
         st.stop()
 
-    model = load_model()
-
-    st.markdown("### Step 1: Choose target sound")
+    try:
+        load_model()
+    except Exception:
+        st.error("The model file could not be loaded. Please check `models/speakclear_random_forest.joblib`.")
+        st.stop()
 
     selected_sound = st.selectbox(
-        "Choose the target sound",
-        ["s", "z", "r", "th", "mixed"]
+        "Target sound you practiced",
+        ["s", "z", "r", "th", "mixed"],
+        format_func=lambda value: SOUND_LABELS.get(value, value),
+        help="Choose the sound you were trying to practice.",
+    )
+    spoken_item = st.text_input(
+        "Word or sentence you said (optional)",
+        placeholder="Example: thank, zero, or susan saw the zebra at the zoo",
+        help="If you type the word, feedback can mention it. This is especially helpful for browser recordings.",
     )
 
-    st.markdown("### Step 2: Upload recording")
-
-    uploaded_file = st.file_uploader(
-        "Upload a WAV audio recording",
-        type=["wav"],
-        help="Upload a short WAV file, ideally one word or one short sentence."
+    input_method = st.radio(
+        "How do you want to add audio?",
+        ["Upload a WAV file (recommended)", "Record in browser (optional)"],
+        help="WAV upload is the most reliable option. Browser recording depends on your browser and microphone permission.",
     )
 
-    if uploaded_file is not None:
-        audio_bytes = uploaded_file.getvalue()
-        st.audio(audio_bytes, format="audio/wav")
+    audio_bytes = None
+    source_name = None
+    audio_label = None
 
-        item_name, inferred_sound = infer_target_sound(uploaded_file.name)
+    if input_method.startswith("Upload"):
+        uploaded_file = st.file_uploader(
+            "Upload a WAV audio recording",
+            type=["wav"],
+            help="Upload a short WAV file, ideally one word or one short sentence.",
+        )
+        if uploaded_file is not None:
+            audio_bytes = uploaded_file.getvalue()
+            source_name = uploaded_file.name
+            audio_label = uploaded_file.name
+            st.audio(audio_bytes, format="audio/wav")
+    else:
+        if hasattr(st, "audio_input"):
+            audio_input_kwargs = {
+                "label": "Record a short practice clip",
+                "help": "Allow microphone access, record one word or short sentence, then stop.",
+            }
+            try:
+                recorded_file = st.audio_input(sample_rate=16000, **audio_input_kwargs)
+            except TypeError:
+                recorded_file = st.audio_input(**audio_input_kwargs)
+            if recorded_file is not None:
+                audio_bytes = recorded_file.getvalue()
+                source_name = getattr(recorded_file, "name", "browser_recording.wav") or "browser_recording.wav"
+                audio_label = "Browser recording"
+                st.audio(audio_bytes)
+                st.caption("Browser recording can vary by device. If analysis fails, upload a WAV file instead.")
+        else:
+            st.warning(
+                "Browser recording is not available in this Streamlit version. Please upload a WAV file instead."
+            )
+
+    if audio_bytes is not None:
+        item_name, inferred_sound = infer_target_sound(source_name, word_bank_df)
+        if spoken_item.strip():
+            typed_name = spoken_item.strip().lower()
+            typed_item, typed_sound = infer_target_sound(f"{typed_name}.wav", word_bank_df)
+            item_name = typed_item or typed_name
+            if typed_sound:
+                inferred_sound = typed_sound
+
+        if not item_name or item_name in {"browser recording", "recording", "audio"}:
+            item_name = spoken_item.strip().lower() or "this recording"
+
         target_sound = selected_sound
-
-        st.markdown("### Detected recording information")
-
-        info_col1, info_col2, info_col3 = st.columns(3)
-
-        with info_col1:
-            st.metric("Uploaded item", item_name)
-
-        with info_col2:
-            st.metric("Detected sound", f"/{inferred_sound}/" if inferred_sound else "Unknown")
-
-        with info_col3:
-            st.metric("Selected sound", f"/{selected_sound}/")
+        info1, info2, info3 = st.columns(3)
+        info1.metric("Item", item_name)
+        info2.metric("Detected sound", SOUND_LABELS.get(inferred_sound, "Unknown"))
+        info3.metric("Selected sound", SOUND_LABELS.get(selected_sound, selected_sound))
 
         if inferred_sound is not None and inferred_sound != selected_sound:
             st.warning(
-                f"This file looks like a /{inferred_sound}/ recording, but you selected /{selected_sound}/. "
-                f"The app will use /{inferred_sound}/ for feedback."
+                f"This clip looks like {SOUND_LABELS.get(inferred_sound, inferred_sound)}, "
+                f"but you selected {SOUND_LABELS.get(selected_sound, selected_sound)}. "
+                f"Feedback will use the detected sound: {SOUND_LABELS.get(inferred_sound, inferred_sound)}."
             )
             target_sound = inferred_sound
 
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
-            tmp.write(audio_bytes)
-            tmp_path = tmp.name
-
-        with st.spinner("Analyzing audio..."):
-            features = extract_features(tmp_path)
-            prediction = model.predict(features)[0]
-
-            if hasattr(model, "predict_proba"):
-                probabilities = model.predict_proba(features)[0]
-                classes = list(model.classes_)
-                confidence = probabilities[classes.index(prediction)] * 100
-            else:
-                confidence = 0
+        try:
+            with st.spinner("Analyzing audio..."):
+                prediction, confidence = predict_from_audio_bytes(
+                    audio_bytes,
+                    suffix=audio_suffix(source_name),
+                )
+        except Exception:
+            st.error(
+                "The audio could not be analyzed. Please try a short WAV file. "
+                "Browser recordings do not always work the same way on every device."
+            )
+            st.stop()
 
         confidence_level = get_confidence_level(confidence)
         practice_priority = get_practice_priority(prediction, confidence)
-
-        st.markdown("### Result")
-
-        result_col1, result_col2, result_col3 = st.columns(3)
-
-        with result_col1:
-            if str(prediction).lower() == "clear":
-                st.success("Prediction: Clear")
-            else:
-                st.error("Prediction: Unclear")
-
-        with result_col2:
-            st.metric("Confidence", f"{confidence:.1f}%")
-            st.progress(int(confidence))
-
-        with result_col3:
-            st.metric("Practice Priority", practice_priority)
-
-        st.info(f"Confidence level: {confidence_level}")
-
         reliable_feedback = make_reliable_feedback(
             prediction,
             confidence,
             target_sound,
-            item_name
+            item_name if item_name != "this recording" else "",
         )
+        llama_feedback, llama_used = make_llama_feedback(reliable_feedback, prediction)
 
-        llama_feedback = make_llama_feedback(
-            reliable_feedback,
-            prediction
-        )
+        st.subheader("Result")
+        result_banner(prediction)
 
-        st.markdown("### Reliable practice feedback")
+        result1, result2, result3 = st.columns(3)
+        with result1:
+            st.metric("Prediction label", str(prediction).title())
+        with result2:
+            st.metric("Confidence", f"{confidence:.1f}%")
+            st.progress(min(max(confidence / 100.0, 0.0), 1.0))
+            st.caption(confidence_level)
+        with result3:
+            st.metric("Practice priority", practice_priority)
+            st.caption("Priority is based on the prediction and confidence, not color alone.")
+
+        st.subheader("Reliable practice feedback")
         st.write(reliable_feedback)
+        st.caption("This rule-based feedback is always available, including on Streamlit Community Cloud.")
 
-        st.markdown("### AI-rewritten feedback")
+        st.subheader("AI-rewritten feedback")
+        if llama_used:
+            st.success("Local Llama rewrite was used. Safety checks were applied.")
+        else:
+            st.info(
+                "Local Ollama / Llama is not available here, so the app is using the reliable rule-based feedback. "
+                "This is expected on Streamlit Community Cloud."
+            )
         st.write(llama_feedback)
 
-        feedback_report = f"""
-SpeakClear AI Feedback Report
+        feedback_report = f"""SpeakClear AI Feedback Report
 
-File: {uploaded_file.name}
-Uploaded item: {item_name}
+Audio source: {audio_label}
+Item: {item_name}
 Target sound: {target_sound}
 Prediction: {prediction}
 Confidence: {confidence:.1f}%
 Confidence level: {confidence_level}
 Practice priority: {practice_priority}
+Feedback source: {"Local Llama rewrite" if llama_used else "Rule-based fallback"}
 
 Reliable feedback:
 {reliable_feedback}
@@ -982,209 +1379,359 @@ Disclaimer:
 This is practice feedback only. It is not a diagnosis or treatment tool.
 """
 
-        col_a, col_b = st.columns(2)
-
-        with col_a:
+        download_col, save_col = st.columns(2)
+        with download_col:
             st.download_button(
-                label="Download Feedback Report",
+                "Download feedback report",
                 data=feedback_report,
-                file_name=f"feedback_{item_name.replace(' ', '_')}.txt",
-                mime="text/plain"
+                file_name=f"feedback_{str(item_name).replace(' ', '_')}.txt",
+                mime="text/plain",
             )
-
-        with col_b:
-            if st.button("Save Attempt to Progress Tracker", type="primary"):
-                save_progress_log({
-                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    "file_name": uploaded_file.name,
-                    "item_name": item_name,
-                    "target_sound": target_sound,
-                    "prediction": prediction,
-                    "confidence": round(confidence, 1),
-                    "confidence_level": confidence_level,
-                    "practice_priority": practice_priority,
-                    "reliable_feedback": reliable_feedback,
-                    "llm_feedback": llama_feedback,
-                })
-
-                st.success("Saved to progress tracker.")
+        with save_col:
+            if st.button("Save attempt to Progress Tracker", type="primary"):
+                save_progress_log(
+                    {
+                        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        "file_name": audio_label,
+                        "item_name": item_name,
+                        "target_sound": target_sound,
+                        "prediction": prediction,
+                        "confidence": round(confidence, 1),
+                        "confidence_level": confidence_level,
+                        "practice_priority": practice_priority,
+                        "reliable_feedback": reliable_feedback,
+                        "llm_feedback": llama_feedback,
+                        "feedback_source": "llama" if llama_used else "rule_based",
+                    }
+                )
+                st.success("Saved to Progress Tracker.")
 
         with st.expander("Technical details"):
             st.write(
-                "This prediction is based on MFCCs, zero-crossing rate, spectral centroid, "
+                "This prediction uses MFCCs, zero-crossing rate, spectral centroid, "
                 "spectral rolloff, and RMS energy."
             )
+            st.write("The model was trained on a personal 245-clip speech-practice dataset.")
             st.write(
-                "The model was trained on a personal 245-clip speech-practice dataset."
+                "The optional LLM layer only rewrites safe rule-based feedback. "
+                "If Ollama is unavailable or the rewrite fails a safety check, the rule-based text is shown instead."
             )
-            st.write(
-                "The LLM layer rewrites reliable rule-based feedback and falls back to the reliable version if needed."
-            )
-
 
 elif page == "Progress Tracker":
     st.header("Progress Tracker")
+    st.write("Saved attempts stay in this app session and in `practice_progress_log.csv` when the server can write files.")
 
     progress_df = load_progress_log()
-
     if progress_df.empty:
-        st.info("No saved attempts yet. Use the Try the Demo page and click Save Attempt.")
+        st.info("No saved attempts yet. Analyze a recording in Try the Demo, then click Save attempt.")
+        if st.button("Go to Try the Demo"):
+            go_to("Try the Demo")
     else:
         total_attempts = len(progress_df)
-        clear_count = (progress_df["prediction"].astype(str).str.lower() == "clear").sum()
-        unclear_count = (progress_df["prediction"].astype(str).str.lower() == "unclear").sum()
-        avg_confidence = progress_df["confidence"].mean()
-
-        col1, col2, col3, col4 = st.columns(4)
-
-        with col1:
-            st.metric("Saved Attempts", total_attempts)
-
-        with col2:
-            st.metric("Clear", clear_count)
-
-        with col3:
-            st.metric("Unclear", unclear_count)
-
-        with col4:
-            st.metric("Average Confidence", f"{avg_confidence:.1f}%")
-
-        st.markdown("### Practice history")
-        st.dataframe(progress_df, use_container_width=True)
-
-        chart_col1, chart_col2 = st.columns(2)
-
-        with chart_col1:
-            st.markdown("### Attempts by target sound")
-            st.bar_chart(progress_df["target_sound"].value_counts())
-
-        with chart_col2:
-            st.markdown("### Clear vs unclear")
-            st.bar_chart(progress_df["prediction"].value_counts())
-
-        csv_data = progress_df.to_csv(index=False)
-
-        st.download_button(
-            label="Download Progress Log",
-            data=csv_data,
-            file_name="practice_progress_log.csv",
-            mime="text/csv"
+        pred_series = progress_df["prediction"].astype(str).str.lower() if "prediction" in progress_df.columns else pd.Series(dtype=str)
+        clear_count = int((pred_series == "clear").sum())
+        unclear_count = int((pred_series == "unclear").sum())
+        avg_confidence = (
+            pd.to_numeric(progress_df["confidence"], errors="coerce").mean()
+            if "confidence" in progress_df.columns
+            else None
         )
 
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Saved attempts", total_attempts)
+        c2.metric("Clear", clear_count)
+        c3.metric("Unclear", unclear_count)
+        c4.metric(
+            "Average confidence",
+            f"{avg_confidence:.1f}%" if pd.notna(avg_confidence) else "n/a",
+        )
+
+        st.subheader("Practice history")
+        st.dataframe(progress_df, use_container_width=True, hide_index=True)
+
+        chart1, chart2 = st.columns(2)
+        with chart1:
+            st.subheader("Attempts by target sound")
+            if "target_sound" in progress_df.columns:
+                sound_counts = (
+                    progress_df["target_sound"].astype(str).value_counts().rename_axis("Target sound").reset_index(name="Attempts")
+                )
+                sound_counts["Target sound"] = sound_counts["Target sound"].map(
+                    lambda value: SOUND_LABELS.get(value, value)
+                )
+                st.bar_chart(sound_counts, x="Target sound", y="Attempts")
+                st.caption("This chart shows how many saved attempts you have for each target sound.")
+            else:
+                st.info("No target-sound column is available in the progress log.")
+        with chart2:
+            st.subheader("Clear vs unclear")
+            if "prediction" in progress_df.columns:
+                pred_counts = (
+                    progress_df["prediction"].astype(str).str.title().value_counts().rename_axis("Prediction").reset_index(name="Attempts")
+                )
+                st.bar_chart(pred_counts, x="Prediction", y="Attempts")
+                st.caption("This chart uses text labels for Clear and Unclear, not color alone.")
+            else:
+                st.info("No prediction column is available in the progress log.")
+
+        if "target_sound" in progress_df.columns and "prediction" in progress_df.columns:
+            st.subheader("Breakdown by sound and prediction")
+            breakdown = (
+                progress_df.assign(
+                    target_sound=progress_df["target_sound"].astype(str),
+                    prediction=progress_df["prediction"].astype(str).str.title(),
+                )
+                .groupby(["target_sound", "prediction"], dropna=False)
+                .size()
+                .reset_index(name="attempts")
+            )
+            breakdown["target_sound"] = breakdown["target_sound"].map(
+                lambda value: SOUND_LABELS.get(value, value)
+            )
+            st.dataframe(
+                breakdown.rename(
+                    columns={
+                        "target_sound": "Target sound",
+                        "prediction": "Prediction",
+                        "attempts": "Attempts",
+                    }
+                ),
+                use_container_width=True,
+                hide_index=True,
+            )
+
+        st.download_button(
+            "Download progress log",
+            data=progress_df.to_csv(index=False),
+            file_name="practice_progress_log.csv",
+            mime="text/csv",
+            type="primary",
+        )
+        st.caption(
+            "On Streamlit Community Cloud, saved files may reset when the app restarts. Download your log if you want to keep it."
+        )
 
 elif page == "Research Results":
     st.header("Research Results")
+    st.write(
+        "These results come from a personal 245-clip speech-practice dataset. "
+        "They describe this prototype, not clinical performance."
+    )
 
-    col1, col2, col3, col4 = st.columns(4)
+    r1, r2, r3, r4 = st.columns(4)
+    r1.metric("Total clips", "245")
+    r2.metric("Clear clips", "188")
+    r3.metric("Unclear clips", "57")
+    r4.metric("Best model", "Random Forest")
 
-    with col1:
-        st.metric("Total Clips", "245")
-    with col2:
-        st.metric("Clear Clips", "188")
-    with col3:
-        st.metric("Unclear Clips", "57")
-    with col4:
-        st.metric("Best Model", "Random Forest")
+    st.subheader("What the results mean")
+    st.markdown(
+        """
+        <div class="info-box">
+            <p>Most clips in this dataset are already labeled clear. That makes accuracy easy to misread.</p>
+            <ul>
+                <li>An Always Clear baseline can look accurate because it always guesses the common label.</li>
+                <li>That baseline never finds unclear speech, so its unclear F1 score is 0.00.</li>
+                <li>Random Forest is more useful here because it can detect some unclear clips, even though its accuracy is a little lower.</li>
+                <li>This is one-speaker research. It is not a diagnosis or treatment tool.</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    st.markdown("### Model evaluation")
-
-    model_results_path = RESULTS_DIR / "model_results.csv"
-    model_df = load_csv_if_exists(model_results_path)
-
+    st.subheader("Model comparison")
+    model_df = load_csv_if_exists(RESULTS_DIR / "model_results.csv")
     if model_df is not None:
-        st.dataframe(model_df, use_container_width=True)
+        pretty = model_df.copy()
+        percent_cols = [col for col in ["accuracy", "precision_unclear", "recall_unclear"] if col in pretty.columns]
+        for col in percent_cols:
+            pretty[col] = (pd.to_numeric(pretty[col], errors="coerce") * 100).round(1).astype(str) + "%"
+        if "f1_unclear" in pretty.columns:
+            pretty["f1_unclear"] = pd.to_numeric(pretty["f1_unclear"], errors="coerce").round(2)
+        pretty = pretty.rename(
+            columns={
+                "model": "Model",
+                "accuracy": "Accuracy",
+                "precision_unclear": "Unclear precision",
+                "recall_unclear": "Unclear recall",
+                "f1_unclear": "Unclear F1",
+            }
+        )
+        st.dataframe(pretty, use_container_width=True, hide_index=True)
+        st.caption("Unclear F1 is the most important score here. Accuracy alone is not enough.")
     else:
-        st.info("model_results.csv not found in results/.")
+        st.info("`results/model_results.csv` was not found.")
 
     st.write(
-        "The Random Forest model achieved 75.8% accuracy and an unclear-class F1 score of 0.48. "
-        "The Always Clear baseline achieved 77.4% accuracy but had an unclear-class F1 score of 0.00, "
-        "showing that accuracy alone was misleading."
+        "Random Forest reached 75.8% accuracy and an unclear-class F1 score of 0.48. "
+        "The Always Clear baseline reached 77.4% accuracy, but its unclear F1 score was 0.00. "
+        "That shows why a model that always predicts clear is not a good speech-practice detector."
     )
 
-    st.markdown("### Pattern analysis")
+    st.subheader("Confusion matrices")
+    matrix_cols = st.columns(3)
+    matrices = [
+        ("always_clear_baseline_confusion_matrix.png", "Always Clear baseline"),
+        ("logistic_regression_confusion_matrix.png", "Logistic Regression"),
+        ("random_forest_confusion_matrix.png", "Random Forest"),
+    ]
+    for column, (filename, caption) in zip(matrix_cols, matrices):
+        path = RESULTS_DIR / filename
+        with column:
+            if path.exists():
+                st.image(str(path), caption=caption, use_container_width=True)
+            else:
+                st.info(f"{filename} was not found.")
+    st.caption(
+        "Each matrix shows correct and incorrect guesses. Random Forest is the only model shown here that catches a meaningful number of unclear clips."
+    )
 
-    sound_graph = RESULTS_DIR / "unclear_rate_by_sound.png"
-    clip_type_graph = RESULTS_DIR / "unclear_rate_by_clip_type.png"
-    top_items_graph = RESULTS_DIR / "top10_unclear_items.png"
+    st.subheader("Pattern analysis")
+    pattern_tabs = st.tabs(["By sound", "By clip type", "Hardest items"])
 
-    if sound_graph.exists():
-        st.image(str(sound_graph), caption="Unclear Rate by Target Sound", use_container_width=True)
+    with pattern_tabs[0]:
+        sound_graph = RESULTS_DIR / "unclear_rate_by_sound.png"
+        sound_table = load_csv_if_exists(RESULTS_DIR / "unclear_rate_by_sound.csv")
+        if sound_graph.exists():
+            st.image(
+                str(sound_graph),
+                caption="Unclear rate by target sound. Higher bars mean that sound was harder in this dataset.",
+                use_container_width=True,
+            )
+        if sound_table is not None:
+            pretty_sound = sound_table.copy()
+            if "unclear_rate" in pretty_sound.columns:
+                pretty_sound["unclear_rate"] = (pd.to_numeric(pretty_sound["unclear_rate"], errors="coerce") * 100).round(1).astype(str) + "%"
+            st.dataframe(pretty_sound, use_container_width=True, hide_index=True)
+        st.write(
+            "In this personal dataset, /th/ was the hardest target sound (40% unclear), "
+            "followed by mixed /s/ and /z/ sentences. /r/ was the easiest overall."
+        )
 
-    if clip_type_graph.exists():
-        st.image(str(clip_type_graph), caption="Unclear Rate by Clip Type", use_container_width=True)
+    with pattern_tabs[1]:
+        clip_graph = RESULTS_DIR / "unclear_rate_by_clip_type.png"
+        clip_table = load_csv_if_exists(RESULTS_DIR / "unclear_rate_by_clip_type.csv")
+        if clip_graph.exists():
+            st.image(
+                str(clip_graph),
+                caption="Unclear rate by clip type. Words and sentences are shown separately.",
+                use_container_width=True,
+            )
+        if clip_table is not None:
+            pretty_clip = clip_table.copy()
+            if "unclear_rate" in pretty_clip.columns:
+                pretty_clip["unclear_rate"] = (pd.to_numeric(pretty_clip["unclear_rate"], errors="coerce") * 100).round(1).astype(str) + "%"
+            st.dataframe(pretty_clip, use_container_width=True, hide_index=True)
+        st.write(
+            "Words and sentences had similar unclear rates. Sentences were not automatically much harder than single words in this set."
+        )
 
-    if top_items_graph.exists():
-        st.image(str(top_items_graph), caption="Top 10 Hardest Words and Sentences", use_container_width=True)
+    with pattern_tabs[2]:
+        top_graph = RESULTS_DIR / "top10_unclear_items.png"
+        item_table = load_csv_if_exists(RESULTS_DIR / "unclear_rate_by_item.csv")
+        if top_graph.exists():
+            st.image(
+                str(top_graph),
+                caption="Top 10 hardest words and sentences from the research dataset.",
+                use_container_width=True,
+            )
+        if item_table is not None:
+            pretty_items = item_table.copy()
+            if "unclear_rate" in pretty_items.columns:
+                pretty_items["unclear_rate"] = (pd.to_numeric(pretty_items["unclear_rate"], errors="coerce") * 100).round(1).astype(str) + "%"
+            st.dataframe(pretty_items.head(10), use_container_width=True, hide_index=True)
+        st.write(
+            "Items such as thank, right, sun, thirty, and 'zach said science was easy' were among the highest-priority practice targets."
+        )
 
-    st.markdown("### LLM feedback evaluation")
-
-    llama_summary_path = RESULTS_DIR / "llama_feedback_evaluation_summary.csv"
-    llama_df = load_csv_if_exists(llama_summary_path)
-
-    if llama_df is not None:
-        st.dataframe(llama_df, use_container_width=True)
+    st.subheader("LLM feedback evaluation")
+    llama_summary = load_csv_if_exists(RESULTS_DIR / "llama_feedback_evaluation_summary.csv")
+    if llama_summary is not None:
+        pretty_llama = llama_summary.copy()
+        pretty_llama = pretty_llama.rename(columns={"metric": "Rubric category", "average_score": "Average score"})
+        st.dataframe(pretty_llama, use_container_width=True, hide_index=True)
     else:
-        st.info("llama_feedback_evaluation_summary.csv not found in results/.")
+        st.info("`results/llama_feedback_evaluation_summary.csv` was not found.")
 
+    st.markdown(
+        """
+        The LLM rewrite layer was scored on 10 examples using a 10-point rubric:
+
+        - **Matches prediction (1.5 / 2):** The rewrite usually followed the model, but sometimes added extra doubt.
+        - **Safety (1.9 / 2):** This was the strongest category. The text almost always stayed non-clinical.
+        - **Usefulness (1.4 / 2):** This was the weakest category. Advice was sometimes too general.
+        - **Clarity (1.7 / 2):** Most rewrites were easy to read.
+        - **Tone (1.8 / 2):** The tone was usually supportive.
+        - **Total (8.2 / 10):** Helpful as a writing layer, but not a replacement for the rule-based feedback.
+        """
+    )
     st.write(
-        "The LLM-assisted feedback layer achieved an average rubric score of 8.2 out of 10. "
-        "Safety was the strongest category, while usefulness was the weakest category."
+        "Because hosted deployment cannot rely on local Ollama, the app always keeps the rule-based feedback "
+        "and only uses Llama when it is available and passes safety checks."
     )
 
+    llama_examples = load_csv_if_exists(RESULTS_DIR / "llama_feedback_evaluation.csv")
+    if llama_examples is None:
+        llama_examples = load_csv_if_exists(Path("llama_feedback_evaluation.csv"))
+    if llama_examples is not None:
+        with st.expander("View scored feedback examples"):
+            st.dataframe(llama_examples, use_container_width=True, hide_index=True)
 
 elif page == "About & Limitations":
     st.header("About & Limitations")
 
-    st.markdown("### Research question")
+    st.subheader("Research question")
     st.write(
-        "**Can machine learning analyze personalized speech-pronunciation patterns and generate useful "
-        "non-clinical feedback for speech practice?**"
+        "Can machine learning analyze personalized speech-pronunciation patterns and generate useful "
+        "non-clinical feedback for speech practice?"
     )
 
-    st.markdown("### Hypothesis")
+    st.subheader("Hypothesis")
     st.write(
         "If acoustic features from personalized speech-practice recordings are used to train a "
         "machine-learning classifier, then the system will be able to identify patterns in clear and "
         "unclear pronunciation clips and generate useful non-clinical feedback for practice."
     )
 
-    st.markdown("### Accessibility design choices")
+    st.subheader("Accessibility design choices")
     st.write(
         """
 - Large text mode
 - High contrast mode
 - Clear headings and simple language
+- Labels on every input
 - Keyboard-friendly Streamlit controls
+- Visible focus outlines
 - No color-only meaning: predictions also use text labels
-- Downloadable reports for offline review
-- Safety warning on every app session
+- Downloadable plans and reports for offline review
+- Safety warning on every page
 - Short feedback instead of long paragraphs
         """
     )
 
-    st.markdown("### Limitations")
+    st.subheader("Limitations")
     st.write(
         """
 - The dataset contains recordings from one speaker, so results may not generalize to other speakers.
-- Labels were manually assigned and may be subjective.
+- Labels were assigned manually and may be subjective.
 - The model is not clinically validated.
 - The app should not be used for diagnosis or treatment.
-- The LLM feedback layer can sometimes be vague or inconsistent.
+- Browser recording quality depends on the device and browser.
+- The optional LLM rewrite can be vague or inconsistent, so the app always keeps a rule-based fallback.
 - Future work could include more speakers, expert label review, and deeper audio models such as Wav2Vec2.
         """
     )
 
-    st.markdown("### Technology used")
+    st.subheader("Technology used")
     st.write(
         """
 - Python
 - Streamlit
 - librosa
-- scikit-learn
-- Random Forest
-- Ollama / Llama
+- scikit-learn Random Forest
 - pandas
+- Optional local Ollama / Llama, with rule-based fallback
         """
     )
 
@@ -1195,5 +1742,5 @@ st.markdown(
         It should not be used as a medical, diagnostic, or therapeutic tool.
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )

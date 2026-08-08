@@ -1,0 +1,122 @@
+word,target_sound,source,difficulty,notes
+sun,s,research_dataset,hard,Often unclear in the research set. Keep a steady /s/ from start to end.
+seal,s,research_dataset,hard,Practice a long clear /s/ before the vowel.
+sister,s,research_dataset,hard,There are two /s/ sounds. Slow down each one.
+seven,s,research_dataset,medium,"Start with a light /s/, then finish the whole word."
+science,s,research_dataset,easy,Mostly clear in the research set. Good warm-up word.
+basket,s,research_dataset,easy,Keep the middle /s/ light and steady.
+bus,s,research_dataset,easy,Hold the ending /s/ without rushing.
+class,s,research_dataset,easy,Keep the ending /s/ clear after /a/.
+pencil,s,research_dataset,easy,Make the /s/ in the middle easy to hear.
+racing,s,research_dataset,easy,Keep the /s/ smooth in the middle of the word.
+science sometimes sounds stressful,s,research_dataset,easy,Break the sentence into short chunks first.
+seven sisters sat silently,s,research_dataset,easy,Many /s/ sounds. Pause between words if needed.
+six students studied science,s,research_dataset,easy,"Practice one word at a time, then the full sentence."
+the sun set slowly,s,research_dataset,easy,Keep each /s/ gentle and even.
+same,s,expanded_practice,easy,Simple starting /s/ word.
+soup,s,expanded_practice,easy,"Start with a steady /s/, then add the vowel."
+yes,s,expanded_practice,easy,Hold the ending /s/ a little longer.
+sit,s,expanded_practice,easy,Short word. Focus on a clean starting /s/.
+see,s,expanded_practice,easy,Keep the /s/ light before a long vowel.
+sleep,s,expanded_practice,medium,The /s/ comes before /l/. Start slowly.
+slow,s,expanded_practice,medium,"Say /s/ first, then slide into /l/."
+smile,s,expanded_practice,medium,Practice /s/ + /m/ slowly.
+snake,s,expanded_practice,medium,Keep the /s/ clear before /n/.
+star,s,expanded_practice,medium,The /s/ comes before /t/. Do not skip it.
+snow,s,expanded_practice,medium,Keep /s/ and /n/ separate at first.
+school,s,expanded_practice,hard,This /s/ cluster can feel busy. Stretch it out.
+grass,s,expanded_practice,easy,Hold the ending /s/.
+house,s,expanded_practice,easy,Make the ending /s/ easy to hear.
+mouse,s,expanded_practice,easy,Keep the ending /s/ steady.
+sweet,s,expanded_practice,medium,"Start with /s/, then /w/."
+space,s,expanded_practice,medium,Keep both /s/ sounds clear.
+city,s,expanded_practice,easy,"The /s/ sound is at the start, even though it is spelled with c."
+buzz,z,research_dataset,hard,Often unclear in the research set. Keep a buzzing /z/ at the end.
+zero,z,research_dataset,medium,"Start with a voiced /z/, not /s/."
+cheese,z,research_dataset,medium,The ending sounds like /z/. Hold it gently.
+lazy,z,research_dataset,medium,Keep the middle /z/ buzzing.
+music,z,research_dataset,medium,The s in music sounds like /z/.
+zipper,z,research_dataset,medium,Start with a strong voiced /z/.
+zoo,z,research_dataset,medium,Keep the starting /z/ voiced.
+puzzle,z,research_dataset,easy,Keep the /z/ in the middle easy to hear.
+zebra,z,research_dataset,easy,Good warm-up /z/ word.
+zone,z,research_dataset,easy,Start with a clear voiced /z/.
+zero zebras were in the zone,z,research_dataset,hard,Several /z/ sounds. Slow the sentence down.
+please pass the cheese,z,research_dataset,medium,Focus on the /z/ in cheese at the end.
+lazy lizards love music,z,research_dataset,easy,"Practice one word, then the full sentence."
+the puzzle was amazing,z,research_dataset,easy,Listen for /z/ in puzzle and amazing.
+zebra zoomed through the zoo,z,research_dataset,easy,Keep each starting /z/ voiced.
+rose,z,expanded_practice,easy,The ending s sounds like /z/.
+has,z,expanded_practice,easy,Keep the ending /z/ voiced.
+is,z,expanded_practice,easy,Very short /z/ at the end. Do not turn it into /s/.
+was,z,expanded_practice,easy,Hold the ending /z/ a little.
+these,z,expanded_practice,medium,The ending sounds like /z/.
+those,z,expanded_practice,medium,Keep the ending /z/ buzzing.
+size,z,expanded_practice,easy,"Start with /s/, end with /z/."
+prize,z,expanded_practice,easy,Hold the ending /z/.
+freeze,z,expanded_practice,medium,Keep a long /z/ at the end.
+breeze,z,expanded_practice,medium,Let the ending /z/ keep going briefly.
+amazing,z,expanded_practice,medium,The s sounds like /z/.
+fuzzy,z,expanded_practice,medium,There are two /z/ sounds. Slow down.
+zoom,z,expanded_practice,easy,Start with a strong /z/.
+dozen,z,expanded_practice,medium,Keep the /z/ in the middle voiced.
+right,r,research_dataset,hard,High unclear rate in the research set. Take your time on /r/.
+red,r,research_dataset,medium,"Start with a careful /r/, then the vowel."
+mirror,r,research_dataset,medium,There may be /r/ more than once. Slow down.
+around,r,research_dataset,easy,Keep the /r/ smooth in the middle.
+car,r,research_dataset,easy,Hold the ending /r/ without rushing.
+carrot,r,research_dataset,easy,Keep both /r/ parts calm and even.
+far,r,research_dataset,easy,Simple ending /r/ word.
+race,r,research_dataset,easy,"Start with /r/, then a clear vowel."
+river,r,research_dataset,easy,Keep /r/ at the start and in the middle.
+story,r,research_dataset,easy,The /r/ comes after /t/. Go slowly.
+run,r,expanded_practice,easy,Simple starting /r/ word.
+rain,r,expanded_practice,easy,Keep the starting /r/ steady.
+read,r,expanded_practice,easy,Start with /r/ before a long vowel.
+room,r,expanded_practice,easy,Keep /r/ clear at the start.
+more,r,expanded_practice,easy,Hold the ending /r/.
+door,r,expanded_practice,easy,Simple ending /r/ word.
+very,r,expanded_practice,medium,The /r/ is in the middle. Do not skip it.
+better,r,expanded_practice,medium,Keep the ending /r/ easy to hear.
+water,r,expanded_practice,medium,Slow the second syllable.
+ready,r,expanded_practice,medium,"Start with /r/, then finish the word."
+write,r,expanded_practice,medium,The word starts with an /r/ sound.
+green,r,expanded_practice,hard,The /r/ comes after /g/. Stretch it out.
+tree,r,expanded_practice,hard,The /r/ comes after /t/. Go slowly.
+friend,r,expanded_practice,hard,The /r/ is in a cluster. Practice in two parts first.
+thank,th,research_dataset,hard,Highest unclear rate in the research set. Practice very slowly.
+thirty,th,research_dataset,hard,"Keep /th/ clear at the start, then finish the word."
+bath,th,research_dataset,hard,Hold the ending /th/ without rushing.
+nothing,th,research_dataset,hard,The /th/ is in the middle. Slow that part down.
+three,th,research_dataset,hard,Keep /th/ before /r/. Start extra slowly.
+teeth,th,research_dataset,medium,Hold the ending /th/ a little longer.
+birthday,th,research_dataset,easy,The /th/ is in the middle. Keep it gentle.
+healthy,th,research_dataset,easy,Do not skip the /th/ in the middle.
+thin,th,research_dataset,easy,Simple starting /th/ word.
+think,th,research_dataset,easy,Keep a light /th/ at the start.
+this,th,expanded_practice,medium,Voiced /th/ at the start. Keep it soft.
+that,th,expanded_practice,medium,Start with a gentle voiced /th/.
+them,th,expanded_practice,medium,Keep the starting /th/ voiced.
+they,th,expanded_practice,medium,Do not replace /th/ with /d/.
+there,th,expanded_practice,medium,"Start with /th/, then the rest of the word."
+with,th,expanded_practice,easy,Hold the ending /th/.
+both,th,expanded_practice,easy,Keep the ending /th/ clear.
+path,th,expanded_practice,easy,Simple ending /th/ word.
+month,th,expanded_practice,medium,The ending /th/ can get lost. Hold it.
+earth,th,expanded_practice,medium,Finish the word with a clear /th/.
+mother,th,expanded_practice,medium,The /th/ is in the middle. Slow down.
+father,th,expanded_practice,medium,Keep the middle /th/ easy to hear.
+brother,th,expanded_practice,medium,Do not skip the /th/.
+weather,th,expanded_practice,medium,Keep the middle /th/ soft and clear.
+something,th,expanded_practice,hard,The /th/ is in the second part. Pause before it if needed.
+zach said science was easy,mixed,research_dataset,hard,Hardest mixed sentence in the research set. Break it into small parts.
+seven students solved the puzzle,mixed,research_dataset,medium,Practice /s/ and /z/ words separately first.
+susan saw the zebra at the zoo,mixed,research_dataset,medium,Alternate carefully between /s/ and /z/.
+six roses were beside the cheese,mixed,research_dataset,easy,Listen for both /s/ and /z/ endings.
+the music sounded soft and fuzzy,mixed,research_dataset,easy,Use this as a mixed-sound warm-up sentence.
+sally sells seashells,mixed,expanded_practice,hard,Many /s/ sounds. Slow is better than fast.
+susan sings songs at the zoo,mixed,expanded_practice,medium,"Start with /s/ words, then add zoo."
+six zebras zoomed past the school,mixed,expanded_practice,hard,Mixes /s/ and /z/ clusters. Practice in chunks.
+the cheese was surprisingly soft,mixed,expanded_practice,medium,Listen for /z/ in cheese and /s/ in surprisingly and soft.
+zach saw seven roses,mixed,expanded_practice,medium,Short mixed sentence. Say it slowly three times.
+please see the zebra,mixed,expanded_practice,easy,Short sentence with both /s/ and /z/.
