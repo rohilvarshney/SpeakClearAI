@@ -1,122 +1,401 @@
 word,target_sound,source,difficulty,notes
-sun,s,research_dataset,hard,Often unclear in the research set. Keep a steady /s/ from start to end.
-seal,s,research_dataset,hard,Practice a long clear /s/ before the vowel.
-sister,s,research_dataset,hard,There are two /s/ sounds. Slow down each one.
-seven,s,research_dataset,medium,"Start with a light /s/, then finish the whole word."
-science,s,research_dataset,easy,Mostly clear in the research set. Good warm-up word.
-basket,s,research_dataset,easy,Keep the middle /s/ light and steady.
-bus,s,research_dataset,easy,Hold the ending /s/ without rushing.
-class,s,research_dataset,easy,Keep the ending /s/ clear after /a/.
-pencil,s,research_dataset,easy,Make the /s/ in the middle easy to hear.
-racing,s,research_dataset,easy,Keep the /s/ smooth in the middle of the word.
-science sometimes sounds stressful,s,research_dataset,easy,Break the sentence into short chunks first.
-seven sisters sat silently,s,research_dataset,easy,Many /s/ sounds. Pause between words if needed.
-six students studied science,s,research_dataset,easy,"Practice one word at a time, then the full sentence."
-the sun set slowly,s,research_dataset,easy,Keep each /s/ gentle and even.
-same,s,expanded_practice,easy,Simple starting /s/ word.
-soup,s,expanded_practice,easy,"Start with a steady /s/, then add the vowel."
-yes,s,expanded_practice,easy,Hold the ending /s/ a little longer.
-sit,s,expanded_practice,easy,Short word. Focus on a clean starting /s/.
-see,s,expanded_practice,easy,Keep the /s/ light before a long vowel.
-sleep,s,expanded_practice,medium,The /s/ comes before /l/. Start slowly.
-slow,s,expanded_practice,medium,"Say /s/ first, then slide into /l/."
-smile,s,expanded_practice,medium,Practice /s/ + /m/ slowly.
-snake,s,expanded_practice,medium,Keep the /s/ clear before /n/.
-star,s,expanded_practice,medium,The /s/ comes before /t/. Do not skip it.
-snow,s,expanded_practice,medium,Keep /s/ and /n/ separate at first.
-school,s,expanded_practice,hard,This /s/ cluster can feel busy. Stretch it out.
-grass,s,expanded_practice,easy,Hold the ending /s/.
-house,s,expanded_practice,easy,Make the ending /s/ easy to hear.
-mouse,s,expanded_practice,easy,Keep the ending /s/ steady.
-sweet,s,expanded_practice,medium,"Start with /s/, then /w/."
-space,s,expanded_practice,medium,Keep both /s/ sounds clear.
-city,s,expanded_practice,easy,"The /s/ sound is at the start, even though it is spelled with c."
-buzz,z,research_dataset,hard,Often unclear in the research set. Keep a buzzing /z/ at the end.
-zero,z,research_dataset,medium,"Start with a voiced /z/, not /s/."
-cheese,z,research_dataset,medium,The ending sounds like /z/. Hold it gently.
-lazy,z,research_dataset,medium,Keep the middle /z/ buzzing.
-music,z,research_dataset,medium,The s in music sounds like /z/.
-zipper,z,research_dataset,medium,Start with a strong voiced /z/.
-zoo,z,research_dataset,medium,Keep the starting /z/ voiced.
-puzzle,z,research_dataset,easy,Keep the /z/ in the middle easy to hear.
-zebra,z,research_dataset,easy,Good warm-up /z/ word.
-zone,z,research_dataset,easy,Start with a clear voiced /z/.
-zero zebras were in the zone,z,research_dataset,hard,Several /z/ sounds. Slow the sentence down.
-please pass the cheese,z,research_dataset,medium,Focus on the /z/ in cheese at the end.
-lazy lizards love music,z,research_dataset,easy,"Practice one word, then the full sentence."
-the puzzle was amazing,z,research_dataset,easy,Listen for /z/ in puzzle and amazing.
-zebra zoomed through the zoo,z,research_dataset,easy,Keep each starting /z/ voiced.
-rose,z,expanded_practice,easy,The ending s sounds like /z/.
-has,z,expanded_practice,easy,Keep the ending /z/ voiced.
-is,z,expanded_practice,easy,Very short /z/ at the end. Do not turn it into /s/.
-was,z,expanded_practice,easy,Hold the ending /z/ a little.
-these,z,expanded_practice,medium,The ending sounds like /z/.
-those,z,expanded_practice,medium,Keep the ending /z/ buzzing.
-size,z,expanded_practice,easy,"Start with /s/, end with /z/."
-prize,z,expanded_practice,easy,Hold the ending /z/.
-freeze,z,expanded_practice,medium,Keep a long /z/ at the end.
-breeze,z,expanded_practice,medium,Let the ending /z/ keep going briefly.
-amazing,z,expanded_practice,medium,The s sounds like /z/.
-fuzzy,z,expanded_practice,medium,There are two /z/ sounds. Slow down.
-zoom,z,expanded_practice,easy,Start with a strong /z/.
-dozen,z,expanded_practice,medium,Keep the /z/ in the middle voiced.
-right,r,research_dataset,hard,High unclear rate in the research set. Take your time on /r/.
-red,r,research_dataset,medium,"Start with a careful /r/, then the vowel."
-mirror,r,research_dataset,medium,There may be /r/ more than once. Slow down.
-around,r,research_dataset,easy,Keep the /r/ smooth in the middle.
-car,r,research_dataset,easy,Hold the ending /r/ without rushing.
-carrot,r,research_dataset,easy,Keep both /r/ parts calm and even.
-far,r,research_dataset,easy,Simple ending /r/ word.
-race,r,research_dataset,easy,"Start with /r/, then a clear vowel."
-river,r,research_dataset,easy,Keep /r/ at the start and in the middle.
-story,r,research_dataset,easy,The /r/ comes after /t/. Go slowly.
-run,r,expanded_practice,easy,Simple starting /r/ word.
-rain,r,expanded_practice,easy,Keep the starting /r/ steady.
-read,r,expanded_practice,easy,Start with /r/ before a long vowel.
-room,r,expanded_practice,easy,Keep /r/ clear at the start.
-more,r,expanded_practice,easy,Hold the ending /r/.
-door,r,expanded_practice,easy,Simple ending /r/ word.
-very,r,expanded_practice,medium,The /r/ is in the middle. Do not skip it.
-better,r,expanded_practice,medium,Keep the ending /r/ easy to hear.
-water,r,expanded_practice,medium,Slow the second syllable.
-ready,r,expanded_practice,medium,"Start with /r/, then finish the word."
-write,r,expanded_practice,medium,The word starts with an /r/ sound.
-green,r,expanded_practice,hard,The /r/ comes after /g/. Stretch it out.
-tree,r,expanded_practice,hard,The /r/ comes after /t/. Go slowly.
-friend,r,expanded_practice,hard,The /r/ is in a cluster. Practice in two parts first.
-thank,th,research_dataset,hard,Highest unclear rate in the research set. Practice very slowly.
-thirty,th,research_dataset,hard,"Keep /th/ clear at the start, then finish the word."
-bath,th,research_dataset,hard,Hold the ending /th/ without rushing.
-nothing,th,research_dataset,hard,The /th/ is in the middle. Slow that part down.
-three,th,research_dataset,hard,Keep /th/ before /r/. Start extra slowly.
-teeth,th,research_dataset,medium,Hold the ending /th/ a little longer.
-birthday,th,research_dataset,easy,The /th/ is in the middle. Keep it gentle.
-healthy,th,research_dataset,easy,Do not skip the /th/ in the middle.
-thin,th,research_dataset,easy,Simple starting /th/ word.
-think,th,research_dataset,easy,Keep a light /th/ at the start.
-this,th,expanded_practice,medium,Voiced /th/ at the start. Keep it soft.
-that,th,expanded_practice,medium,Start with a gentle voiced /th/.
-them,th,expanded_practice,medium,Keep the starting /th/ voiced.
-they,th,expanded_practice,medium,Do not replace /th/ with /d/.
-there,th,expanded_practice,medium,"Start with /th/, then the rest of the word."
-with,th,expanded_practice,easy,Hold the ending /th/.
-both,th,expanded_practice,easy,Keep the ending /th/ clear.
-path,th,expanded_practice,easy,Simple ending /th/ word.
-month,th,expanded_practice,medium,The ending /th/ can get lost. Hold it.
-earth,th,expanded_practice,medium,Finish the word with a clear /th/.
-mother,th,expanded_practice,medium,The /th/ is in the middle. Slow down.
-father,th,expanded_practice,medium,Keep the middle /th/ easy to hear.
-brother,th,expanded_practice,medium,Do not skip the /th/.
-weather,th,expanded_practice,medium,Keep the middle /th/ soft and clear.
-something,th,expanded_practice,hard,The /th/ is in the second part. Pause before it if needed.
-zach said science was easy,mixed,research_dataset,hard,Hardest mixed sentence in the research set. Break it into small parts.
-seven students solved the puzzle,mixed,research_dataset,medium,Practice /s/ and /z/ words separately first.
-susan saw the zebra at the zoo,mixed,research_dataset,medium,Alternate carefully between /s/ and /z/.
-six roses were beside the cheese,mixed,research_dataset,easy,Listen for both /s/ and /z/ endings.
-the music sounded soft and fuzzy,mixed,research_dataset,easy,Use this as a mixed-sound warm-up sentence.
-sally sells seashells,mixed,expanded_practice,hard,Many /s/ sounds. Slow is better than fast.
-susan sings songs at the zoo,mixed,expanded_practice,medium,"Start with /s/ words, then add zoo."
-six zebras zoomed past the school,mixed,expanded_practice,hard,Mixes /s/ and /z/ clusters. Practice in chunks.
-the cheese was surprisingly soft,mixed,expanded_practice,medium,Listen for /z/ in cheese and /s/ in surprisingly and soft.
-zach saw seven roses,mixed,expanded_practice,medium,Short mixed sentence. Say it slowly three times.
-please see the zebra,mixed,expanded_practice,easy,Short sentence with both /s/ and /z/.
+aaa,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+aargh,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+aaron,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+aarti,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abair,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abare,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abhor,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abor,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+aborn,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abort,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abra,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abram,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abreu,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abril,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abrol,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+abron,r,CMU Pronouncing Dictionary,easy,Matched CMU phoneme R
+aalsmeer,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aardvark,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aardvarks,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aaronson,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abattoir,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abbreviate,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abbruzzese,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abendroth,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aberrant,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abhorred,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abhorrence,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abhorrent,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abnormal,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abnormally,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aborting,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abortion,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abortions,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abortive,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aboveboard,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrahamian,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrahams,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrahamsen,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrahamson,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abramczyk,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abramovitz,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abramowicz,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abramowitz,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abramson,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrasion,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrasions,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrasive,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrasives,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abridged,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abridges,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abridging,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrogate,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrogated,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrogating,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abrogation,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abruptly,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abruptness,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abruzzese,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absaraka,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorbed,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorbency,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorbent,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorber,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorbers,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorbing,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+absorption,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abstract,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abstracted,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abstracts,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abstruse,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+abudrahm,r,CMU Pronouncing Dictionary,hard,Matched CMU phoneme R
+aalborg,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aancor,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aardema,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aarons,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abarca,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abhors,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aboard,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aborted,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aborts,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abrade,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abraded,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abrades,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abraham,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abramo,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abrams,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abraxa,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abraxas,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abreast,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abrego,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abridge,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abroad,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abrupt,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abrutyn,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abruzzo,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+abshire,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+absorb,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+absorbs,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aburto,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+accardi,r,CMU Pronouncing Dictionary,medium,Matched CMU phoneme R
+aase,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+aasen,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abbas,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abc,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abcs,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abex,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abitz,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abs,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abso,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abts,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abuse,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abuts,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+abyss,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+acc,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+accel,s,CMU Pronouncing Dictionary,easy,Matched CMU phoneme S
+aalsmeer,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+aardvarks,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+aaronson,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abatements,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abbenhaus,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abbotstown,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abbruzzese,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abdicates,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abeyance,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abhorrence,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abrahamsen,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abrahamson,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abramovitz,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abramowitz,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abramson,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abrasive,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abrasives,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abruptness,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abruzzese,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absaraka,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absconded,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absconding,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absconds,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absences,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absentee,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absentees,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absentia,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absinthe,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absolute,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absolutely,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absolutes,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absolution,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absolutism,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absolutist,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absorbency,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absorption,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstained,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstaining,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstention,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstinence,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstinent,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstract,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstracted,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstracts,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abstruse,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absurdist,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absurdity,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+absurdly,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abundance,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abyssinia,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+abyssinian,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+academics,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+acampsia,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+acceding,s,CMU Pronouncing Dictionary,hard,Matched CMU phoneme S
+aalseth,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+aarhus,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abacus,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abascal,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abates,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abbasi,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abducts,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abelson,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+ablest,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+aborts,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abraxa,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abraxas,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abreast,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absalom,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abscam,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abscess,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abscond,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absecon,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absence,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absent,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absolom,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absolut,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abstain,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abston,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+absurd,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abuses,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+abusive,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+acaena,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+accede,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+acceded,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+accedes,s,CMU Pronouncing Dictionary,medium,Matched CMU phoneme S
+acero,th,CMU Pronouncing Dictionary,easy,Matched CMU phoneme TH
+arth,th,CMU Pronouncing Dictionary,easy,Matched CMU phoneme TH
+atha,th,CMU Pronouncing Dictionary,easy,Matched CMU phoneme TH
+athey,th,CMU Pronouncing Dictionary,easy,Matched CMU phoneme TH
+athie,th,CMU Pronouncing Dictionary,easy,Matched CMU phoneme TH
+abendroth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+abernathy,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+abernethy,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+absinthe,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+accuhealth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aerosmith,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aesthete,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aesthetes,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aesthetic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aesthetics,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aftermath,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aftermaths,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+ainsworth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+alberthal,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+althaver,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+amaranth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+amethyst,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anathema,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anesthesia,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anesthetic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+annabeth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anorthite,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anthology,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anthracite,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anthrobot,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+antipathy,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+antitheft,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+antithesis,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+anything,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+apathetic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+apothecary,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+apotheosis,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+applegarth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arbothnott,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arbuthnot,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arithmetic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arrasmith,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arrowsmith,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arthotec,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arthritic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arthritis,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arthropod,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arthropods,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+arthurian,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+ashworth,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+asthmatics,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+atheistic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+atheists,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athenaeum,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athenaios,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+atheneum,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athenian,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athenians,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+atherton,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athletes,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athletic,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+athletics,th,CMU Pronouncing Dictionary,hard,Matched CMU phoneme TH
+aalseth,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+agatha,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+aithne,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+aletha,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+alethea,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+alithia,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+alsthom,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+althea,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+altherr,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+althorp,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+amsouth,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anantha,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthea,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthem,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthems,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthiel,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthis,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthon,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthony,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+anthrax,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+apathy,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+ardath,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+ardith,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+aretha,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+arthur,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+arthurs,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+asquith,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athalia,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athanas,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athans,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athearn,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+atheism,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+atheist,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athena,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athene,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athens,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athlete,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+athlone,th,CMU Pronouncing Dictionary,medium,Matched CMU phoneme TH
+abbs,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abcs,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abels,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+ables,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abs,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abts,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abuse,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abuzz,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abzug,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+aces,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+acids,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+acres,z,CMU Pronouncing Dictionary,easy,Matched CMU phoneme Z
+abalones,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abandons,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abbruzzese,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abductees,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abductions,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abductors,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abdulaziz,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abilities,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abimaels,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abkhazia,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abkhazian,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abkhazians,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+ablutions,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abolishes,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+aborigines,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abortions,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abrahams,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abrasions,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abrasives,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abridges,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abruzzese,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absconds,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absences,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absentees,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absolutism,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absolved,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absolves,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absolving,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorbed,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorbency,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorbent,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorber,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorbers,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorbing,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+absorption,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abuladze,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+abysmally,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+academies,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+acclaims,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accolades,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accordions,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accruals,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accuracies,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accusation,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accusative,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accusatory,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accusers,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accusing,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+accusingly,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+achesons,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+achievers,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+achieves,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+achilles,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+acidifies,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+acquirers,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+acquires,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+acquittals,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+acronyms,z,CMU Pronouncing Dictionary,hard,Matched CMU phoneme Z
+aarons,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abalos,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abeles,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abhors,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abides,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+ablaze,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abounds,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abrades,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abrams,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abraxas,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abruzzo,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+absolve,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+absorb,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+absorbs,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abused,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abuser,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abusers,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abuses,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abusing,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+abysmal,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accedes,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accords,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accrues,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accuse,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accused,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accuser,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+accuses,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+achenes,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+ackles,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
+acorns,z,CMU Pronouncing Dictionary,medium,Matched CMU phoneme Z
