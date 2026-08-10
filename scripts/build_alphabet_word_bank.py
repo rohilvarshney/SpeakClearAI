@@ -6,7 +6,7 @@ import string
 OUTPUT_PATH = Path("data/alphabet_word_bank.csv")
 OUTPUT_PATH.parent.mkdir(exist_ok=True)
 
-WORDS_PER_LETTER = 30
+WORDS_PER_LETTER = 100
 MIN_LEN = 3
 MAX_LEN = 10
 
