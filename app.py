@@ -150,8 +150,8 @@ ALPHABET_FALLBACK = {
 # Session defaults
 # -----------------------------
 
-if "page" not in st.session_state:
-    st.session_state.page = "Home"
+if "current_page" not in st.session_state:
+    st.session_state.current_page = "Home"
 if "large_text" not in st.session_state:
     st.session_state.large_text = False
 if "high_contrast" not in st.session_state:
@@ -159,9 +159,17 @@ if "high_contrast" not in st.session_state:
 if "progress_df" not in st.session_state:
     st.session_state.progress_df = None
 
+# Sync the sidebar widget before it is created. This avoids StreamlitAPIException
+# from writing to a widget key after that widget already exists.
+if st.session_state.pop("_nav_pending", False):
+    st.session_state.nav_choice = st.session_state.current_page
+elif "nav_choice" not in st.session_state:
+    st.session_state.nav_choice = st.session_state.current_page
+
 
 def go_to(page_name):
-    st.session_state.page = page_name
+    st.session_state.current_page = page_name
+    st.session_state._nav_pending = True
     st.rerun()
 
 
@@ -396,11 +404,10 @@ def apply_styles():
         }}
 
         div[data-testid="stMetricValue"] {{
-            font-size: 1.35rem !important;
-            line-height: 1.25 !important;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 1.25rem !important;
+            line-height: 1.3 !important;
+            white-space: normal;
+            overflow-wrap: anywhere;
         }}
 
         div[data-testid="stMetricLabel"] {{
@@ -1054,12 +1061,15 @@ with st.sidebar:
     st.markdown("### SpeakClear AI")
     st.caption("Accessible non-clinical speech-practice demo")
 
-    st.radio(
+    nav_choice = st.radio(
         "Navigate",
         PAGES,
-        key="page",
+        key="nav_choice",
         help="Use arrow keys after focusing this list, or Tab to move to the next control.",
     )
+
+    if nav_choice != st.session_state.current_page:
+        st.session_state.current_page = nav_choice
 
     st.divider()
     st.subheader("Accessibility")
@@ -1086,7 +1096,7 @@ st.markdown(
 )
 st.markdown('<div id="main-content"></div>', unsafe_allow_html=True)
 
-page = st.session_state.page
+page = st.session_state.current_page
 word_bank_df, _ = get_word_bank_df()
 
 if page == "Home":
@@ -1135,11 +1145,23 @@ if page == "Home":
             go_to("Try the Demo")
 
     m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Dataset", "245 clips")
-    m2.metric("Best model", "RF Classifier")
-    m3.metric("Unclear F1", "0.48")
-    m4.metric("LLM feedback", "8.2 / 10")
-    st.caption("RF Classifier means Random Forest, the model used in this prototype.")
+    with m1:
+        st.metric("Personal audio clips", "245")
+        st.caption("Real recorded clips used for model training and evaluation.")
+    with m2:
+        st.metric("Target speech sounds", "/s/, /z/, /r/, /th/")
+        st.caption("Sounds used in the personalized ML dataset.")
+    with m3:
+        st.metric("Practice words", "3,000+")
+        st.caption("Expanded sound and alphabet word banks for practice.")
+    with m4:
+        st.metric("Best model", "RF Classifier")
+        st.caption("Random Forest model used for prediction.")
+    st.caption(
+        "The 245 personal audio clips are the recorded training and evaluation dataset. "
+        "The 3,000+ practice words are a separate word bank for Sound Practice and Alphabet Practice. "
+        "The model was not trained on the online practice word lists."
+    )
 
     st.subheader("How to use this app")
     how_to_steps = [
@@ -1398,7 +1420,9 @@ elif page == "Practice Studio":
             )
         else:
             st.warning(
-                f"Could not load `{ALPHABET_WORD_BANK_PATH}`. Using a smaller built-in alphabet word list instead."
+                f"`{ALPHABET_WORD_BANK_PATH}` is missing or could not be read. "
+                "Alphabet Practice is using a small built-in A–Z fallback list instead. "
+                "Add that CSV to enable the full alphabet word bank."
             )
 
         st.info("Alphabet Practice helps you practice everyday words from A to Z. This is still non-clinical practice only.")
