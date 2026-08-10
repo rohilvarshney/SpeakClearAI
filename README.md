@@ -9,7 +9,7 @@ Can machine learning analyze personalized speech-pronunciation patterns and gene
 ## Features
 
 - Accessible UI with large text, high contrast, labeled inputs, and keyboard-friendly controls
-- Practice Studio with sound selector, expanded word bank, difficulty filters, random challenges, and downloadable plans
+- Practice Studio with Sound Practice and Alphabet Practice modes, searchable word banks, random words, and downloadable plans
 - WAV upload as the main reliable analysis option
 - Optional in-browser recording with `st.audio_input`
 - Clear / unclear prediction from a Random Forest model

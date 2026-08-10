@@ -15,7 +15,10 @@ MODEL_PATH = Path("models/speakclear_random_forest.joblib")
 RESULTS_DIR = Path("results")
 PROGRESS_LOG = Path("practice_progress_log.csv")
 WORD_BANK_PATH = Path("data/word_bank_expanded.csv")
+ALPHABET_WORD_BANK_PATH = Path("data/alphabet_word_bank.csv")
 OLLAMA_URL = "http://localhost:11434/api/generate"
+SOUND_PRACTICE_SOUNDS = ["s", "z", "r", "th"]
+ALPHABET_LETTERS = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 PAGES = [
     "Home",
@@ -113,6 +116,34 @@ SOUND_LABELS = {
     "r": "/r/",
     "th": "/th/",
     "mixed": "mixed /s/ and /z/",
+}
+ALPHABET_FALLBACK = {
+    "A": ["apple", "ant", "ask", "able", "after"],
+    "B": ["ball", "book", "blue", "baby", "bird"],
+    "C": ["cat", "cup", "car", "cold", "city"],
+    "D": ["dog", "day", "door", "desk", "dark"],
+    "E": ["egg", "eat", "each", "easy", "end"],
+    "F": ["fish", "fun", "fast", "four", "face"],
+    "G": ["go", "game", "green", "good", "gift"],
+    "H": ["hat", "home", "hand", "happy", "help"],
+    "I": ["ice", "in", "idea", "into", "island"],
+    "J": ["jump", "jam", "job", "just", "joke"],
+    "K": ["key", "kite", "kind", "keep", "king"],
+    "L": ["lamp", "look", "love", "long", "leaf"],
+    "M": ["man", "moon", "milk", "make", "map"],
+    "N": ["name", "new", "nice", "near", "night"],
+    "O": ["open", "old", "over", "only", "orange"],
+    "P": ["pen", "play", "park", "pink", "paper"],
+    "Q": ["queen", "quick", "quiet", "quiz", "quest"],
+    "R": ["red", "run", "rain", "read", "room"],
+    "S": ["sun", "sit", "same", "soft", "school"],
+    "T": ["top", "time", "talk", "tree", "table"],
+    "U": ["up", "under", "use", "unit", "uncle"],
+    "V": ["van", "very", "voice", "visit", "vase"],
+    "W": ["water", "walk", "wind", "word", "window"],
+    "X": ["xray", "xenon", "xerox", "xylem"],
+    "Y": ["yes", "you", "year", "yellow", "young"],
+    "Z": ["zoo", "zero", "zip", "zone", "zebra"],
 }
 
 # -----------------------------
@@ -361,6 +392,19 @@ def apply_styles():
             border-radius: 18px;
             padding: 16px;
             box-shadow: {shadow};
+            overflow: hidden;
+        }}
+
+        div[data-testid="stMetricValue"] {{
+            font-size: 1.35rem !important;
+            line-height: 1.25 !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }}
+
+        div[data-testid="stMetricLabel"] {{
+            white-space: normal !important;
         }}
 
         div[data-testid="stDataFrame"] {{
@@ -456,29 +500,57 @@ def load_csv_if_exists(path):
     return None
 
 
-@st.cache_data
-def load_expanded_word_bank():
-    df = load_csv_if_exists(WORD_BANK_PATH)
-    if df is None:
-        return None
-
-    needed = {"word", "target_sound", "source", "difficulty", "notes"}
-    if not needed.issubset(set(df.columns)):
-        return None
-
+def _clean_word_bank(df, extra_normalizers=None):
     df = df.copy()
     df["word"] = df["word"].astype(str).str.strip()
-    df["target_sound"] = df["target_sound"].astype(str).str.strip().str.lower()
     df["source"] = df["source"].astype(str).str.strip()
     df["difficulty"] = df["difficulty"].astype(str).str.strip().str.lower()
     df["notes"] = df["notes"].fillna("").astype(str)
+    if extra_normalizers:
+        for column, normalizer in extra_normalizers.items():
+            if column in df.columns:
+                df[column] = df[column].map(normalizer)
     df = df[df["word"].ne("") & df["word"].str.lower().ne("nan")]
     return df.reset_index(drop=True)
 
 
-def fallback_word_bank_df():
+@st.cache_data
+def load_sound_word_bank():
+    df = load_csv_if_exists(WORD_BANK_PATH)
+    if df is None:
+        return None
+    needed = {"word", "target_sound", "source", "difficulty", "notes"}
+    if not needed.issubset(set(df.columns)):
+        return None
+    return _clean_word_bank(
+        df,
+        extra_normalizers={
+            "target_sound": lambda value: str(value).strip().lower(),
+        },
+    )
+
+
+@st.cache_data
+def load_alphabet_word_bank():
+    df = load_csv_if_exists(ALPHABET_WORD_BANK_PATH)
+    if df is None:
+        return None
+    needed = {"word", "letter", "source", "difficulty", "notes"}
+    if not needed.issubset(set(df.columns)):
+        return None
+    return _clean_word_bank(
+        df,
+        extra_normalizers={
+            "letter": lambda value: str(value).strip().upper(),
+        },
+    )
+
+
+def fallback_sound_word_bank_df():
     rows = []
     for sound, words in WORD_BANK.items():
+        if sound not in SOUND_PRACTICE_SOUNDS and sound != "mixed":
+            continue
         for word in words:
             rows.append(
                 {
@@ -492,11 +564,38 @@ def fallback_word_bank_df():
     return pd.DataFrame(rows)
 
 
-def get_word_bank_df():
-    df = load_expanded_word_bank()
+def fallback_alphabet_word_bank_df():
+    rows = []
+    for letter, words in ALPHABET_FALLBACK.items():
+        for word in words:
+            rows.append(
+                {
+                    "word": word,
+                    "letter": letter,
+                    "source": "built_in",
+                    "difficulty": "easy" if len(word) <= 5 else "medium",
+                    "notes": f"Practice a word that starts with the letter {letter}.",
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def get_sound_word_bank():
+    df = load_sound_word_bank()
     if df is None or df.empty:
-        return fallback_word_bank_df(), False
+        return fallback_sound_word_bank_df(), False
     return df, True
+
+
+def get_alphabet_word_bank():
+    df = load_alphabet_word_bank()
+    if df is None or df.empty:
+        return fallback_alphabet_word_bank_df(), False
+    return df, True
+
+
+def get_word_bank_df():
+    return get_sound_word_bank()
 
 
 def words_for_sound(sound, word_bank_df):
@@ -787,32 +886,59 @@ def save_progress_log(row):
 # Practice helpers
 # -----------------------------
 
-def filter_word_bank(df, sound, difficulty, search_text):
+def filter_practice_words(df, difficulty, search_text, extra_filters=None):
     filtered = df.copy()
-    if sound != "all":
-        filtered = filtered[filtered["target_sound"] == sound]
+    if extra_filters:
+        for column, value in extra_filters.items():
+            if value not in (None, "all") and column in filtered.columns:
+                filtered = filtered[filtered[column] == value]
     if difficulty != "all":
         filtered = filtered[filtered["difficulty"] == difficulty]
     query = (search_text or "").strip().lower()
     if query:
-        filtered = filtered[
-            filtered["word"].str.lower().str.contains(query, na=False)
-            | filtered["notes"].str.lower().str.contains(query, na=False)
-        ]
+        searchable = filtered["word"].astype(str).str.lower().str.contains(query, na=False)
+        if "notes" in filtered.columns:
+            searchable = searchable | filtered["notes"].astype(str).str.lower().str.contains(query, na=False)
+        filtered = filtered[searchable]
     return filtered.reset_index(drop=True)
 
 
-def make_practice_plan(selected_words, target_sound, difficulty, practice_length):
+def filter_word_bank(df, sound, difficulty, search_text):
+    return filter_practice_words(
+        df,
+        difficulty,
+        search_text,
+        extra_filters={"target_sound": sound},
+    )
+
+
+def friendly_practice_note(row, mode="sound"):
+    notes = str(row.get("notes", "")).strip()
+    word = str(row.get("word", "")).strip()
+    difficulty = str(row.get("difficulty", "")).title()
+    if mode == "alphabet":
+        letter = str(row.get("letter", "")).upper()
+        if not notes or notes.lower().startswith("alphabet practice") or notes.lower().startswith("matched cmu"):
+            return f"Practice '{word}' slowly. This word starts with the letter {letter}. Difficulty: {difficulty or 'n/a'}."
+        return notes
+    sound = str(row.get("target_sound", "")).lower()
+    sound_label = SOUND_LABELS.get(sound, sound)
+    if not notes or notes.lower().startswith("matched cmu"):
+        return f"Practice '{word}' slowly and keep a clear {sound_label} sound. Difficulty: {difficulty or 'n/a'}."
+    return notes
+
+
+def make_practice_plan(selected_words, focus_label, difficulty, practice_length, title="SpeakClear AI Practice Plan"):
     plan_lines = [
-        "SpeakClear AI Practice Plan",
+        title,
         f"Created: {datetime.now().strftime('%Y-%m-%d %H:%M')}",
-        f"Target sound: {SOUND_LABELS.get(target_sound, target_sound)}",
+        f"Focus: {focus_label}",
         f"Difficulty filter: {difficulty}",
         f"Practice length: {practice_length}",
         "",
-        "Safety note: This is non-clinical practice feedback only. It is not diagnosis or treatment.",
+        "Safety note: SpeakClear AI is for non-clinical speech practice only. It is not a diagnosis or treatment tool.",
         "",
-        "Words or sentences:",
+        "Words:",
     ]
     for word in selected_words:
         plan_lines.append(f"- {word}")
@@ -838,6 +964,66 @@ def make_practice_plan(selected_words, target_sound, difficulty, practice_length
         ]
     )
     return steps, "\n".join(plan_lines)
+
+
+def render_word_cards(words, max_cards=24):
+    preview = list(words)[:max_cards]
+    if not preview:
+        return
+    badge_cols = st.columns(4)
+    for index, word in enumerate(preview):
+        with badge_cols[index % 4]:
+            st.markdown(f'<span class="badge">{escape(str(word))}</span>', unsafe_allow_html=True)
+    if len(words) > max_cards:
+        st.caption(f"Showing {max_cards} of {len(words)} matching words. The table below has the full list.")
+
+
+def render_random_word_card(row, mode="sound"):
+    word = escape(str(row.get("word", "")))
+    difficulty = escape(str(row.get("difficulty", "")).title())
+    note = escape(friendly_practice_note(row, mode=mode))
+    if mode == "alphabet":
+        focus_html = f"<p><strong>Letter:</strong> {escape(str(row.get('letter', '')).upper())}</p>"
+    else:
+        sound = str(row.get("target_sound", ""))
+        focus_html = f"<p><strong>Sound:</strong> {escape(SOUND_LABELS.get(sound, sound))}</p>"
+    st.markdown(
+        f"""
+        <div class="result-card">
+            <p class="muted">Random practice word</p>
+            <h3>{word}</h3>
+            {focus_html}
+            <p><strong>Difficulty:</strong> {difficulty}</p>
+            <p>{note}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def save_practice_plan_state(prefix, selected_words, steps, plan_text, file_name):
+    st.session_state[f"{prefix}_words"] = selected_words
+    st.session_state[f"{prefix}_steps"] = steps
+    st.session_state[f"{prefix}_plan_text"] = plan_text
+    st.session_state[f"{prefix}_plan_name"] = file_name
+
+
+def render_saved_practice_plan(prefix, download_label):
+    steps = st.session_state.get(f"{prefix}_steps")
+    if not steps:
+        return
+    st.markdown("#### Your practice items")
+    st.write(", ".join(st.session_state.get(f"{prefix}_words", [])))
+    st.markdown("#### Steps")
+    for number, step in enumerate(steps, start=1):
+        st.write(f"{number}. {step}")
+    st.download_button(
+        download_label,
+        data=st.session_state.get(f"{prefix}_plan_text", ""),
+        file_name=st.session_state.get(f"{prefix}_plan_name", "practice_plan.txt"),
+        mime="text/plain",
+        type="primary",
+    )
 
 
 def choose_practice_items(df, practice_length):
@@ -901,7 +1087,7 @@ st.markdown(
 st.markdown('<div id="main-content"></div>', unsafe_allow_html=True)
 
 page = st.session_state.page
-word_bank_df, word_bank_from_csv = get_word_bank_df()
+word_bank_df, _ = get_word_bank_df()
 
 if page == "Home":
     st.markdown(
@@ -937,14 +1123,45 @@ safe_notice()
 if page == "Home":
     st.header("Welcome")
     st.write(
-        "This app helps you practice selected speech sounds. It is a research demo, not a clinical tool."
+        "This app helps you practice speech sounds and alphabet words. It is a research demo, not a clinical tool."
     )
+
+    start_col, demo_col = st.columns(2)
+    with start_col:
+        if st.button("Start Practicing", type="primary", use_container_width=True):
+            go_to("Practice Studio")
+    with demo_col:
+        if st.button("Try a Recording", use_container_width=True):
+            go_to("Try the Demo")
 
     m1, m2, m3, m4 = st.columns(4)
     m1.metric("Dataset", "245 clips")
-    m2.metric("Best model", "Random Forest")
+    m2.metric("Best model", "RF Classifier")
     m3.metric("Unclear F1", "0.48")
     m4.metric("LLM feedback", "8.2 / 10")
+    st.caption("RF Classifier means Random Forest, the model used in this prototype.")
+
+    st.subheader("How to use this app")
+    how_to_steps = [
+        ("Pick a sound or letter", "Open Practice Studio and choose Sound Practice or Alphabet Practice."),
+        ("Practice words", "Filter the word bank, try a random word, and download a short plan."),
+        ("Record or upload audio", "Use a WAV file, or optionally record in the browser."),
+        ("Get a clear/unclear prediction", "The RF Classifier estimates whether the clip sounds clear or unclear."),
+        ("Review feedback and track progress", "Read the practice feedback and save attempts in Progress Tracker."),
+    ]
+    how_cols = st.columns(5)
+    for index, (title, body) in enumerate(how_to_steps, start=1):
+        with how_cols[index - 1]:
+            st.markdown(
+                f"""
+                <div class="mini-card">
+                    <strong>Step {index}</strong>
+                    <h4>{escape(title)}</h4>
+                    <p>{escape(body)}</p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
     st.subheader("What you can do")
     c1, c2, c3 = st.columns(3)
@@ -953,7 +1170,7 @@ if page == "Home":
             """
             <div class="section-card">
                 <h3>1. Practice</h3>
-                <p>Choose a sound, search the word bank, and download a short practice plan.</p>
+                <p>Practice /s/, /z/, /r/, and /th/, or choose alphabet words from A to Z.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -970,7 +1187,7 @@ if page == "Home":
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Try the Demo", type="primary", use_container_width=True):
+        if st.button("Open Try the Demo", use_container_width=True):
             go_to("Try the Demo")
     with c3:
         st.markdown(
@@ -985,37 +1202,29 @@ if page == "Home":
         if st.button("View Research Results", use_container_width=True):
             go_to("Research Results")
 
-    st.subheader("How it works")
-    steps = [
-        ("Add audio", "Upload a WAV recording. Browser recording is optional."),
-        ("Measure sound", "The app extracts acoustic features such as MFCCs and loudness."),
-        ("Predict", "A Random Forest model predicts clear or unclear pronunciation."),
-        ("Explain", "You see confidence, practice priority, and simple feedback."),
-        ("Track", "Save attempts and download your practice history."),
-    ]
-    step_cols = st.columns(5)
-    for index, (title, body) in enumerate(steps, start=1):
-        with step_cols[index - 1]:
-            st.markdown(
-                f"""
-                <div class="mini-card">
-                    <strong>Step {index}</strong>
-                    <h4>{escape(title)}</h4>
-                    <p>{escape(body)}</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    with st.expander("What happens behind the scenes"):
+        st.write(
+            "The app extracts acoustic features such as MFCCs and loudness, then a Random Forest "
+            "classifier predicts clear or unclear pronunciation. You also see confidence, practice priority, "
+            "and simple non-clinical feedback."
+        )
 
-    st.subheader("Target sounds")
+    st.subheader("Practice options")
     sound_cols = st.columns(5)
-    for index, sound in enumerate(["s", "z", "r", "th", "mixed"]):
+    home_options = [
+        ("s", SOUND_LABELS["s"], SOUND_DESCRIPTIONS["s"]),
+        ("z", SOUND_LABELS["z"], SOUND_DESCRIPTIONS["z"]),
+        ("r", SOUND_LABELS["r"], SOUND_DESCRIPTIONS["r"]),
+        ("th", SOUND_LABELS["th"], SOUND_DESCRIPTIONS["th"]),
+        ("alphabet", "A to Z", "Practice everyday words that start with each letter of the alphabet."),
+    ]
+    for index, (_key, title, body) in enumerate(home_options):
         with sound_cols[index]:
             st.markdown(
                 f"""
                 <div class="sound-card">
-                    <strong>{escape(SOUND_LABELS[sound])}</strong>
-                    <p>{escape(SOUND_DESCRIPTIONS[sound])}</p>
+                    <strong>{escape(title)}</strong>
+                    <p>{escape(body)}</p>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -1030,174 +1239,270 @@ if page == "Home":
 elif page == "Practice Studio":
     st.header("Practice Studio")
     st.write(
-        "Choose a sound, filter the word bank, try a random challenge, and download a practice plan."
+        "Choose Sound Practice or Alphabet Practice. Filter words, try a random word, and download a practice plan."
     )
 
-    if word_bank_from_csv:
-        st.caption(f"Loaded expanded word bank from `{WORD_BANK_PATH}` ({len(word_bank_df)} items).")
-    else:
-        st.warning(
-            f"Could not load `{WORD_BANK_PATH}`. Using the smaller built-in word lists instead."
-        )
-
-    filter_col1, filter_col2, filter_col3 = st.columns(3)
-    with filter_col1:
-        practice_sound = st.selectbox(
-            "Target sound",
-            ["s", "z", "r", "th", "mixed"],
-            format_func=lambda value: SOUND_LABELS.get(value, value),
-            help="Choose the sound you want to practice.",
-        )
-    with filter_col2:
-        difficulty_filter = st.selectbox(
-            "Difficulty",
-            ["all", "easy", "medium", "hard"],
-            format_func=lambda value: "All difficulties" if value == "all" else value.title(),
-            help="Filter words by easy, medium, or hard practice level.",
-        )
-    with filter_col3:
-        practice_length = st.selectbox(
-            "Practice length",
-            ["Quick practice", "Normal practice", "Long practice"],
-            help="Quick uses 3 items, normal uses 5, and long uses up to 8.",
-        )
-
-    search_text = st.text_input(
-        "Search words or notes",
-        placeholder="Try thank, zoo, or slowly",
-        help="Type part of a word or note to narrow the word bank.",
+    practice_mode = st.radio(
+        "Practice mode",
+        ["Sound Practice", "Alphabet Practice"],
+        horizontal=True,
+        key="practice_mode",
+        help="Sound Practice uses /s/, /z/, /r/, and /th/. Alphabet Practice uses words from A to Z.",
     )
 
-    st.subheader("Sound description")
-    st.info(SOUND_DESCRIPTIONS[practice_sound])
+    if practice_mode == "Sound Practice":
+        sound_bank_df, sound_bank_from_csv = get_sound_word_bank()
+        if sound_bank_from_csv:
+            st.caption(f"Loaded sound word bank from `{WORD_BANK_PATH}` ({len(sound_bank_df)} words).")
+        else:
+            st.warning(
+                f"Could not load `{WORD_BANK_PATH}`. Using the smaller built-in sound word lists instead."
+            )
 
-    filtered_bank = filter_word_bank(
-        word_bank_df,
-        practice_sound,
-        difficulty_filter,
-        search_text,
-    )
+        filter_col1, filter_col2, filter_col3 = st.columns(3)
+        with filter_col1:
+            practice_sound = st.selectbox(
+                "Target sound",
+                SOUND_PRACTICE_SOUNDS,
+                format_func=lambda value: SOUND_LABELS.get(value, value),
+                help="Choose the sound you want to practice: /s/, /z/, /r/, or /th/.",
+            )
+        with filter_col2:
+            difficulty_filter = st.selectbox(
+                "Difficulty",
+                ["all", "easy", "medium", "hard"],
+                format_func=lambda value: "All difficulties" if value == "all" else value.title(),
+                help="Filter words by easy, medium, or hard practice level.",
+                key="sound_difficulty",
+            )
+        with filter_col3:
+            practice_length = st.selectbox(
+                "Practice length",
+                ["Quick practice", "Normal practice", "Long practice"],
+                help="Quick uses 3 words, normal uses 5, and long uses up to 8.",
+                key="sound_length",
+            )
 
-    st.subheader("Word bank")
-    if filtered_bank.empty:
-        st.warning("No words match these filters. Try another sound, difficulty, or search term.")
-    else:
-        count_col1, count_col2, count_col3 = st.columns(3)
-        count_col1.metric("Matching items", len(filtered_bank))
-        count_col2.metric(
-            "Research items",
-            int((filtered_bank["source"] == "research_dataset").sum()),
+        search_text = st.text_input(
+            "Search sound-practice words",
+            placeholder="Try sun, zero, right, or thank",
+            help="Type part of a word to narrow the list.",
+            key="sound_search",
         )
-        count_col3.metric(
-            "Expanded items",
-            int((filtered_bank["source"] != "research_dataset").sum()),
+
+        st.subheader("Sound description")
+        st.info(SOUND_DESCRIPTIONS[practice_sound])
+
+        filtered_bank = filter_practice_words(
+            sound_bank_df,
+            difficulty_filter,
+            search_text,
+            extra_filters={"target_sound": practice_sound},
         )
 
-        badge_cols = st.columns(4)
-        for index, word in enumerate(filtered_bank["word"].tolist()):
-            with badge_cols[index % 4]:
-                st.markdown(f'<span class="badge">{escape(str(word))}</span>', unsafe_allow_html=True)
-
-        with st.expander("View full word bank table", expanded=False):
-            show_df = filtered_bank.copy()
-            show_df["target_sound"] = show_df["target_sound"].map(
+        st.subheader("Sound word bank")
+        if filtered_bank.empty:
+            st.warning("No words match these filters. Try another sound, difficulty, or search term.")
+        else:
+            count_col1, count_col2, count_col3 = st.columns(3)
+            count_col1.metric("Matching words", len(filtered_bank))
+            count_col2.metric("Easy", int((filtered_bank["difficulty"] == "easy").sum()))
+            count_col3.metric("Hard", int((filtered_bank["difficulty"] == "hard").sum()))
+            render_word_cards(filtered_bank["word"].tolist())
+            display_bank = filtered_bank.copy()
+            display_bank["target_sound"] = display_bank["target_sound"].map(
                 lambda value: SOUND_LABELS.get(value, value)
             )
+            display_bank["notes"] = [
+                friendly_practice_note(row, mode="sound")
+                for row in filtered_bank.to_dict("records")
+            ]
             st.dataframe(
-                show_df.rename(
+                display_bank.rename(
                     columns={
-                        "word": "Word or sentence",
+                        "word": "Word",
                         "target_sound": "Target sound",
                         "source": "Source",
                         "difficulty": "Difficulty",
-                        "notes": "Notes",
+                        "notes": "Practice note",
                     }
                 ),
                 use_container_width=True,
                 hide_index=True,
             )
 
-    st.subheader("Random practice challenge")
-    challenge_col1, challenge_col2 = st.columns([1, 2])
-    with challenge_col1:
-        if st.button("Give me a random challenge", type="primary", use_container_width=True):
-            if filtered_bank.empty:
-                st.session_state.pop("challenge_row", None)
-                st.warning("No matching items are available for a challenge.")
+        st.subheader("Random practice word")
+        random_col1, random_col2 = st.columns([1, 2])
+        with random_col1:
+            if st.button("Random Practice Word", type="primary", use_container_width=True):
+                if filtered_bank.empty:
+                    st.session_state.pop("sound_challenge_row", None)
+                    st.warning("No matching words are available right now.")
+                else:
+                    st.session_state.sound_challenge_row = filtered_bank.sample(1).iloc[0].to_dict()
+        if st.session_state.get("sound_challenge_row"):
+            with random_col2:
+                render_random_word_card(st.session_state.sound_challenge_row, mode="sound")
+            st.write("Suggested practice: say it slowly 3 times, then at normal speed 2 times, then record one version.")
+
+        st.subheader("Sound practice plan")
+        if st.button("Generate Practice Plan"):
+            selected_words = choose_practice_items(filtered_bank, practice_length)
+            if not selected_words:
+                st.warning("No matching words are available for a practice plan.")
             else:
-                st.session_state.challenge_row = filtered_bank.sample(1).iloc[0].to_dict()
+                steps, plan_text = make_practice_plan(
+                    selected_words,
+                    SOUND_LABELS.get(practice_sound, practice_sound),
+                    difficulty_filter,
+                    practice_length,
+                    title="SpeakClear AI Sound Practice Plan",
+                )
+                save_practice_plan_state(
+                    "sound",
+                    selected_words,
+                    steps,
+                    plan_text,
+                    f"practice_plan_{practice_sound}_{difficulty_filter}.txt",
+                )
+        render_saved_practice_plan("sound", "Download practice plan")
 
-    challenge_row = st.session_state.get("challenge_row")
-    if challenge_row:
-        with challenge_col2:
-            st.markdown(
-                f"""
-                <div class="result-card">
-                    <p class="muted">Random challenge</p>
-                    <h3>{escape(str(challenge_row.get("word", "")))}</h3>
-                    <p><strong>Sound:</strong> {escape(SOUND_LABELS.get(challenge_row.get("target_sound"), str(challenge_row.get("target_sound", ""))))}</p>
-                    <p><strong>Difficulty:</strong> {escape(str(challenge_row.get("difficulty", "")).title())}</p>
-                    <p><strong>Source:</strong> {escape(str(challenge_row.get("source", "")).replace("_", " "))}</p>
-                    <p>{escape(str(challenge_row.get("notes", "")))}</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        st.write("Suggested challenge: say it slowly 3 times, then at normal speed 2 times, then record one version.")
-
-    st.subheader("Practice plan")
-    if st.button("Generate practice plan", use_container_width=False):
-        selected_words = choose_practice_items(filtered_bank, practice_length)
-        if not selected_words:
-            st.warning("No matching items are available for a practice plan.")
+        st.subheader("Personal practice priorities from the research set")
+        feedback_df = load_csv_if_exists(RESULTS_DIR / "practice_feedback_by_item.csv")
+        if feedback_df is not None and "target_sound" in feedback_df.columns:
+            filtered_feedback = feedback_df[
+                feedback_df["target_sound"].astype(str).str.lower() == practice_sound
+            ]
+            if filtered_feedback.empty:
+                st.info("No saved priority items were found for this sound.")
+            else:
+                show_cols = [
+                    col
+                    for col in ["word", "target_sound", "unclear_rate", "priority", "feedback"]
+                    if col in filtered_feedback.columns
+                ]
+                display_feedback = filtered_feedback[show_cols].head(10).copy()
+                if "unclear_rate" in display_feedback.columns:
+                    display_feedback["unclear_rate"] = (
+                        display_feedback["unclear_rate"].astype(float) * 100
+                    ).round(0).astype(int).astype(str) + "%"
+                st.dataframe(display_feedback, use_container_width=True, hide_index=True)
         else:
-            steps, plan_text = make_practice_plan(
-                selected_words,
-                practice_sound,
-                difficulty_filter,
-                practice_length,
-            )
-            st.session_state.practice_words = selected_words
-            st.session_state.practice_steps = steps
-            st.session_state.practice_plan_text = plan_text
-            st.session_state.practice_plan_name = f"practice_plan_{practice_sound}_{difficulty_filter}.txt"
+            st.info("No practice priority file was found yet.")
 
-    if st.session_state.get("practice_steps"):
-        st.markdown("#### Your practice items")
-        st.write(", ".join(st.session_state.get("practice_words", [])))
-        st.markdown("#### Steps")
-        for number, step in enumerate(st.session_state.practice_steps, start=1):
-            st.write(f"{number}. {step}")
-        st.download_button(
-            "Download practice plan",
-            data=st.session_state.practice_plan_text,
-            file_name=st.session_state.get("practice_plan_name", "practice_plan.txt"),
-            mime="text/plain",
-            type="primary",
+    else:
+        alphabet_bank_df, alphabet_bank_from_csv = get_alphabet_word_bank()
+        if alphabet_bank_from_csv:
+            st.caption(
+                f"Loaded alphabet word bank from `{ALPHABET_WORD_BANK_PATH}` ({len(alphabet_bank_df)} words)."
+            )
+        else:
+            st.warning(
+                f"Could not load `{ALPHABET_WORD_BANK_PATH}`. Using a smaller built-in alphabet word list instead."
+            )
+
+        st.info("Alphabet Practice helps you practice everyday words from A to Z. This is still non-clinical practice only.")
+
+        alpha_col1, alpha_col2, alpha_col3 = st.columns(3)
+        with alpha_col1:
+            practice_letter = st.selectbox(
+                "Letter",
+                ALPHABET_LETTERS,
+                help="Choose a letter from A to Z.",
+            )
+        with alpha_col2:
+            alpha_difficulty = st.selectbox(
+                "Difficulty",
+                ["all", "easy", "medium", "hard"],
+                format_func=lambda value: "All difficulties" if value == "all" else value.title(),
+                help="Filter alphabet words by easy, medium, or hard practice level.",
+                key="alpha_difficulty",
+            )
+        with alpha_col3:
+            alpha_length = st.selectbox(
+                "Practice length",
+                ["Quick practice", "Normal practice", "Long practice"],
+                help="Quick uses 3 words, normal uses 5, and long uses up to 8.",
+                key="alpha_length",
+            )
+
+        alpha_search = st.text_input(
+            "Search alphabet words",
+            placeholder="Try apple, zebra, or queen",
+            help="Type part of a word to narrow the alphabet list.",
+            key="alpha_search",
         )
 
-    st.subheader("Personal practice priorities from the research set")
-    feedback_df = load_csv_if_exists(RESULTS_DIR / "practice_feedback_by_item.csv")
-    if feedback_df is not None and "target_sound" in feedback_df.columns:
-        filtered_feedback = feedback_df[
-            feedback_df["target_sound"].astype(str).str.lower() == practice_sound
-        ]
-        if filtered_feedback.empty:
-            st.info("No saved priority items were found for this sound.")
+        filtered_alpha = filter_practice_words(
+            alphabet_bank_df,
+            alpha_difficulty,
+            alpha_search,
+            extra_filters={"letter": practice_letter},
+        )
+
+        st.subheader(f"Alphabet word bank for {practice_letter}")
+        if filtered_alpha.empty:
+            st.warning("No words match these filters. Try another letter, difficulty, or search term.")
         else:
-            show_cols = [
-                col
-                for col in ["word", "target_sound", "unclear_rate", "priority", "feedback"]
-                if col in filtered_feedback.columns
+            a1, a2, a3 = st.columns(3)
+            a1.metric("Matching words", len(filtered_alpha))
+            a2.metric("Letter", practice_letter)
+            a3.metric("Hard", int((filtered_alpha["difficulty"] == "hard").sum()))
+            render_word_cards(filtered_alpha["word"].tolist())
+            display_alpha = filtered_alpha.copy()
+            display_alpha["notes"] = [
+                friendly_practice_note(row, mode="alphabet")
+                for row in filtered_alpha.to_dict("records")
             ]
-            display_feedback = filtered_feedback[show_cols].head(10).copy()
-            if "unclear_rate" in display_feedback.columns:
-                display_feedback["unclear_rate"] = (
-                    display_feedback["unclear_rate"].astype(float) * 100
-                ).round(0).astype(int).astype(str) + "%"
-            st.dataframe(display_feedback, use_container_width=True, hide_index=True)
-    else:
-        st.info("No practice priority file was found yet.")
+            st.dataframe(
+                display_alpha.rename(
+                    columns={
+                        "word": "Word",
+                        "letter": "Letter",
+                        "source": "Source",
+                        "difficulty": "Difficulty",
+                        "notes": "Practice note",
+                    }
+                ),
+                use_container_width=True,
+                hide_index=True,
+            )
+
+        st.subheader("Random alphabet word")
+        alpha_random1, alpha_random2 = st.columns([1, 2])
+        with alpha_random1:
+            if st.button("Random Alphabet Word", type="primary", use_container_width=True):
+                if filtered_alpha.empty:
+                    st.session_state.pop("alpha_challenge_row", None)
+                    st.warning("No matching alphabet words are available right now.")
+                else:
+                    st.session_state.alpha_challenge_row = filtered_alpha.sample(1).iloc[0].to_dict()
+        if st.session_state.get("alpha_challenge_row"):
+            with alpha_random2:
+                render_random_word_card(st.session_state.alpha_challenge_row, mode="alphabet")
+            st.write("Suggested practice: say it slowly 3 times, then at normal speed 2 times, then record one version.")
+
+        st.subheader("Alphabet practice plan")
+        if st.button("Generate Alphabet Practice Plan"):
+            selected_words = choose_practice_items(filtered_alpha, alpha_length)
+            if not selected_words:
+                st.warning("No matching alphabet words are available for a practice plan.")
+            else:
+                steps, plan_text = make_practice_plan(
+                    selected_words,
+                    f"Letter {practice_letter}",
+                    alpha_difficulty,
+                    alpha_length,
+                    title="SpeakClear AI Alphabet Practice Plan",
+                )
+                save_practice_plan_state(
+                    "alpha",
+                    selected_words,
+                    steps,
+                    plan_text,
+                    f"alphabet_practice_plan_{practice_letter}_{alpha_difficulty}.txt",
+                )
+        render_saved_practice_plan("alpha", "Download alphabet practice plan")
 
     st.subheader("Recording tips")
     st.write(
@@ -1522,17 +1827,18 @@ elif page == "Research Results":
     r1.metric("Total clips", "245")
     r2.metric("Clear clips", "188")
     r3.metric("Unclear clips", "57")
-    r4.metric("Best model", "Random Forest")
+    r4.metric("Best model", "RF Classifier")
 
     st.subheader("What the results mean")
     st.markdown(
         """
         <div class="info-box">
-            <p>Most clips in this dataset are already labeled clear. That makes accuracy easy to misread.</p>
+            <p>Accuracy alone was misleading in this project.</p>
             <ul>
-                <li>An Always Clear baseline can look accurate because it always guesses the common label.</li>
-                <li>That baseline never finds unclear speech, so its unclear F1 score is 0.00.</li>
-                <li>Random Forest is more useful here because it can detect some unclear clips, even though its accuracy is a little lower.</li>
+                <li>Most clips were already labeled clear (188 clear vs 57 unclear).</li>
+                <li>The Always Clear baseline had high accuracy (77.4%) because it always guessed the common label.</li>
+                <li>That baseline never found unclear speech, so its unclear F1 score was 0.00.</li>
+                <li>Random Forest was more useful because it detected unclear clips better, with an unclear F1 score of 0.48.</li>
                 <li>This is one-speaker research. It is not a diagnosis or treatment tool.</li>
             </ul>
         </div>
@@ -1566,7 +1872,7 @@ elif page == "Research Results":
     st.write(
         "Random Forest reached 75.8% accuracy and an unclear-class F1 score of 0.48. "
         "The Always Clear baseline reached 77.4% accuracy, but its unclear F1 score was 0.00. "
-        "That shows why a model that always predicts clear is not a good speech-practice detector."
+        "A model can look accurate while missing every unclear clip. Random Forest was chosen because it was better at finding unclear practice items, not because it had the highest accuracy."
     )
 
     st.subheader("Confusion matrices")
