@@ -1,0 +1,62 @@
+source,file_name,audio_path,speaker_id,word,target_sound,label,round
+speakclear,six_roses_were_beside_the_cheese-1.wav,wav/six_roses_were_beside_the_cheese-1.wav,self,six roses were beside the cheese,mixed,clear,1
+speakclear,zone-3.wav,wav/zone-3.wav,self,zone,z,clear,3
+speakclear,buzz-2.wav,wav/buzz-2.wav,self,buzz,z,unclear,2
+speakclear,around-4.wav,wav/around-4.wav,self,around,r,clear,4
+speakclear,lazy-1.wav,wav/lazy-1.wav,self,lazy,z,clear,1
+speakclear,bus-4.wav,wav/bus-4.wav,self,bus,s,clear,4
+speakclear,thirty-5.wav,wav/thirty-5.wav,self,thirty,th,unclear,5
+speakclear,zero-1.wav,wav/zero-1.wav,self,zero,z,clear,1
+speakclear,carrot-2.wav,wav/carrot-2.wav,self,carrot,r,clear,2
+speakclear,race-4.wav,wav/race-4.wav,self,race,r,clear,4
+speakclear,carrot-5.wav,wav/carrot-5.wav,self,carrot,r,clear,5
+speakclear,zebra-1.wav,wav/zebra-1.wav,self,zebra,z,clear,1
+speakclear,seven-3.wav,wav/seven-3.wav,self,seven,s,clear,3
+speakclear,think-2.wav,wav/think-2.wav,self,think,th,clear,2
+speakclear,three-4.wav,wav/three-4.wav,self,three,th,clear,4
+speakclear,zone-2.wav,wav/zone-2.wav,self,zone,z,clear,2
+speakclear,zebra-2.wav,wav/zebra-2.wav,self,zebra,z,clear,2
+speakclear,class-2.wav,wav/class-2.wav,self,class,s,clear,2
+speakclear,right-1.wav,wav/right-1.wav,self,right,r,unclear,1
+speakclear,race-1.wav,wav/race-1.wav,self,race,r,clear,1
+speakclear,susan_saw_the_zebra_at_the_zoo-3.wav,wav/susan_saw_the_zebra_at_the_zoo-3.wav,self,susan saw the zebra at the zoo,mixed,clear,3
+speakclear,red-4.wav,wav/red-4.wav,self,red,r,clear,4
+speakclear,seven_sisters_sat_silently-2.wav,wav/seven_sisters_sat_silently-2.wav,self,seven sisters sat silently,s,clear,2
+speakclear,bath-3.wav,wav/bath-3.wav,self,bath,th,unclear,3
+speakclear,teeth-3.wav,wav/teeth-3.wav,self,teeth,th,unclear,3
+speakclear,the_sun_set_slowly-2.wav,wav/the_sun_set_slowly-2.wav,self,the sun set slowly,s,clear,2
+speakclear,nothing-3.wav,wav/nothing-3.wav,self,nothing,th,clear,3
+speakclear,seven-5.wav,wav/seven-5.wav,self,seven,s,clear,5
+speakclear,cheese-4.wav,wav/cheese-4.wav,self,cheese,z,clear,4
+speakclear,zone-5.wav,wav/zone-5.wav,self,zone,z,clear,5
+speakclear,the_sun_set_slowly-1.wav,wav/the_sun_set_slowly-1.wav,self,the sun set slowly,s,clear,1
+speakclear,sun-3.wav,wav/sun-3.wav,self,sun,s,unclear,3
+speakclear,class-5.wav,wav/class-5.wav,self,class,s,clear,5
+speakclear,thank-5.wav,wav/thank-5.wav,self,thank,th,unclear,5
+speakclear,buzz-4.wav,wav/buzz-4.wav,self,buzz,z,unclear,4
+speakclear,cheese-3.wav,wav/cheese-3.wav,self,cheese,z,clear,3
+speakclear,basket-2.wav,wav/basket-2.wav,self,basket,s,clear,2
+speakclear,sun-2.wav,wav/sun-2.wav,self,sun,s,clear,2
+speakclear,red-5.wav,wav/red-5.wav,self,red,r,clear,5
+speakclear,birthday-2.wav,wav/birthday-2.wav,self,birthday,th,clear,2
+speakclear,seal-4.wav,wav/seal-4.wav,self,seal,s,clear,4
+speakclear,sun-5.wav,wav/sun-5.wav,self,sun,s,unclear,5
+speakclear,three-5.wav,wav/three-5.wav,self,three,th,clear,5
+speakclear,car-5.wav,wav/car-5.wav,self,car,r,clear,5
+speakclear,carrot-1.wav,wav/carrot-1.wav,self,carrot,r,clear,1
+speakclear,the_puzzle_was_amazing-1.wav,wav/the_puzzle_was_amazing-1.wav,self,the puzzle was amazing,z,clear,1
+speakclear,the_music_sounded_soft_and_fuzzy-3.wav,wav/the_music_sounded_soft_and_fuzzy-3.wav,self,the music sounded soft and fuzzy,mixed,clear,3
+speakclear,red-2.wav,wav/red-2.wav,self,red,r,unclear,2
+speakclear,seven_sisters_sat_silently-3.wav,wav/seven_sisters_sat_silently-3.wav,self,seven sisters sat silently,s,clear,3
+speakclear,teeth-1.wav,wav/teeth-1.wav,self,teeth,th,clear,1
+speakclear,river-3.wav,wav/river-3.wav,self,river,r,clear,3
+speakclear,river-1.wav,wav/river-1.wav,self,river,r,clear,1
+speakclear,sister-3.wav,wav/sister-3.wav,self,sister,s,unclear,3
+speakclear,susan_saw_the_zebra_at_the_zoo-1.wav,wav/susan_saw_the_zebra_at_the_zoo-1.wav,self,susan saw the zebra at the zoo,mixed,unclear,1
+speakclear,seven_sisters_sat_silently-1.wav,wav/seven_sisters_sat_silently-1.wav,self,seven sisters sat silently,s,clear,1
+speakclear,puzzle-4.wav,wav/puzzle-4.wav,self,puzzle,z,clear,4
+speakclear,right-4.wav,wav/right-4.wav,self,right,r,unclear,4
+speakclear,thin-3.wav,wav/thin-3.wav,self,thin,th,clear,3
+speakclear,science-5.wav,wav/science-5.wav,self,science,s,clear,5
+speakclear,three-2.wav,wav/three-2.wav,self,three,th,unclear,2
+speakclear,think-5.wav,wav/think-5.wav,self,think,th,clear,5
