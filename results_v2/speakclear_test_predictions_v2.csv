@@ -1,0 +1,245 @@
+source,file_name,audio_path,speaker_id,word,target_sound,label,round,model,prediction
+speakclear,six_roses_were_beside_the_cheese-1.wav,wav/six_roses_were_beside_the_cheese-1.wav,self,six roses were beside the cheese,mixed,clear,1,Majority Baseline,clear
+speakclear,zone-3.wav,wav/zone-3.wav,self,zone,z,clear,3,Majority Baseline,clear
+speakclear,buzz-2.wav,wav/buzz-2.wav,self,buzz,z,unclear,2,Majority Baseline,clear
+speakclear,around-4.wav,wav/around-4.wav,self,around,r,clear,4,Majority Baseline,clear
+speakclear,lazy-1.wav,wav/lazy-1.wav,self,lazy,z,clear,1,Majority Baseline,clear
+speakclear,bus-4.wav,wav/bus-4.wav,self,bus,s,clear,4,Majority Baseline,clear
+speakclear,thirty-5.wav,wav/thirty-5.wav,self,thirty,th,unclear,5,Majority Baseline,clear
+speakclear,zero-1.wav,wav/zero-1.wav,self,zero,z,clear,1,Majority Baseline,clear
+speakclear,carrot-2.wav,wav/carrot-2.wav,self,carrot,r,clear,2,Majority Baseline,clear
+speakclear,race-4.wav,wav/race-4.wav,self,race,r,clear,4,Majority Baseline,clear
+speakclear,carrot-5.wav,wav/carrot-5.wav,self,carrot,r,clear,5,Majority Baseline,clear
+speakclear,zebra-1.wav,wav/zebra-1.wav,self,zebra,z,clear,1,Majority Baseline,clear
+speakclear,seven-3.wav,wav/seven-3.wav,self,seven,s,clear,3,Majority Baseline,clear
+speakclear,think-2.wav,wav/think-2.wav,self,think,th,clear,2,Majority Baseline,clear
+speakclear,three-4.wav,wav/three-4.wav,self,three,th,clear,4,Majority Baseline,clear
+speakclear,zone-2.wav,wav/zone-2.wav,self,zone,z,clear,2,Majority Baseline,clear
+speakclear,zebra-2.wav,wav/zebra-2.wav,self,zebra,z,clear,2,Majority Baseline,clear
+speakclear,class-2.wav,wav/class-2.wav,self,class,s,clear,2,Majority Baseline,clear
+speakclear,right-1.wav,wav/right-1.wav,self,right,r,unclear,1,Majority Baseline,clear
+speakclear,race-1.wav,wav/race-1.wav,self,race,r,clear,1,Majority Baseline,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-3.wav,wav/susan_saw_the_zebra_at_the_zoo-3.wav,self,susan saw the zebra at the zoo,mixed,clear,3,Majority Baseline,clear
+speakclear,red-4.wav,wav/red-4.wav,self,red,r,clear,4,Majority Baseline,clear
+speakclear,seven_sisters_sat_silently-2.wav,wav/seven_sisters_sat_silently-2.wav,self,seven sisters sat silently,s,clear,2,Majority Baseline,clear
+speakclear,bath-3.wav,wav/bath-3.wav,self,bath,th,unclear,3,Majority Baseline,clear
+speakclear,teeth-3.wav,wav/teeth-3.wav,self,teeth,th,unclear,3,Majority Baseline,clear
+speakclear,the_sun_set_slowly-2.wav,wav/the_sun_set_slowly-2.wav,self,the sun set slowly,s,clear,2,Majority Baseline,clear
+speakclear,nothing-3.wav,wav/nothing-3.wav,self,nothing,th,clear,3,Majority Baseline,clear
+speakclear,seven-5.wav,wav/seven-5.wav,self,seven,s,clear,5,Majority Baseline,clear
+speakclear,cheese-4.wav,wav/cheese-4.wav,self,cheese,z,clear,4,Majority Baseline,clear
+speakclear,zone-5.wav,wav/zone-5.wav,self,zone,z,clear,5,Majority Baseline,clear
+speakclear,the_sun_set_slowly-1.wav,wav/the_sun_set_slowly-1.wav,self,the sun set slowly,s,clear,1,Majority Baseline,clear
+speakclear,sun-3.wav,wav/sun-3.wav,self,sun,s,unclear,3,Majority Baseline,clear
+speakclear,class-5.wav,wav/class-5.wav,self,class,s,clear,5,Majority Baseline,clear
+speakclear,thank-5.wav,wav/thank-5.wav,self,thank,th,unclear,5,Majority Baseline,clear
+speakclear,buzz-4.wav,wav/buzz-4.wav,self,buzz,z,unclear,4,Majority Baseline,clear
+speakclear,cheese-3.wav,wav/cheese-3.wav,self,cheese,z,clear,3,Majority Baseline,clear
+speakclear,basket-2.wav,wav/basket-2.wav,self,basket,s,clear,2,Majority Baseline,clear
+speakclear,sun-2.wav,wav/sun-2.wav,self,sun,s,clear,2,Majority Baseline,clear
+speakclear,red-5.wav,wav/red-5.wav,self,red,r,clear,5,Majority Baseline,clear
+speakclear,birthday-2.wav,wav/birthday-2.wav,self,birthday,th,clear,2,Majority Baseline,clear
+speakclear,seal-4.wav,wav/seal-4.wav,self,seal,s,clear,4,Majority Baseline,clear
+speakclear,sun-5.wav,wav/sun-5.wav,self,sun,s,unclear,5,Majority Baseline,clear
+speakclear,three-5.wav,wav/three-5.wav,self,three,th,clear,5,Majority Baseline,clear
+speakclear,car-5.wav,wav/car-5.wav,self,car,r,clear,5,Majority Baseline,clear
+speakclear,carrot-1.wav,wav/carrot-1.wav,self,carrot,r,clear,1,Majority Baseline,clear
+speakclear,the_puzzle_was_amazing-1.wav,wav/the_puzzle_was_amazing-1.wav,self,the puzzle was amazing,z,clear,1,Majority Baseline,clear
+speakclear,the_music_sounded_soft_and_fuzzy-3.wav,wav/the_music_sounded_soft_and_fuzzy-3.wav,self,the music sounded soft and fuzzy,mixed,clear,3,Majority Baseline,clear
+speakclear,red-2.wav,wav/red-2.wav,self,red,r,unclear,2,Majority Baseline,clear
+speakclear,seven_sisters_sat_silently-3.wav,wav/seven_sisters_sat_silently-3.wav,self,seven sisters sat silently,s,clear,3,Majority Baseline,clear
+speakclear,teeth-1.wav,wav/teeth-1.wav,self,teeth,th,clear,1,Majority Baseline,clear
+speakclear,river-3.wav,wav/river-3.wav,self,river,r,clear,3,Majority Baseline,clear
+speakclear,river-1.wav,wav/river-1.wav,self,river,r,clear,1,Majority Baseline,clear
+speakclear,sister-3.wav,wav/sister-3.wav,self,sister,s,unclear,3,Majority Baseline,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-1.wav,wav/susan_saw_the_zebra_at_the_zoo-1.wav,self,susan saw the zebra at the zoo,mixed,unclear,1,Majority Baseline,clear
+speakclear,seven_sisters_sat_silently-1.wav,wav/seven_sisters_sat_silently-1.wav,self,seven sisters sat silently,s,clear,1,Majority Baseline,clear
+speakclear,puzzle-4.wav,wav/puzzle-4.wav,self,puzzle,z,clear,4,Majority Baseline,clear
+speakclear,right-4.wav,wav/right-4.wav,self,right,r,unclear,4,Majority Baseline,clear
+speakclear,thin-3.wav,wav/thin-3.wav,self,thin,th,clear,3,Majority Baseline,clear
+speakclear,science-5.wav,wav/science-5.wav,self,science,s,clear,5,Majority Baseline,clear
+speakclear,three-2.wav,wav/three-2.wav,self,three,th,unclear,2,Majority Baseline,clear
+speakclear,think-5.wav,wav/think-5.wav,self,think,th,clear,5,Majority Baseline,clear
+speakclear,six_roses_were_beside_the_cheese-1.wav,wav/six_roses_were_beside_the_cheese-1.wav,self,six roses were beside the cheese,mixed,clear,1,Logistic Regression,unclear
+speakclear,zone-3.wav,wav/zone-3.wav,self,zone,z,clear,3,Logistic Regression,clear
+speakclear,buzz-2.wav,wav/buzz-2.wav,self,buzz,z,unclear,2,Logistic Regression,unclear
+speakclear,around-4.wav,wav/around-4.wav,self,around,r,clear,4,Logistic Regression,clear
+speakclear,lazy-1.wav,wav/lazy-1.wav,self,lazy,z,clear,1,Logistic Regression,clear
+speakclear,bus-4.wav,wav/bus-4.wav,self,bus,s,clear,4,Logistic Regression,clear
+speakclear,thirty-5.wav,wav/thirty-5.wav,self,thirty,th,unclear,5,Logistic Regression,unclear
+speakclear,zero-1.wav,wav/zero-1.wav,self,zero,z,clear,1,Logistic Regression,clear
+speakclear,carrot-2.wav,wav/carrot-2.wav,self,carrot,r,clear,2,Logistic Regression,clear
+speakclear,race-4.wav,wav/race-4.wav,self,race,r,clear,4,Logistic Regression,unclear
+speakclear,carrot-5.wav,wav/carrot-5.wav,self,carrot,r,clear,5,Logistic Regression,clear
+speakclear,zebra-1.wav,wav/zebra-1.wav,self,zebra,z,clear,1,Logistic Regression,clear
+speakclear,seven-3.wav,wav/seven-3.wav,self,seven,s,clear,3,Logistic Regression,unclear
+speakclear,think-2.wav,wav/think-2.wav,self,think,th,clear,2,Logistic Regression,clear
+speakclear,three-4.wav,wav/three-4.wav,self,three,th,clear,4,Logistic Regression,unclear
+speakclear,zone-2.wav,wav/zone-2.wav,self,zone,z,clear,2,Logistic Regression,clear
+speakclear,zebra-2.wav,wav/zebra-2.wav,self,zebra,z,clear,2,Logistic Regression,unclear
+speakclear,class-2.wav,wav/class-2.wav,self,class,s,clear,2,Logistic Regression,clear
+speakclear,right-1.wav,wav/right-1.wav,self,right,r,unclear,1,Logistic Regression,clear
+speakclear,race-1.wav,wav/race-1.wav,self,race,r,clear,1,Logistic Regression,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-3.wav,wav/susan_saw_the_zebra_at_the_zoo-3.wav,self,susan saw the zebra at the zoo,mixed,clear,3,Logistic Regression,unclear
+speakclear,red-4.wav,wav/red-4.wav,self,red,r,clear,4,Logistic Regression,clear
+speakclear,seven_sisters_sat_silently-2.wav,wav/seven_sisters_sat_silently-2.wav,self,seven sisters sat silently,s,clear,2,Logistic Regression,clear
+speakclear,bath-3.wav,wav/bath-3.wav,self,bath,th,unclear,3,Logistic Regression,unclear
+speakclear,teeth-3.wav,wav/teeth-3.wav,self,teeth,th,unclear,3,Logistic Regression,clear
+speakclear,the_sun_set_slowly-2.wav,wav/the_sun_set_slowly-2.wav,self,the sun set slowly,s,clear,2,Logistic Regression,clear
+speakclear,nothing-3.wav,wav/nothing-3.wav,self,nothing,th,clear,3,Logistic Regression,clear
+speakclear,seven-5.wav,wav/seven-5.wav,self,seven,s,clear,5,Logistic Regression,unclear
+speakclear,cheese-4.wav,wav/cheese-4.wav,self,cheese,z,clear,4,Logistic Regression,unclear
+speakclear,zone-5.wav,wav/zone-5.wav,self,zone,z,clear,5,Logistic Regression,clear
+speakclear,the_sun_set_slowly-1.wav,wav/the_sun_set_slowly-1.wav,self,the sun set slowly,s,clear,1,Logistic Regression,unclear
+speakclear,sun-3.wav,wav/sun-3.wav,self,sun,s,unclear,3,Logistic Regression,unclear
+speakclear,class-5.wav,wav/class-5.wav,self,class,s,clear,5,Logistic Regression,clear
+speakclear,thank-5.wav,wav/thank-5.wav,self,thank,th,unclear,5,Logistic Regression,unclear
+speakclear,buzz-4.wav,wav/buzz-4.wav,self,buzz,z,unclear,4,Logistic Regression,unclear
+speakclear,cheese-3.wav,wav/cheese-3.wav,self,cheese,z,clear,3,Logistic Regression,unclear
+speakclear,basket-2.wav,wav/basket-2.wav,self,basket,s,clear,2,Logistic Regression,clear
+speakclear,sun-2.wav,wav/sun-2.wav,self,sun,s,clear,2,Logistic Regression,unclear
+speakclear,red-5.wav,wav/red-5.wav,self,red,r,clear,5,Logistic Regression,clear
+speakclear,birthday-2.wav,wav/birthday-2.wav,self,birthday,th,clear,2,Logistic Regression,unclear
+speakclear,seal-4.wav,wav/seal-4.wav,self,seal,s,clear,4,Logistic Regression,unclear
+speakclear,sun-5.wav,wav/sun-5.wav,self,sun,s,unclear,5,Logistic Regression,unclear
+speakclear,three-5.wav,wav/three-5.wav,self,three,th,clear,5,Logistic Regression,unclear
+speakclear,car-5.wav,wav/car-5.wav,self,car,r,clear,5,Logistic Regression,clear
+speakclear,carrot-1.wav,wav/carrot-1.wav,self,carrot,r,clear,1,Logistic Regression,unclear
+speakclear,the_puzzle_was_amazing-1.wav,wav/the_puzzle_was_amazing-1.wav,self,the puzzle was amazing,z,clear,1,Logistic Regression,clear
+speakclear,the_music_sounded_soft_and_fuzzy-3.wav,wav/the_music_sounded_soft_and_fuzzy-3.wav,self,the music sounded soft and fuzzy,mixed,clear,3,Logistic Regression,clear
+speakclear,red-2.wav,wav/red-2.wav,self,red,r,unclear,2,Logistic Regression,clear
+speakclear,seven_sisters_sat_silently-3.wav,wav/seven_sisters_sat_silently-3.wav,self,seven sisters sat silently,s,clear,3,Logistic Regression,clear
+speakclear,teeth-1.wav,wav/teeth-1.wav,self,teeth,th,clear,1,Logistic Regression,clear
+speakclear,river-3.wav,wav/river-3.wav,self,river,r,clear,3,Logistic Regression,unclear
+speakclear,river-1.wav,wav/river-1.wav,self,river,r,clear,1,Logistic Regression,clear
+speakclear,sister-3.wav,wav/sister-3.wav,self,sister,s,unclear,3,Logistic Regression,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-1.wav,wav/susan_saw_the_zebra_at_the_zoo-1.wav,self,susan saw the zebra at the zoo,mixed,unclear,1,Logistic Regression,clear
+speakclear,seven_sisters_sat_silently-1.wav,wav/seven_sisters_sat_silently-1.wav,self,seven sisters sat silently,s,clear,1,Logistic Regression,clear
+speakclear,puzzle-4.wav,wav/puzzle-4.wav,self,puzzle,z,clear,4,Logistic Regression,clear
+speakclear,right-4.wav,wav/right-4.wav,self,right,r,unclear,4,Logistic Regression,clear
+speakclear,thin-3.wav,wav/thin-3.wav,self,thin,th,clear,3,Logistic Regression,clear
+speakclear,science-5.wav,wav/science-5.wav,self,science,s,clear,5,Logistic Regression,clear
+speakclear,three-2.wav,wav/three-2.wav,self,three,th,unclear,2,Logistic Regression,unclear
+speakclear,think-5.wav,wav/think-5.wav,self,think,th,clear,5,Logistic Regression,clear
+speakclear,six_roses_were_beside_the_cheese-1.wav,wav/six_roses_were_beside_the_cheese-1.wav,self,six roses were beside the cheese,mixed,clear,1,Random Forest,clear
+speakclear,zone-3.wav,wav/zone-3.wav,self,zone,z,clear,3,Random Forest,clear
+speakclear,buzz-2.wav,wav/buzz-2.wav,self,buzz,z,unclear,2,Random Forest,clear
+speakclear,around-4.wav,wav/around-4.wav,self,around,r,clear,4,Random Forest,clear
+speakclear,lazy-1.wav,wav/lazy-1.wav,self,lazy,z,clear,1,Random Forest,clear
+speakclear,bus-4.wav,wav/bus-4.wav,self,bus,s,clear,4,Random Forest,clear
+speakclear,thirty-5.wav,wav/thirty-5.wav,self,thirty,th,unclear,5,Random Forest,unclear
+speakclear,zero-1.wav,wav/zero-1.wav,self,zero,z,clear,1,Random Forest,clear
+speakclear,carrot-2.wav,wav/carrot-2.wav,self,carrot,r,clear,2,Random Forest,clear
+speakclear,race-4.wav,wav/race-4.wav,self,race,r,clear,4,Random Forest,clear
+speakclear,carrot-5.wav,wav/carrot-5.wav,self,carrot,r,clear,5,Random Forest,clear
+speakclear,zebra-1.wav,wav/zebra-1.wav,self,zebra,z,clear,1,Random Forest,clear
+speakclear,seven-3.wav,wav/seven-3.wav,self,seven,s,clear,3,Random Forest,unclear
+speakclear,think-2.wav,wav/think-2.wav,self,think,th,clear,2,Random Forest,clear
+speakclear,three-4.wav,wav/three-4.wav,self,three,th,clear,4,Random Forest,unclear
+speakclear,zone-2.wav,wav/zone-2.wav,self,zone,z,clear,2,Random Forest,clear
+speakclear,zebra-2.wav,wav/zebra-2.wav,self,zebra,z,clear,2,Random Forest,clear
+speakclear,class-2.wav,wav/class-2.wav,self,class,s,clear,2,Random Forest,clear
+speakclear,right-1.wav,wav/right-1.wav,self,right,r,unclear,1,Random Forest,clear
+speakclear,race-1.wav,wav/race-1.wav,self,race,r,clear,1,Random Forest,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-3.wav,wav/susan_saw_the_zebra_at_the_zoo-3.wav,self,susan saw the zebra at the zoo,mixed,clear,3,Random Forest,clear
+speakclear,red-4.wav,wav/red-4.wav,self,red,r,clear,4,Random Forest,clear
+speakclear,seven_sisters_sat_silently-2.wav,wav/seven_sisters_sat_silently-2.wav,self,seven sisters sat silently,s,clear,2,Random Forest,clear
+speakclear,bath-3.wav,wav/bath-3.wav,self,bath,th,unclear,3,Random Forest,clear
+speakclear,teeth-3.wav,wav/teeth-3.wav,self,teeth,th,unclear,3,Random Forest,unclear
+speakclear,the_sun_set_slowly-2.wav,wav/the_sun_set_slowly-2.wav,self,the sun set slowly,s,clear,2,Random Forest,unclear
+speakclear,nothing-3.wav,wav/nothing-3.wav,self,nothing,th,clear,3,Random Forest,clear
+speakclear,seven-5.wav,wav/seven-5.wav,self,seven,s,clear,5,Random Forest,clear
+speakclear,cheese-4.wav,wav/cheese-4.wav,self,cheese,z,clear,4,Random Forest,clear
+speakclear,zone-5.wav,wav/zone-5.wav,self,zone,z,clear,5,Random Forest,clear
+speakclear,the_sun_set_slowly-1.wav,wav/the_sun_set_slowly-1.wav,self,the sun set slowly,s,clear,1,Random Forest,clear
+speakclear,sun-3.wav,wav/sun-3.wav,self,sun,s,unclear,3,Random Forest,unclear
+speakclear,class-5.wav,wav/class-5.wav,self,class,s,clear,5,Random Forest,clear
+speakclear,thank-5.wav,wav/thank-5.wav,self,thank,th,unclear,5,Random Forest,unclear
+speakclear,buzz-4.wav,wav/buzz-4.wav,self,buzz,z,unclear,4,Random Forest,clear
+speakclear,cheese-3.wav,wav/cheese-3.wav,self,cheese,z,clear,3,Random Forest,clear
+speakclear,basket-2.wav,wav/basket-2.wav,self,basket,s,clear,2,Random Forest,clear
+speakclear,sun-2.wav,wav/sun-2.wav,self,sun,s,clear,2,Random Forest,unclear
+speakclear,red-5.wav,wav/red-5.wav,self,red,r,clear,5,Random Forest,clear
+speakclear,birthday-2.wav,wav/birthday-2.wav,self,birthday,th,clear,2,Random Forest,clear
+speakclear,seal-4.wav,wav/seal-4.wav,self,seal,s,clear,4,Random Forest,unclear
+speakclear,sun-5.wav,wav/sun-5.wav,self,sun,s,unclear,5,Random Forest,unclear
+speakclear,three-5.wav,wav/three-5.wav,self,three,th,clear,5,Random Forest,unclear
+speakclear,car-5.wav,wav/car-5.wav,self,car,r,clear,5,Random Forest,clear
+speakclear,carrot-1.wav,wav/carrot-1.wav,self,carrot,r,clear,1,Random Forest,unclear
+speakclear,the_puzzle_was_amazing-1.wav,wav/the_puzzle_was_amazing-1.wav,self,the puzzle was amazing,z,clear,1,Random Forest,clear
+speakclear,the_music_sounded_soft_and_fuzzy-3.wav,wav/the_music_sounded_soft_and_fuzzy-3.wav,self,the music sounded soft and fuzzy,mixed,clear,3,Random Forest,clear
+speakclear,red-2.wav,wav/red-2.wav,self,red,r,unclear,2,Random Forest,unclear
+speakclear,seven_sisters_sat_silently-3.wav,wav/seven_sisters_sat_silently-3.wav,self,seven sisters sat silently,s,clear,3,Random Forest,clear
+speakclear,teeth-1.wav,wav/teeth-1.wav,self,teeth,th,clear,1,Random Forest,unclear
+speakclear,river-3.wav,wav/river-3.wav,self,river,r,clear,3,Random Forest,clear
+speakclear,river-1.wav,wav/river-1.wav,self,river,r,clear,1,Random Forest,clear
+speakclear,sister-3.wav,wav/sister-3.wav,self,sister,s,unclear,3,Random Forest,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-1.wav,wav/susan_saw_the_zebra_at_the_zoo-1.wav,self,susan saw the zebra at the zoo,mixed,unclear,1,Random Forest,clear
+speakclear,seven_sisters_sat_silently-1.wav,wav/seven_sisters_sat_silently-1.wav,self,seven sisters sat silently,s,clear,1,Random Forest,clear
+speakclear,puzzle-4.wav,wav/puzzle-4.wav,self,puzzle,z,clear,4,Random Forest,clear
+speakclear,right-4.wav,wav/right-4.wav,self,right,r,unclear,4,Random Forest,clear
+speakclear,thin-3.wav,wav/thin-3.wav,self,thin,th,clear,3,Random Forest,clear
+speakclear,science-5.wav,wav/science-5.wav,self,science,s,clear,5,Random Forest,clear
+speakclear,three-2.wav,wav/three-2.wav,self,three,th,unclear,2,Random Forest,unclear
+speakclear,think-5.wav,wav/think-5.wav,self,think,th,clear,5,Random Forest,clear
+speakclear,six_roses_were_beside_the_cheese-1.wav,wav/six_roses_were_beside_the_cheese-1.wav,self,six roses were beside the cheese,mixed,clear,1,SVM,clear
+speakclear,zone-3.wav,wav/zone-3.wav,self,zone,z,clear,3,SVM,clear
+speakclear,buzz-2.wav,wav/buzz-2.wav,self,buzz,z,unclear,2,SVM,unclear
+speakclear,around-4.wav,wav/around-4.wav,self,around,r,clear,4,SVM,clear
+speakclear,lazy-1.wav,wav/lazy-1.wav,self,lazy,z,clear,1,SVM,clear
+speakclear,bus-4.wav,wav/bus-4.wav,self,bus,s,clear,4,SVM,clear
+speakclear,thirty-5.wav,wav/thirty-5.wav,self,thirty,th,unclear,5,SVM,unclear
+speakclear,zero-1.wav,wav/zero-1.wav,self,zero,z,clear,1,SVM,clear
+speakclear,carrot-2.wav,wav/carrot-2.wav,self,carrot,r,clear,2,SVM,clear
+speakclear,race-4.wav,wav/race-4.wav,self,race,r,clear,4,SVM,clear
+speakclear,carrot-5.wav,wav/carrot-5.wav,self,carrot,r,clear,5,SVM,clear
+speakclear,zebra-1.wav,wav/zebra-1.wav,self,zebra,z,clear,1,SVM,clear
+speakclear,seven-3.wav,wav/seven-3.wav,self,seven,s,clear,3,SVM,unclear
+speakclear,think-2.wav,wav/think-2.wav,self,think,th,clear,2,SVM,clear
+speakclear,three-4.wav,wav/three-4.wav,self,three,th,clear,4,SVM,unclear
+speakclear,zone-2.wav,wav/zone-2.wav,self,zone,z,clear,2,SVM,clear
+speakclear,zebra-2.wav,wav/zebra-2.wav,self,zebra,z,clear,2,SVM,clear
+speakclear,class-2.wav,wav/class-2.wav,self,class,s,clear,2,SVM,clear
+speakclear,right-1.wav,wav/right-1.wav,self,right,r,unclear,1,SVM,clear
+speakclear,race-1.wav,wav/race-1.wav,self,race,r,clear,1,SVM,clear
+speakclear,susan_saw_the_zebra_at_the_zoo-3.wav,wav/susan_saw_the_zebra_at_the_zoo-3.wav,self,susan saw the zebra at the zoo,mixed,clear,3,SVM,clear
+speakclear,red-4.wav,wav/red-4.wav,self,red,r,clear,4,SVM,clear
+speakclear,seven_sisters_sat_silently-2.wav,wav/seven_sisters_sat_silently-2.wav,self,seven sisters sat silently,s,clear,2,SVM,clear
+speakclear,bath-3.wav,wav/bath-3.wav,self,bath,th,unclear,3,SVM,unclear
+speakclear,teeth-3.wav,wav/teeth-3.wav,self,teeth,th,unclear,3,SVM,unclear
+speakclear,the_sun_set_slowly-2.wav,wav/the_sun_set_slowly-2.wav,self,the sun set slowly,s,clear,2,SVM,unclear
+speakclear,nothing-3.wav,wav/nothing-3.wav,self,nothing,th,clear,3,SVM,unclear
+speakclear,seven-5.wav,wav/seven-5.wav,self,seven,s,clear,5,SVM,unclear
+speakclear,cheese-4.wav,wav/cheese-4.wav,self,cheese,z,clear,4,SVM,unclear
+speakclear,zone-5.wav,wav/zone-5.wav,self,zone,z,clear,5,SVM,clear
+speakclear,the_sun_set_slowly-1.wav,wav/the_sun_set_slowly-1.wav,self,the sun set slowly,s,clear,1,SVM,clear
+speakclear,sun-3.wav,wav/sun-3.wav,self,sun,s,unclear,3,SVM,unclear
+speakclear,class-5.wav,wav/class-5.wav,self,class,s,clear,5,SVM,clear
+speakclear,thank-5.wav,wav/thank-5.wav,self,thank,th,unclear,5,SVM,unclear
+speakclear,buzz-4.wav,wav/buzz-4.wav,self,buzz,z,unclear,4,SVM,unclear
+speakclear,cheese-3.wav,wav/cheese-3.wav,self,cheese,z,clear,3,SVM,unclear
+speakclear,basket-2.wav,wav/basket-2.wav,self,basket,s,clear,2,SVM,clear
+speakclear,sun-2.wav,wav/sun-2.wav,self,sun,s,clear,2,SVM,unclear
+speakclear,red-5.wav,wav/red-5.wav,self,red,r,clear,5,SVM,clear
+speakclear,birthday-2.wav,wav/birthday-2.wav,self,birthday,th,clear,2,SVM,clear
+speakclear,seal-4.wav,wav/seal-4.wav,self,seal,s,clear,4,SVM,unclear
+speakclear,sun-5.wav,wav/sun-5.wav,self,sun,s,unclear,5,SVM,unclear
+speakclear,three-5.wav,wav/three-5.wav,self,three,th,clear,5,SVM,unclear
+speakclear,car-5.wav,wav/car-5.wav,self,car,r,clear,5,SVM,clear
+speakclear,carrot-1.wav,wav/carrot-1.wav,self,carrot,r,clear,1,SVM,unclear
+speakclear,the_puzzle_was_amazing-1.wav,wav/the_puzzle_was_amazing-1.wav,self,the puzzle was amazing,z,clear,1,SVM,clear
+speakclear,the_music_sounded_soft_and_fuzzy-3.wav,wav/the_music_sounded_soft_and_fuzzy-3.wav,self,the music sounded soft and fuzzy,mixed,clear,3,SVM,clear
+speakclear,red-2.wav,wav/red-2.wav,self,red,r,unclear,2,SVM,unclear
+speakclear,seven_sisters_sat_silently-3.wav,wav/seven_sisters_sat_silently-3.wav,self,seven sisters sat silently,s,clear,3,SVM,clear
+speakclear,teeth-1.wav,wav/teeth-1.wav,self,teeth,th,clear,1,SVM,unclear
+speakclear,river-3.wav,wav/river-3.wav,self,river,r,clear,3,SVM,unclear
+speakclear,river-1.wav,wav/river-1.wav,self,river,r,clear,1,SVM,clear
+speakclear,sister-3.wav,wav/sister-3.wav,self,sister,s,unclear,3,SVM,unclear
+speakclear,susan_saw_the_zebra_at_the_zoo-1.wav,wav/susan_saw_the_zebra_at_the_zoo-1.wav,self,susan saw the zebra at the zoo,mixed,unclear,1,SVM,clear
+speakclear,seven_sisters_sat_silently-1.wav,wav/seven_sisters_sat_silently-1.wav,self,seven sisters sat silently,s,clear,1,SVM,clear
+speakclear,puzzle-4.wav,wav/puzzle-4.wav,self,puzzle,z,clear,4,SVM,clear
+speakclear,right-4.wav,wav/right-4.wav,self,right,r,unclear,4,SVM,clear
+speakclear,thin-3.wav,wav/thin-3.wav,self,thin,th,clear,3,SVM,clear
+speakclear,science-5.wav,wav/science-5.wav,self,science,s,clear,5,SVM,clear
+speakclear,three-2.wav,wav/three-2.wav,self,three,th,unclear,2,SVM,unclear
+speakclear,think-5.wav,wav/think-5.wav,self,think,th,clear,5,SVM,clear

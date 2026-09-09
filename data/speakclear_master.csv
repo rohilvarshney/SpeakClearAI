@@ -1,0 +1,243 @@
+source,file_name,audio_path,speaker_id,word,target_sound,label,round
+speakclear,basket-1.wav,wav/basket-1.wav,self,basket,s,clear,1
+speakclear,basket-2.wav,wav/basket-2.wav,self,basket,s,clear,2
+speakclear,basket-3.wav,wav/basket-3.wav,self,basket,s,clear,3
+speakclear,basket-4.wav,wav/basket-4.wav,self,basket,s,clear,4
+speakclear,basket-5.wav,wav/basket-5.wav,self,basket,s,clear,5
+speakclear,bus-1.wav,wav/bus-1.wav,self,bus,s,clear,1
+speakclear,bus-2.wav,wav/bus-2.wav,self,bus,s,clear,2
+speakclear,bus-3.wav,wav/bus-3.wav,self,bus,s,clear,3
+speakclear,bus-4.wav,wav/bus-4.wav,self,bus,s,clear,4
+speakclear,bus-5.wav,wav/bus-5.wav,self,bus,s,clear,5
+speakclear,buzz-1.wav,wav/buzz-1.wav,self,buzz,z,unclear,1
+speakclear,buzz-2.wav,wav/buzz-2.wav,self,buzz,z,unclear,2
+speakclear,buzz-3.wav,wav/buzz-3.wav,self,buzz,z,clear,3
+speakclear,buzz-4.wav,wav/buzz-4.wav,self,buzz,z,unclear,4
+speakclear,buzz-5.wav,wav/buzz-5.wav,self,buzz,z,clear,5
+speakclear,cheese-1.wav,wav/cheese-1.wav,self,cheese,z,unclear,1
+speakclear,cheese-2.wav,wav/cheese-2.wav,self,cheese,z,clear,2
+speakclear,cheese-3.wav,wav/cheese-3.wav,self,cheese,z,clear,3
+speakclear,cheese-4.wav,wav/cheese-4.wav,self,cheese,z,clear,4
+speakclear,cheese-5.wav,wav/cheese-5.wav,self,cheese,z,clear,5
+speakclear,class-1.wav,wav/class-1.wav,self,class,s,clear,1
+speakclear,class-2.wav,wav/class-2.wav,self,class,s,clear,2
+speakclear,class-3.wav,wav/class-3.wav,self,class,s,clear,3
+speakclear,class-4.wav,wav/class-4.wav,self,class,s,clear,4
+speakclear,class-5.wav,wav/class-5.wav,self,class,s,clear,5
+speakclear,lazy-1.wav,wav/lazy-1.wav,self,lazy,z,clear,1
+speakclear,lazy-2.wav,wav/lazy-2.wav,self,lazy,z,clear,2
+speakclear,lazy-3.wav,wav/lazy-3.wav,self,lazy,z,clear,3
+speakclear,lazy-4.wav,wav/lazy-4.wav,self,lazy,z,clear,4
+speakclear,lazy-5.wav,wav/lazy-5.wav,self,lazy,z,unclear,5
+speakclear,music-1.wav,wav/music-1.wav,self,music,z,unclear,1
+speakclear,music-2.wav,wav/music-2.wav,self,music,z,clear,2
+speakclear,music-3.wav,wav/music-3.wav,self,music,z,clear,3
+speakclear,music-4.wav,wav/music-4.wav,self,music,z,clear,4
+speakclear,music-5.wav,wav/music-5.wav,self,music,z,clear,5
+speakclear,pencil-1.wav,wav/pencil-1.wav,self,pencil,s,clear,1
+speakclear,pencil-2.wav,wav/pencil-2.wav,self,pencil,s,clear,2
+speakclear,pencil-3.wav,wav/pencil-3.wav,self,pencil,s,clear,3
+speakclear,pencil-4.wav,wav/pencil-4.wav,self,pencil,s,clear,4
+speakclear,pencil-5.wav,wav/pencil-5.wav,self,pencil,s,clear,5
+speakclear,puzzle-1.wav,wav/puzzle-1.wav,self,puzzle,z,clear,1
+speakclear,puzzle-2.wav,wav/puzzle-2.wav,self,puzzle,z,clear,2
+speakclear,puzzle-3.wav,wav/puzzle-3.wav,self,puzzle,z,clear,3
+speakclear,puzzle-4.wav,wav/puzzle-4.wav,self,puzzle,z,clear,4
+speakclear,puzzle-5.wav,wav/puzzle-5.wav,self,puzzle,z,clear,5
+speakclear,racing-1.wav,wav/racing-1.wav,self,racing,s,clear,1
+speakclear,racing-2.wav,wav/racing-2.wav,self,racing,s,clear,2
+speakclear,racing-3.wav,wav/racing-3.wav,self,racing,s,clear,3
+speakclear,racing-4.wav,wav/racing-4.wav,self,racing,s,clear,4
+speakclear,racing-5.wav,wav/racing-5.wav,self,racing,s,clear,5
+speakclear,science-1.wav,wav/science-1.wav,self,science,s,clear,1
+speakclear,science-2.wav,wav/science-2.wav,self,science,s,clear,2
+speakclear,science-3.wav,wav/science-3.wav,self,science,s,clear,3
+speakclear,science-4.wav,wav/science-4.wav,self,science,s,clear,4
+speakclear,science-5.wav,wav/science-5.wav,self,science,s,clear,5
+speakclear,seal-1.wav,wav/seal-1.wav,self,seal,s,unclear,1
+speakclear,seal-2.wav,wav/seal-2.wav,self,seal,s,clear,2
+speakclear,seal-3.wav,wav/seal-3.wav,self,seal,s,unclear,3
+speakclear,seal-4.wav,wav/seal-4.wav,self,seal,s,clear,4
+speakclear,seal-5.wav,wav/seal-5.wav,self,seal,s,unclear,5
+speakclear,seven-1.wav,wav/seven-1.wav,self,seven,s,clear,1
+speakclear,seven-2.wav,wav/seven-2.wav,self,seven,s,unclear,2
+speakclear,seven-3.wav,wav/seven-3.wav,self,seven,s,clear,3
+speakclear,seven-4.wav,wav/seven-4.wav,self,seven,s,clear,4
+speakclear,seven-5.wav,wav/seven-5.wav,self,seven,s,clear,5
+speakclear,sister-1.wav,wav/sister-1.wav,self,sister,s,clear,1
+speakclear,sister-2.wav,wav/sister-2.wav,self,sister,s,unclear,2
+speakclear,sister-3.wav,wav/sister-3.wav,self,sister,s,unclear,3
+speakclear,sister-4.wav,wav/sister-4.wav,self,sister,s,clear,4
+speakclear,sister-5.wav,wav/sister-5.wav,self,sister,s,unclear,5
+speakclear,sun-1.wav,wav/sun-1.wav,self,sun,s,unclear,1
+speakclear,sun-2.wav,wav/sun-2.wav,self,sun,s,clear,2
+speakclear,sun-3.wav,wav/sun-3.wav,self,sun,s,unclear,3
+speakclear,sun-4.wav,wav/sun-4.wav,self,sun,s,unclear,4
+speakclear,sun-5.wav,wav/sun-5.wav,self,sun,s,unclear,5
+speakclear,zebra-1.wav,wav/zebra-1.wav,self,zebra,z,clear,1
+speakclear,zebra-2.wav,wav/zebra-2.wav,self,zebra,z,clear,2
+speakclear,zebra-3.wav,wav/zebra-3.wav,self,zebra,z,clear,3
+speakclear,zebra-4.wav,wav/zebra-4.wav,self,zebra,z,clear,4
+speakclear,zebra-5.wav,wav/zebra-5.wav,self,zebra,z,clear,5
+speakclear,zero-1.wav,wav/zero-1.wav,self,zero,z,clear,1
+speakclear,zero-2.wav,wav/zero-2.wav,self,zero,z,unclear,2
+speakclear,zero-3.wav,wav/zero-3.wav,self,zero,z,clear,3
+speakclear,zero-4.wav,wav/zero-4.wav,self,zero,z,unclear,4
+speakclear,zero-5.wav,wav/zero-5.wav,self,zero,z,clear,5
+speakclear,zipper-1.wav,wav/zipper-1.wav,self,zipper,z,clear,1
+speakclear,zipper-2.wav,wav/zipper-2.wav,self,zipper,z,unclear,2
+speakclear,zipper-3.wav,wav/zipper-3.wav,self,zipper,z,clear,3
+speakclear,zipper-4.wav,wav/zipper-4.wav,self,zipper,z,clear,4
+speakclear,zipper-5.wav,wav/zipper-5.wav,self,zipper,z,clear,5
+speakclear,zone-1.wav,wav/zone-1.wav,self,zone,z,clear,1
+speakclear,zone-2.wav,wav/zone-2.wav,self,zone,z,clear,2
+speakclear,zone-3.wav,wav/zone-3.wav,self,zone,z,clear,3
+speakclear,zone-4.wav,wav/zone-4.wav,self,zone,z,clear,4
+speakclear,zone-5.wav,wav/zone-5.wav,self,zone,z,clear,5
+speakclear,zoo-1.wav,wav/zoo-1.wav,self,zoo,z,unclear,1
+speakclear,zoo-2.wav,wav/zoo-2.wav,self,zoo,z,clear,2
+speakclear,zoo-3.wav,wav/zoo-3.wav,self,zoo,z,clear,3
+speakclear,zoo-4.wav,wav/zoo-4.wav,self,zoo,z,clear,4
+speakclear,zoo-5.wav,wav/zoo-5.wav,self,zoo,z,clear,5
+speakclear,lazy_lizards_love_music-1.wav,wav/lazy_lizards_love_music-1.wav,self,lazy lizards love music,z,clear,1
+speakclear,lazy_lizards_love_music-2.wav,wav/lazy_lizards_love_music-2.wav,self,lazy lizards love music,z,clear,2
+speakclear,lazy_lizards_love_music-3.wav,wav/lazy_lizards_love_music-3.wav,self,lazy lizards love music,z,clear,3
+speakclear,please_pass_the_cheese-1.wav,wav/please_pass_the_cheese-1.wav,self,please pass the cheese,z,unclear,1
+speakclear,please_pass_the_cheese-2.wav,wav/please_pass_the_cheese-2.wav,self,please pass the cheese,z,clear,2
+speakclear,please_pass_the_cheese-3.wav,wav/please_pass_the_cheese-3.wav,self,please pass the cheese,z,clear,3
+speakclear,science_sometimes_sounds_stressful-1.wav,wav/science_sometimes_sounds_stressful-1.wav,self,science sometimes sounds stressful,s,clear,1
+speakclear,science_sometimes_sounds_stressful-2.wav,wav/science_sometimes_sounds_stressful-2.wav,self,science sometimes sounds stressful,s,clear,2
+speakclear,science_sometimes_sounds_stressful-3.wav,wav/science_sometimes_sounds_stressful-3.wav,self,science sometimes sounds stressful,s,clear,3
+speakclear,seven_sisters_sat_silently-1.wav,wav/seven_sisters_sat_silently-1.wav,self,seven sisters sat silently,s,clear,1
+speakclear,seven_sisters_sat_silently-2.wav,wav/seven_sisters_sat_silently-2.wav,self,seven sisters sat silently,s,clear,2
+speakclear,seven_sisters_sat_silently-3.wav,wav/seven_sisters_sat_silently-3.wav,self,seven sisters sat silently,s,clear,3
+speakclear,seven_students_solved_the_puzzle-1.wav,wav/seven_students_solved_the_puzzle-1.wav,self,seven students solved the puzzle,mixed,clear,1
+speakclear,seven_students_solved_the_puzzle-2.wav,wav/seven_students_solved_the_puzzle-2.wav,self,seven students solved the puzzle,mixed,unclear,2
+speakclear,seven_students_solved_the_puzzle-3.wav,wav/seven_students_solved_the_puzzle-3.wav,self,seven students solved the puzzle,mixed,clear,3
+speakclear,six_roses_were_beside_the_cheese-1.wav,wav/six_roses_were_beside_the_cheese-1.wav,self,six roses were beside the cheese,mixed,clear,1
+speakclear,six_roses_were_beside_the_cheese-2.wav,wav/six_roses_were_beside_the_cheese-2.wav,self,six roses were beside the cheese,mixed,clear,2
+speakclear,six_roses_were_beside_the_cheese-3.wav,wav/six_roses_were_beside_the_cheese-3.wav,self,six roses were beside the cheese,mixed,clear,3
+speakclear,six_students_studied_science-1.wav,wav/six_students_studied_science-1.wav,self,six students studied science,s,clear,1
+speakclear,six_students_studied_science-2.wav,wav/six_students_studied_science-2.wav,self,six students studied science,s,clear,2
+speakclear,six_students_studied_science-3.wav,wav/six_students_studied_science-3.wav,self,six students studied science,s,clear,3
+speakclear,susan_saw_the_zebra_at_the_zoo-1.wav,wav/susan_saw_the_zebra_at_the_zoo-1.wav,self,susan saw the zebra at the zoo,mixed,unclear,1
+speakclear,susan_saw_the_zebra_at_the_zoo-2.wav,wav/susan_saw_the_zebra_at_the_zoo-2.wav,self,susan saw the zebra at the zoo,mixed,clear,2
+speakclear,susan_saw_the_zebra_at_the_zoo-3.wav,wav/susan_saw_the_zebra_at_the_zoo-3.wav,self,susan saw the zebra at the zoo,mixed,clear,3
+speakclear,the_music_sounded_soft_and_fuzzy-1.wav,wav/the_music_sounded_soft_and_fuzzy-1.wav,self,the music sounded soft and fuzzy,mixed,clear,1
+speakclear,the_music_sounded_soft_and_fuzzy-2.wav,wav/the_music_sounded_soft_and_fuzzy-2.wav,self,the music sounded soft and fuzzy,mixed,clear,2
+speakclear,the_music_sounded_soft_and_fuzzy-3.wav,wav/the_music_sounded_soft_and_fuzzy-3.wav,self,the music sounded soft and fuzzy,mixed,clear,3
+speakclear,the_puzzle_was_amazing-1.wav,wav/the_puzzle_was_amazing-1.wav,self,the puzzle was amazing,z,clear,1
+speakclear,the_puzzle_was_amazing-2.wav,wav/the_puzzle_was_amazing-2.wav,self,the puzzle was amazing,z,clear,2
+speakclear,the_puzzle_was_amazing-3.wav,wav/the_puzzle_was_amazing-3.wav,self,the puzzle was amazing,z,clear,3
+speakclear,the_sun_set_slowly-1.wav,wav/the_sun_set_slowly-1.wav,self,the sun set slowly,s,clear,1
+speakclear,the_sun_set_slowly-2.wav,wav/the_sun_set_slowly-2.wav,self,the sun set slowly,s,clear,2
+speakclear,the_sun_set_slowly-3.wav,wav/the_sun_set_slowly-3.wav,self,the sun set slowly,s,clear,3
+speakclear,zach_said_science_was_easy-1.wav,wav/zach_said_science_was_easy-1.wav,self,zach said science was easy,mixed,unclear,1
+speakclear,zach_said_science_was_easy-2.wav,wav/zach_said_science_was_easy-2.wav,self,zach said science was easy,mixed,unclear,2
+speakclear,zach_said_science_was_easy-3.wav,wav/zach_said_science_was_easy-3.wav,self,zach said science was easy,mixed,unclear,3
+speakclear,zebra_zoomed_through_the_zoo-1.wav,wav/zebra_zoomed_through_the_zoo-1.wav,self,zebra zoomed through the zoo,z,clear,1
+speakclear,zebra_zoomed_through_the_zoo-2.wav,wav/zebra_zoomed_through_the_zoo-2.wav,self,zebra zoomed through the zoo,z,clear,2
+speakclear,zebra_zoomed_through_the_zoo-3.wav,wav/zebra_zoomed_through_the_zoo-3.wav,self,zebra zoomed through the zoo,z,clear,3
+speakclear,zero_zebras_were_in_the_zone-1.wav,wav/zero_zebras_were_in_the_zone-1.wav,self,zero zebras were in the zone,z,clear,1
+speakclear,zero_zebras_were_in_the_zone-2.wav,wav/zero_zebras_were_in_the_zone-2.wav,self,zero zebras were in the zone,z,unclear,2
+speakclear,zero_zebras_were_in_the_zone-3.wav,wav/zero_zebras_were_in_the_zone-3.wav,self,zero zebras were in the zone,z,unclear,3
+speakclear,around-1.wav,wav/around-1.wav,self,around,r,clear,1
+speakclear,around-2.wav,wav/around-2.wav,self,around,r,clear,2
+speakclear,around-3.wav,wav/around-3.wav,self,around,r,clear,3
+speakclear,around-4.wav,wav/around-4.wav,self,around,r,clear,4
+speakclear,around-5.wav,wav/around-5.wav,self,around,r,clear,5
+speakclear,bath-1.wav,wav/bath-1.wav,self,bath,th,unclear,1
+speakclear,bath-2.wav,wav/bath-2.wav,self,bath,th,unclear,2
+speakclear,bath-3.wav,wav/bath-3.wav,self,bath,th,unclear,3
+speakclear,bath-4.wav,wav/bath-4.wav,self,bath,th,clear,4
+speakclear,bath-5.wav,wav/bath-5.wav,self,bath,th,clear,5
+speakclear,birthday-1.wav,wav/birthday-1.wav,self,birthday,th,clear,1
+speakclear,birthday-2.wav,wav/birthday-2.wav,self,birthday,th,clear,2
+speakclear,birthday-3.wav,wav/birthday-3.wav,self,birthday,th,clear,3
+speakclear,birthday-4.wav,wav/birthday-4.wav,self,birthday,th,clear,4
+speakclear,birthday-5.wav,wav/birthday-5.wav,self,birthday,th,clear,5
+speakclear,car-1.wav,wav/car-1.wav,self,car,r,clear,1
+speakclear,car-2.wav,wav/car-2.wav,self,car,r,clear,2
+speakclear,car-3.wav,wav/car-3.wav,self,car,r,clear,3
+speakclear,car-4.wav,wav/car-4.wav,self,car,r,clear,4
+speakclear,car-5.wav,wav/car-5.wav,self,car,r,clear,5
+speakclear,carrot-1.wav,wav/carrot-1.wav,self,carrot,r,clear,1
+speakclear,carrot-2.wav,wav/carrot-2.wav,self,carrot,r,clear,2
+speakclear,carrot-3.wav,wav/carrot-3.wav,self,carrot,r,clear,3
+speakclear,carrot-4.wav,wav/carrot-4.wav,self,carrot,r,clear,4
+speakclear,carrot-5.wav,wav/carrot-5.wav,self,carrot,r,clear,5
+speakclear,far-1.wav,wav/far-1.wav,self,far,r,clear,1
+speakclear,far-2.wav,wav/far-2.wav,self,far,r,clear,2
+speakclear,far-3.wav,wav/far-3.wav,self,far,r,clear,3
+speakclear,far-4.wav,wav/far-4.wav,self,far,r,clear,4
+speakclear,far-5.wav,wav/far-5.wav,self,far,r,clear,5
+speakclear,healthy-1.wav,wav/healthy-1.wav,self,healthy,th,clear,1
+speakclear,healthy-2.wav,wav/healthy-2.wav,self,healthy,th,clear,2
+speakclear,healthy-3.wav,wav/healthy-3.wav,self,healthy,th,clear,3
+speakclear,healthy-4.wav,wav/healthy-4.wav,self,healthy,th,clear,4
+speakclear,healthy-5.wav,wav/healthy-5.wav,self,healthy,th,clear,5
+speakclear,mirror-1.wav,wav/mirror-1.wav,self,mirror,r,clear,1
+speakclear,mirror-2.wav,wav/mirror-2.wav,self,mirror,r,unclear,2
+speakclear,mirror-3.wav,wav/mirror-3.wav,self,mirror,r,clear,3
+speakclear,mirror-4.wav,wav/mirror-4.wav,self,mirror,r,clear,4
+speakclear,mirror-5.wav,wav/mirror-5.wav,self,mirror,r,clear,5
+speakclear,nothing-1.wav,wav/nothing-1.wav,self,nothing,th,unclear,1
+speakclear,nothing-2.wav,wav/nothing-2.wav,self,nothing,th,unclear,2
+speakclear,nothing-3.wav,wav/nothing-3.wav,self,nothing,th,clear,3
+speakclear,nothing-4.wav,wav/nothing-4.wav,self,nothing,th,unclear,4
+speakclear,nothing-5.wav,wav/nothing-5.wav,self,nothing,th,clear,5
+speakclear,race-1.wav,wav/race-1.wav,self,race,r,clear,1
+speakclear,race-2.wav,wav/race-2.wav,self,race,r,clear,2
+speakclear,race-3.wav,wav/race-3.wav,self,race,r,clear,3
+speakclear,race-4.wav,wav/race-4.wav,self,race,r,clear,4
+speakclear,race-5.wav,wav/race-5.wav,self,race,r,clear,5
+speakclear,red-1.wav,wav/red-1.wav,self,red,r,clear,1
+speakclear,red-2.wav,wav/red-2.wav,self,red,r,unclear,2
+speakclear,red-3.wav,wav/red-3.wav,self,red,r,unclear,3
+speakclear,red-4.wav,wav/red-4.wav,self,red,r,clear,4
+speakclear,red-5.wav,wav/red-5.wav,self,red,r,clear,5
+speakclear,right-1.wav,wav/right-1.wav,self,right,r,unclear,1
+speakclear,right-2.wav,wav/right-2.wav,self,right,r,clear,2
+speakclear,right-3.wav,wav/right-3.wav,self,right,r,unclear,3
+speakclear,right-4.wav,wav/right-4.wav,self,right,r,unclear,4
+speakclear,right-5.wav,wav/right-5.wav,self,right,r,unclear,5
+speakclear,river-1.wav,wav/river-1.wav,self,river,r,clear,1
+speakclear,river-2.wav,wav/river-2.wav,self,river,r,clear,2
+speakclear,river-3.wav,wav/river-3.wav,self,river,r,clear,3
+speakclear,river-4.wav,wav/river-4.wav,self,river,r,clear,4
+speakclear,river-5.wav,wav/river-5.wav,self,river,r,clear,5
+speakclear,story-1.wav,wav/story-1.wav,self,story,r,clear,1
+speakclear,story-2.wav,wav/story-2.wav,self,story,r,clear,2
+speakclear,story-3.wav,wav/story-3.wav,self,story,r,clear,3
+speakclear,story-4.wav,wav/story-4.wav,self,story,r,clear,4
+speakclear,story-5.wav,wav/story-5.wav,self,story,r,clear,5
+speakclear,teeth-1.wav,wav/teeth-1.wav,self,teeth,th,clear,1
+speakclear,teeth-2.wav,wav/teeth-2.wav,self,teeth,th,unclear,2
+speakclear,teeth-3.wav,wav/teeth-3.wav,self,teeth,th,unclear,3
+speakclear,teeth-4.wav,wav/teeth-4.wav,self,teeth,th,clear,4
+speakclear,teeth-5.wav,wav/teeth-5.wav,self,teeth,th,clear,5
+speakclear,thank-1.wav,wav/thank-1.wav,self,thank,th,unclear,1
+speakclear,thank-2.wav,wav/thank-2.wav,self,thank,th,unclear,2
+speakclear,thank-3.wav,wav/thank-3.wav,self,thank,th,unclear,3
+speakclear,thank-4.wav,wav/thank-4.wav,self,thank,th,unclear,4
+speakclear,thank-5.wav,wav/thank-5.wav,self,thank,th,unclear,5
+speakclear,thin-1.wav,wav/thin-1.wav,self,thin,th,clear,1
+speakclear,thin-2.wav,wav/thin-2.wav,self,thin,th,clear,2
+speakclear,thin-3.wav,wav/thin-3.wav,self,thin,th,clear,3
+speakclear,thin-4.wav,wav/thin-4.wav,self,thin,th,clear,4
+speakclear,thin-5.wav,wav/thin-5.wav,self,thin,th,clear,5
+speakclear,think-1.wav,wav/think-1.wav,self,think,th,clear,1
+speakclear,think-2.wav,wav/think-2.wav,self,think,th,clear,2
+speakclear,think-3.wav,wav/think-3.wav,self,think,th,clear,3
+speakclear,think-4.wav,wav/think-4.wav,self,think,th,clear,4
+speakclear,think-5.wav,wav/think-5.wav,self,think,th,clear,5
+speakclear,thirty-1.wav,wav/thirty-1.wav,self,thirty,th,unclear,1
+speakclear,thirty-2.wav,wav/thirty-2.wav,self,thirty,th,clear,2
+speakclear,thirty-3.wav,wav/thirty-3.wav,self,thirty,th,unclear,3
+speakclear,thirty-4.wav,wav/thirty-4.wav,self,thirty,th,unclear,4
+speakclear,thirty-5.wav,wav/thirty-5.wav,self,thirty,th,unclear,5
+speakclear,three-1.wav,wav/three-1.wav,self,three,th,unclear,1
+speakclear,three-2.wav,wav/three-2.wav,self,three,th,unclear,2
+speakclear,three-3.wav,wav/three-3.wav,self,three,th,unclear,3
+speakclear,three-4.wav,wav/three-4.wav,self,three,th,clear,4
+speakclear,three-5.wav,wav/three-5.wav,self,three,th,clear,5
