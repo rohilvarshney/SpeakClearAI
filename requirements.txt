@@ -8,3 +8,7 @@ requests>=2.31
 matplotlib>=3.7
 soundfile>=0.12
 cmudict
+datasets
+soundfile
+tqdm
+pyarrow

@@ -12,3 +12,9 @@ practice_progress_log.csv
 *.mp3
 
 .env
+
+# Public dataset downloads / generated audio
+public_data/
+hf_cache/
+results_public/
+models_public/
